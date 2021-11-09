@@ -1,9 +1,21 @@
+
+@font-face {
+  font-family: Sancoale;
+  src: url(../fonts/Sancoale\ Regular.ttf);
+}
+@font-face {
+  font-family: Sancoale Bold;
+  src: url(../fonts/Sancoale\ Bold.ttf);
+}
 html,
 body {
+  width: 100vw;
+  height: 100vh;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: "Sancoale Bold", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  overflow-x: hidden;
 }
 
 a {
@@ -13,4 +25,11 @@ a {
 
 * {
   box-sizing: border-box;
+}
+:root{
+  --color--primary : #bc0f28;
+  --color--secondary : #223059;
+  --color--terciary : #354B8C;
+  --color--button : #EF1837;
+  
 }
