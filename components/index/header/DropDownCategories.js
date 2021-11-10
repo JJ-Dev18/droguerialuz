@@ -1,7 +1,7 @@
 import { faBeer } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { useCheck } from "../../hooks/useCheck";
+import { useCheck } from "../../../hooks/useCheck";
 import { Categoria, ContentDropDown, ListSubCategoria, SubCategoria, SubMenu } from "./DropDownStyles";
 import { NavLink } from "./NavLink";
 

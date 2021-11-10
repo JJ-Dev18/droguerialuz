@@ -5,6 +5,7 @@ display: flex;
 flex-direction: column;
 height: 60px;
 width: 100vw;
+position: relative;
 
 `
 
@@ -37,19 +38,19 @@ export const ListLinks = styled.ul`
   flex-direction: column;
   list-style: none;
   background-color: var(--color--terciary);
-
+  /* opacity: ${(props) => (props.open ? "1" : "0")}; */
   align-items: flex-start;
   width: 100vw;
-  height: 100vh;
+  height:100vh;
   position: fixed;
   top: 0;
-
+  z-index: 9999;
   padding: 0;
   margin: 0;
   padding: 40px;
   color: white;
-  transition: display 3s ease;
-  animation: alternate 1s;
+  transition: all 3s ease-in;
+  /* animation: alternate 1s; */
 
   @media (min-width: 768px) {
     display: flex;
@@ -153,7 +154,7 @@ export const Navigator = styled.nav`
     justify-content: center;
     height: 80px;
     width: 100vw;
-    position:  static;
+    /* position:  static; */
     background-color: var(--color--secondary);
   }
 `;

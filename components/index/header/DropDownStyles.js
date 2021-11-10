@@ -9,6 +9,7 @@ export const ContentDropDown = styled.div`
   left: 25%;
   width: 700px;
   height: 400px;
+  z-index:9999;
   
   & [type="radio"] {
     margin: 0;
