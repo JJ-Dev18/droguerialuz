@@ -31,15 +31,7 @@ align-items: center;
    padding: 50px;
  }
 `;
-export const Navigator = styled.nav`
-  height: 40px;
-  width: 100vw;
-  display: ${(props) => (props.open ? "flex" : "none")};
 
-  @media (min-width: 768px) {
-    display: flex;
-  }
-`;
 export const ListLinks = styled.ul`
   display: ${(props) => (props.open ? "flex" : "none")};
   flex-direction: column;
@@ -51,6 +43,7 @@ export const ListLinks = styled.ul`
   height: 100vh;
   position: fixed;
   top: 0;
+
   padding: 0;
   margin: 0;
   padding: 40px;
@@ -98,16 +91,16 @@ export const ButtonHamburguesa = styled.button`
   width: 50px;
   height: 50px;
   cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
   @media (min-width: 768px) {
     display: none;
    
   }
 `;
 export const Enlaces = styled.li`
-  margin-top: 10px;
+  margin-top: 30px;
   padding: 5px;
   &:hover {
     /* border-top: 3px solid var(--color--secondary); */
@@ -121,12 +114,20 @@ export const Enlaces = styled.li`
     font-size: 25px;
   }
 `;
-
+export const ContentRestEnlaces = styled.div `
+   display: flex;
+   flex-direction: column;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
 export const ContentButtons = styled.div`
   display: flex;
   width: 120px;
   justify-content: space-between;
+  margin-top: 20px;
   @media (min-width: 768px) {
+    margin-top: 0;
   }
 `;
 export const ButtonsHeader = styled.button`
@@ -141,5 +142,69 @@ export const ButtonsHeader = styled.button`
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+`;
+export const Navigator = styled.nav`
+  display: none;
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 100vw;
+    position:  static;
+    background-color: var(--color--secondary);
+  }
+`;
+export const  Categories = styled.div`
+ width: 50%;
+  height: 50px;
+ text-align: center;
+ color:white;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ cursor: pointer;
+ position: relative;
+ span{
+   svg{
+     margin-right: 5px;
+   }
+ }
+`;
+
+export const ListEnlacesNavegacion = styled.ul`
+  display: flex;
+  width: 50%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+`;
+export const EnlacesNavegacion = styled.li`
+  text-align: center;
+  color: white;
+
+  @media (min-width: 768px) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    &[aria-current] {
+      background-color: var(--color--terciary);
+    }
   }
 `;
