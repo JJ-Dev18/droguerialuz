@@ -8,7 +8,6 @@ export const ContentBuscador = styled.div`
   background-size: cover;
   position: relative;
   height: 320px;
-  border: 3px solid red;
   padding: 20px;
 
   @media (min-width: 900px) {
