@@ -39,13 +39,45 @@ p{
   --color--button : #EF1837;
   
 }
-main{
+.slick-dots{
+  bottom: -35px !important;
 
+}
+.slick-dots li{
+   width: 15px !important;
+   height: 15px !important;
+   border-radius: 50%;
+   
+   border-radius: 50% !important;
+   background: gray;
+}
 
+.slick-dots li button:before {
+  color: gray !important;
+  width: 15px !important;
+   height: 15px !important;
+  
+}
+.slick-dots li.slick-active button:before {
+    
+    background: var(--color--button) !important;
+    border-radius: 50%;
+    color: var(--color--button) !important;
+}
+
+.arrow_rigth{
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  cursor: pointer;
+}
+.arrow_left{
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  cursor: pointer;
 }
 
  @media screen and (min-width:900px){
-     main{
-     
-     }
+    
   }

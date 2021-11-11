@@ -1,7 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Buscador from '../components/index/buscador/Buscador'
+import Carousel from '../components/index/carousel/Carousel'
+import CarouselBanner from '../components/index/carousel/CarouselBanner'
 import styles from '../styles/Home.module.css'
+
 
 export default function Home() {
   return (
@@ -12,6 +15,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
      <Buscador/>
+     <Carousel
+      slide={1}
+      banner={true}
+      dots={true}
+      onBanner={()=> <CarouselBanner/>}
+     />
      
     </div>
   )
