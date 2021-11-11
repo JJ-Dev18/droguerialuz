@@ -13,7 +13,7 @@ import {
   LogoFooter,
   Mapa,
   Titulo,
-} from "./footerStyled";
+} from "./footerStyles";
 
 const Footer = () => {
   return (

@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const ContentHeader = styled.div `
 display: flex;
 flex-direction: column;
-height: 60px;
 width: 100vw;
 position: relative;
 
@@ -41,7 +40,7 @@ export const ListLinks = styled.ul`
   /* opacity: ${(props) => (props.open ? "1" : "0")}; */
   align-items: flex-start;
   width: 100vw;
-  height:100vh;
+  height: 100vh;
   position: fixed;
   top: 0;
   z-index: 9999;
@@ -49,18 +48,22 @@ export const ListLinks = styled.ul`
   margin: 0;
   padding: 40px;
   color: white;
-  transition: all 3s ease-in;
+  /* transition: all 3s ease-in; */
   /* animation: alternate 1s; */
-
   @media (min-width: 768px) {
     display: flex;
     flex-direction: row;
-    width: 32%;
-    height: 100%;
     position: relative;
     background: none;
+    height: 100%;
     align-items: center;
     justify-content: space-around;
+  }
+  @media (min-width: 1000px) {
+    width: 40%;
+  }
+  @media (min-width: 1300px) {
+    width: 32%;
   }
 `;
 export const ButtonCerrar = styled.button`
@@ -152,7 +155,7 @@ export const Navigator = styled.nav`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    height: 80px;
+    height: 60px;
     width: 100vw;
     /* position:  static; */
     background-color: var(--color--secondary);
