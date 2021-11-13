@@ -11,7 +11,7 @@ import DropDownCategories from './DropDownCategories';
 const Header = () => {
 
   const [open, setopen] = useState(false)
-  const [dropdown, setdropdown] = useState(true)
+  const [dropdown, setdropdown] = useState(false)
    const [state, setstate] = useState('entered')
   useEffect(() => {
     console.log(dropdown);

@@ -37,36 +37,35 @@ export default function Carousel(props) {
     dots: props.dots,
     infinite: true,
     speed: 500,
-    slidesToShow:props.pcSlide,
+    slidesToShow: props.pcBig,
     slidesToScroll: 1,
-     responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: props.dots
-          }
+    responsive: [
+      {
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: props.pc,
+          slidesToScroll: 1,
+          infinite: true,
+        
         },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            
-          }
+      },
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: props.tablet,
+          slidesToScroll: 1,
         },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1
-          }
-        }
-      ],
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: props.tel,
+          slidesToScroll: 1,
+        },
+      },
+    ],
 
-    nextArrow: <SampleNextArrow color={props.color}/>,
+    nextArrow: <SampleNextArrow color={props.color} />,
     prevArrow: <SamplePrevArrow color={props.color} />,
   };
   return (
