@@ -14,26 +14,37 @@ export const ContentFamilia = styled.section`
   }
 `;
 
-export const Empleado = styled.div`  
-height: 70%;
-width: 30%;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-h3{
-  color: var(--color--button);
-  margin: 0;
-  font-size: 0.8125rem;
-}
-span{
-font-size: 0.8125rem;
-}
+export const Empleado = styled.div`
+  height: 70%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  h3 {
+    color: var(--color--button);
+    margin: 0;
+    font-size: 0.8125rem;
+  }
+  span {
+    font-size: 0.8125rem;
+  }
 
-
-`
+  @media (min-width: 900px) {
+    height: 400px;
+    img{
+      height: 60%;
+    }
+    h3{
+      font-size: 1.2rem;
+    }
+    span{
+     font-size: 1rem;
+    }
+  }
+`;
