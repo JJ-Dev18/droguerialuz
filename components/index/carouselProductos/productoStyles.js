@@ -18,27 +18,31 @@ align-items: center;
 
 }
 `
-export const Descuento = styled.div` 
+export const Descuento = styled.div`
+  background-color: var(--color--secondary);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 13%;
+  border-radius: 6px 0 35px 0;
+  color: white;
+  /* font-size: 12px; */
+  font-size: ${(props) => props.cel};
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 2px;
+  z-index: 99;
 
-background-color: var(--color--secondary);
-position: absolute;
-top: 0;
-left: 0;
-width: 25%;
-height: 13%;
-border-radius: 0 0 35px 0;
-color: white;
-font-size:12px;
-display: flex;
-justify-content: start;
-align-items: center;
-padding: 2px;
-
-@media (min-width:1000px){
-  font-size: 16px;
-  padding: 6px;
-}
+  @media (min-width: 900px) {
+    font-size: ${({pc}) => pc};
+    
+    width: ${(props) => props.width};
+    justify-content: center;
+  }
 `;
+
 export const ContentImage = styled.div ` 
 display: flex;
 justify-content: center;
@@ -78,7 +82,7 @@ export const InfoProducto = styled.div`
 `;
 export const ContentButtonsProductos = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: ${(props)=> props.space ? 'flex-start' : 'space-around'};
   align-items: center;
   margin-top: 2px;
   

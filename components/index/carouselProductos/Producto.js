@@ -3,7 +3,7 @@ import { ButtonCarrito, ButtonComprar, ContentButtonsProductos, ContentImage, Co
 const Producto = () => {
   return (
     <ContentProducto>
-      <Descuento>30%</Descuento>
+      <Descuento cel="12px" pc="16px">30%</Descuento>
       <ContentImage>
         <img
           src="https://www.larebajavirtual.com/images/productos/sii/F/300x300/dolex_gripa-30363-1626291131.png"

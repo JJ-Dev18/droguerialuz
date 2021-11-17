@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { CarouselProducto } from '../components/global/CarouselProducto'
 import Buscador from '../components/index/buscador/Buscador'
 import Carousel from '../components/index/carousel/Carousel'
 import CarouselBanner from '../components/index/carousel/CarouselBanner'
@@ -71,6 +72,7 @@ export default function Home() {
         offer={true}
         onOffer={() => <Producto />}
       />
+     
       <h1 className="title_home">Familia Luz Mar</h1>
       <SectionFamilia/>
     </div>
