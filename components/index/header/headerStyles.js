@@ -8,14 +8,15 @@ position: relative;
 
 `
 
-export const ContentPregunta = styled.div `
-background-color: var(--color--terciary);
-height: 60px;
-display: flex;
-justify-content: center;
-align-items: center;
-color: white;
-`
+export const ContentPregunta = styled.div`
+  background-color: var(--color--terciary);
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+ 
+`;
 
 export const HeaderPrincipal = styled.header` 
 background-color: var(--color--primary);
@@ -142,10 +143,23 @@ export const ButtonsHeader = styled.button`
   width: 45px;
   height: 45px;
   cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg{
+    color: white;
+  }
+  
   &:hover {
+    background:${(props)=> props.background};
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 50% 50% 0 0 ;
+    svg{
+     color :red ;
+    }
   }
 `;
 export const Navigator = styled.nav`

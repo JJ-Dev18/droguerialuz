@@ -10,7 +10,7 @@ height: 220px;
 border-radius: 0 35px 35px 35px ;
 justify-content: center;
 align-items: center;
-
+cursor: pointer;
 @media (min-width:1000px){
   width: 250px;
   height: 400px;

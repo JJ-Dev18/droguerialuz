@@ -1,6 +1,7 @@
 import { ButtonCarrito, ButtonComprar, ContentButtonsProductos, Descuento } from "../index/carouselProductos/productoStyles";
 import { CardProducto, ContentDetalleProducto, ContentInfoProducto, StyledRate } from "./carouselProctoStyles";
 import { CarouselProducto } from "./CarouselProducto";
+import "rc-rate/assets/index.css";
 
 const ProductoScreen = () => {
   return (

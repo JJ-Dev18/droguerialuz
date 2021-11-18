@@ -74,6 +74,10 @@ export const BuscadorInput = styled.input`
   z-index: 999;
   border: none;
   outline: none;
+  background: url(${(props)=> props.icon}) no-repeat;
+  background-color: white;
+  background-size: 25px;
+  background-position: 10px 10px ;
   @media (min-width: 900px) {
     
   }
