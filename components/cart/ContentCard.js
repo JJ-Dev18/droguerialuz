@@ -19,7 +19,12 @@ const ContentCard = React.memo((props) => {
   return (
     <ContainCard>
       {props.productos.length === 0 ? (
-        <h4 style={{ color: "red" }}>No hay productos en el carrito</h4>
+        function(){
+          return (
+            <h4 style={{ color: "red" }}>No hay productos en el carrito</h4>
+          );
+        }
+       
       ) : (
         props.productos.map((producto) => (
           <ProductoDomicilio

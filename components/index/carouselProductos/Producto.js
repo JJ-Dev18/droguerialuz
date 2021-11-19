@@ -12,7 +12,7 @@ const Producto = (props) => {
      alert.show("Producto agregado al carrito");
   }
   return (
-    <Link href="/producto/campera" >
+    <Link href="/producto/campera" passHref>
       <ContentProducto>
         <Descuento cel="12px" pc="16px">
           30%
