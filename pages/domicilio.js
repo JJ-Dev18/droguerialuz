@@ -1,15 +1,26 @@
 import Head from "next/head";
 import Link from 'next/link'
 import Image from "next/image";
-
+import {useAlert} from 'react-alert'
 
 import ProductoScreen from "../components/global/ProductoScreen";
 import ProductoDomicilio from "../components/tudomicilio/ProductoDomicilio";
 import { TituloProducto } from "../components/tudomicilio/productoStyles";
 import Publicidad from "../components/index/publicidad/Publicidad";
 import SectionFamilia from "../components/index/familia/SectionFamilia";
+import useAppContext from "../context/Store";
 
 export default function Domicilio() {
+  const alert = useAlert()
+  const { value } = useAppContext()
+  const { state , dispatch } = value;
+  const { cart } = state
+
+   const deleteP = (props)=> {
+    
+     dispatch({ type: "CART_REMOVE_ITEM", payload: { ...props, quantiti: 1 } });
+     alert.show("Producto eliminado del carrito");
+  }
   return (
     <>
       <Head>
@@ -19,45 +30,29 @@ export default function Domicilio() {
       </Head>
       <TituloProducto>Tus Productos </TituloProducto>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        <ProductoDomicilio
-          widthCel="370px"
-          heightCel="150px"
-          widthImg="120px"
-          widthPc="400px"
-          heightPc="220px"
-          marginleft={true}
-          counter={true}
-        />
-        <ProductoDomicilio
-          widthCel="370px"
-          heightCel="150px"
-          widthImg="120px"
-          widthPc="400px"
-          heightPc="220px"
-          marginleft={true}
-          counter={true}
-        />
-        <ProductoDomicilio
-          widthCel="370px"
-          heightCel="150px"
-          widthImg="120px"
-          widthPc="400px"
-          heightPc="220px"
-          marginleft={true}
-          counter={true}
-        />
-        <ProductoDomicilio
-          widthCel="370px"
-          heightCel="150px"
-          widthImg="120px"
-          widthPc="400px"
-          heightPc="220px"
-          marginleft={true}
-          counter={true}
-        />
+        {cart.cartItems.length === 0 ? (
+          <h1> No hay productos en su domicilio </h1>
+        ) : (
+          cart.cartItems.map((item) => (
+            <ProductoDomicilio
+              key={item.id}
+              deleteP={deleteP}
+              widthCel="370px"
+              heightCel="150px"
+              widthImg="120px"
+              widthPc="400px"
+              heightPc="220px"
+              marginleft={true}
+              counter={true}
+              {...item}
+            />
+          ))
+        )}
+
+       
       </div>
-      <Publicidad/>
-      <SectionFamilia/>
+      <Publicidad />
+      <SectionFamilia />
     </>
   );
 }

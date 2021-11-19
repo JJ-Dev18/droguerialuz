@@ -9,9 +9,11 @@ import Producto from '../components/index/carouselProductos/Producto'
 import SectionFamilia from '../components/index/familia/SectionFamilia'
 import Publicidad from '../components/index/publicidad/Publicidad'
 import styles from '../styles/Home.module.css'
+import {data} from '../data/data'
 
+export default function Home(props) {
 
-export default function Home() {
+ 
   return (
     <div
       style={{
@@ -36,7 +38,7 @@ export default function Home() {
         onBanner={() => <CarouselBanner />}
       />
       <Publicidad />
-      <h1 className="title_home">Super Descuentos</h1>
+      {/* <h1 className="title_home">Super Descuentos</h1>
       <Carousel
         color="#EF1837"
         pcBig={5}
@@ -56,8 +58,8 @@ export default function Home() {
         tel={2}
         dots={false}
         offer={true}
-        onOffer={() => <Producto />}
-      />
+        onOffer={() => <Producto />} */}
+      {/* /> */}
       <ContentCarouselBaner style={{marginTop:'20px'}}> 
         <img src="/index/baner.png" alt="baner publicidad" />
       </ContentCarouselBaner>
@@ -70,11 +72,25 @@ export default function Home() {
         tel={2}
         dots={false}
         offer={true}
-        onOffer={() => <Producto />}
+        onOffer={() => data.productos.map(producto => (
+          <Producto key={producto.id} {...producto}/>
+        ))}
       />
      
       <h1 className="title_home">Familia Luz Mar</h1>
       <SectionFamilia/>
     </div>
   );
+}
+
+export async function getStaticProps(context) {
+  
+  if(!data){
+    return {
+      notFound : true
+    }
+  }
+  return {
+    props: {data}, // will be passed to the page component as props
+  };
 }

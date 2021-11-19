@@ -8,14 +8,16 @@ position: absolute;
 top: -5px;
 right: 0;
 color: white;
-
+display: flex;
+justify-content: center;
+align-items: center;
 background: var(--color--secondary);
 `
 
-const Badge = () => {
+const Badge = (props) => {
   return ( 
     <ContentBadge>
-      3
+      {props.cantidad}
     </ContentBadge>
    );
 }

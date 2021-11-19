@@ -135,7 +135,7 @@ export const ContentButtons = styled.div`
     margin-top: 0;
   }
 `;
-export const ButtonsHeader = styled.button`
+export const ButtonsHeader = styled.div`
   background-color: var(--color--button);
   border-radius: 50%;
   padding: 10px;
@@ -147,10 +147,13 @@ export const ButtonsHeader = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  p{
+    color: var(--color--secondary);
+  }
   svg{
     color: white;
   }
-  
+ 
   &:hover {
     background:${(props)=> props.background};
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
@@ -159,6 +162,7 @@ export const ButtonsHeader = styled.button`
     border-radius: 50% 50% 0 0 ;
     svg{
      color :red ;
+    
     }
   }
 `;

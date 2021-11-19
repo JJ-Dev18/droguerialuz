@@ -1,8 +1,18 @@
 import { ButtonCarrito, ButtonComprar, ContentButtonsProductos, ContentImage, ContentProducto, Descuento, InfoProducto } from "./productoStyles";
 import Link from 'next/link'
-const Producto = () => {
+import { useAlert } from "react-alert";
+import useAppContext from "../../../context/Store";
+const Producto = (props) => {
+  const alert = useAlert();
+  const { value } = useAppContext()
+  const { state , dispatch} = value
+  const addCarrito = (e)=> {
+    e.preventDefault()
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...props, quantiti: 1 } });
+     alert.show("Producto agregado al carrito");
+  }
   return (
-    <Link href="/producto/campera">
+    <Link href="/producto/campera" >
       <ContentProducto>
         <Descuento cel="12px" pc="16px">
           30%
@@ -14,11 +24,11 @@ const Producto = () => {
           />
         </ContentImage>
         <InfoProducto>
-          <h1>Acetaminofen</h1>
+          <h1>{props.nombre}</h1>
           <span>Antes $35.000</span>
           <ContentButtonsProductos>
-            <ButtonComprar>Ahora $ 20.000</ButtonComprar>
-            <ButtonCarrito>
+            <ButtonComprar>Ahora $ {props.price}</ButtonComprar>
+            <ButtonCarrito onClick={addCarrito}>
               <img
                 src="/index/header/carrito.svg"
                 alt="imagen boton carrito"

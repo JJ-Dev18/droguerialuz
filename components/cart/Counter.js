@@ -21,8 +21,9 @@ const Cantidad = styled.div`
   align-items: center;
 `;
 
-const Counter = () => {
-  const { counter, increment, decrement, reset } = useCounter(0);
+const Counter = (props) => {
+  const { counter, increment, decrement, reset } = useCounter(props.cantidad);
+  console.log(props.cantidad)
   return (
     <ContentCounter>
       <span>Cantidad</span>

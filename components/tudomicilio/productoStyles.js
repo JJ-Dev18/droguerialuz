@@ -49,8 +49,17 @@ export const ContentInfoProductDomicilios = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`;
+  
 
+`;
+export const CantidadProductoCarrito = styled.span`
+ 
+    position: absolute;
+    bottom: 0;
+    color: red;
+    right: 10px;
+  
+`;
 export const ContentButtonsProductDomicilios = styled.div ` 
 padding: 5px;
 display: flex;

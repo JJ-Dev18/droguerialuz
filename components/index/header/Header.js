@@ -1,4 +1,4 @@
-import React , {useState,useEffect} from 'react';
+import React,{useState,useEffect} from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import the FontAwesomeIcon component
@@ -9,20 +9,31 @@ import DropDownCategories from './DropDownCategories';
 import Badge from './Badge';
 import ContentCard from '../../cart/ContentCard';
 import { useRouter } from 'next/router';
+import useAppContext from '../../../context/Store';
+import { useAlert } from "react-alert";
+
 
 const Header = () => {
-
-  const [open, setopen] = useState(false)
+   const alert = useAlert();
+  const [open, setopen] = useState(false);
   const [openCarrito, setCarrito] = useState(false);
-  const [dropdown, setdropdown] = useState(false)
-  const router = useRouter()
-  
-  const closeMenu = ()=> {
-     setopen(false)
-  }
-  
+  const [dropdown, setdropdown] = useState(false);
+  const {value} = useAppContext();
+  const { state, dispatch} = value;
+  const { cartItems} = state.cart
+  //  const {cartItems} = state.cart
+  const cantProductos = cartItems.length
+  const router = useRouter();
 
-
+  const closeMenu = () => {
+    setopen(false);
+  };
+   const deleteP = (props) => {
+     
+     dispatch({ type: "CART_REMOVE_ITEM", payload: { ...props, quantiti: 1 } });
+     alert.show("Producto eliminado del carrito");
+   };
+  
   return (
     <ContentHeader>
       <ContentPregunta>
@@ -30,7 +41,6 @@ const Header = () => {
       </ContentPregunta>
       <HeaderPrincipal>
         <Logo src="/index/header/logo.svg" alt="logo drogueria" />
-
         <ListLinks open={open}>
           <Enlaces onClick={closeMenu}>
             <Link href="/ingresar">Ingresar</Link>
@@ -65,6 +75,7 @@ const Header = () => {
                 closeMenu();
                 router.push("/domicilio");
               }}
+             
               onMouseOver={() => setCarrito(true)}
               onMouseLeave={() => setCarrito(false)}
             >
@@ -75,11 +86,14 @@ const Header = () => {
               /> */}
               <FontAwesomeIcon
                 icon={faShoppingCart}
-                size="2x"
+                size="1x"
               ></FontAwesomeIcon>
-              {openCarrito && <ContentCard />}
+              {openCarrito && 
+              
+              <ContentCard productos={cartItems} deleteP={deleteP}/>
+              }
 
-              <Badge />
+              <Badge cantidad={cantProductos}/>
             </ButtonsHeader>
           </ContentButtons>
 
@@ -128,6 +142,6 @@ const Header = () => {
       </Navigator>
     </ContentHeader>
   );
-}
+};
  
 export default Header;

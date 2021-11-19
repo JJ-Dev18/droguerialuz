@@ -14,6 +14,7 @@ export const ContentBuscador = styled.div`
     justify-content: center;
     height: 480px;
     padding-bottom: 0;
+    
   }
 `;
 export const InfoBuscador = styled.div`
@@ -39,7 +40,7 @@ export const ContentInfo = styled.div`
   }
   @media (min-width: 900px) {
     font-size: 25px;
-    width: 30%;
+    width: 38%;
     h2 {
       width: 100%;
     }
@@ -69,7 +70,7 @@ export const ContentImagen = styled.div`
 export const BuscadorInput = styled.input`
   border-radius: 20px;
   width: 100%;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
   z-index: 999;
   border: none;
@@ -87,5 +88,6 @@ export const BuscadorInput = styled.input`
   }
   ::placeholder {
     color: gray;
+    font-size: 0.875rem;
   }
 `;
