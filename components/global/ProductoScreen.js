@@ -1,9 +1,19 @@
 import { ButtonCarrito, ButtonComprar, ContentButtonsProductos, Descuento } from "../index/carouselProductos/productoStyles";
 import { CardProducto, ContentDetalleProducto, ContentInfoProducto, StyledRate } from "./carouselProctoStyles";
 import { CarouselProducto } from "./CarouselProducto";
+import useAppContext from "../../context/Store";
+import {useAlert} from 'react-alert'
 import "rc-rate/assets/index.css";
 
-const ProductoScreen = () => {
+const ProductoScreen = (props) => {
+   const alert = useAlert()
+   const { value } = useAppContext()
+   const { state, dispatch} = value
+  const addCarrito = (e) => {
+    e.preventDefault();
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...props, quantiti: 1 } });
+    alert.show("Producto agregado al carrito");
+  };
   return (
     <ContentDetalleProducto>
       <CardProducto>
@@ -13,16 +23,14 @@ const ProductoScreen = () => {
         <CarouselProducto />
       </CardProducto>
       <ContentInfoProducto>
-        <h1>Nombre Producto o medicamento</h1>
+        <h1>{props.nombre}</h1>
         <p>
-          La descripción de productos es el elemento vital en un sitio web que
-          tiene por objetivo atraer, informar y convencer al consumidor de
-          comprar un artículo.{" "}
+          {props.descripcion}
         </p>
         <span>Antes $35.000</span>
         <ContentButtonsProductos space={true}>
-          <ButtonComprar>Ahorra $20.000</ButtonComprar>
-          <ButtonCarrito>
+          <ButtonComprar>Ahorra ${props.price}</ButtonComprar>
+          <ButtonCarrito onClick={addCarrito}>
             <img
               src="/index/header/carrito.svg"
               alt="imagen boton carrito"

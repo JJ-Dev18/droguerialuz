@@ -3,9 +3,9 @@ import Rate from "rc-rate";
 
 export const ContentProducto = styled.div`
   width: 100%;
-  display: flex;
-  justify-items: center;
-  align-items: center;
+  display: flex !important;
+  justify-items: center !important;
+  align-items: center !important;
   img {
     width: 100px;
     height: 100px;
@@ -23,11 +23,11 @@ export const NavegacionImg = styled.a`
   justify-content: center;
   align-items: center;
   border: none;
-  img{
+  /* img{
     width: 100%;
     height: 100%;
     object-fit: contain;
-  }
+  } */
 `;
 export const CardProducto = styled.div`
   width: 50%;

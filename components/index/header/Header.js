@@ -40,7 +40,7 @@ const Header = () => {
         <p>PREGUNTA POR NUESTRAS MEJORES PROMOCIONES</p>
       </ContentPregunta>
       <HeaderPrincipal>
-        <Logo src="/index/header/logo.svg" alt="logo drogueria" />
+        <Logo src={"/index/header/logo.svg"} alt="logo drogueria"    width="60%" height="50px" />
         <ListLinks open={open}>
           <Enlaces onClick={closeMenu}>
             <Link href="/ingresar">Ingresar</Link>
@@ -63,17 +63,19 @@ const Header = () => {
 
           <ContentButtons>
             <ButtonsHeader>
-              <img
-                src="/index/header/user.svg"
+              <Image
+                src={"/index/header/user.svg"}
                 alt="imagen boton usario"
                 width="20px"
+                height="20px"
+                // layout="fill"
               />
             </ButtonsHeader>
             <ButtonsHeader
               background=" #ffff"
               onClick={() => {
                 closeMenu();
-                router.push("/domicilio");
+                // router.push("/domicilio");
               }}
              
               onMouseOver={() => setCarrito(true)}
@@ -103,8 +105,8 @@ const Header = () => {
         </ListLinks>
 
         <ButtonHamburguesa onClick={() => setopen(true)}>
-          <img
-            src="/index/header/button.svg"
+          <Image
+            src={"/index/header/button.svg"}
             alt="boton hamburguesa"
             width="100%"
             height="100%"

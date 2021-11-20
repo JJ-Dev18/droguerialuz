@@ -3,30 +3,20 @@
 import React, { useContext,useState,useEffect } from "react";
 import useAppContext, { Store } from "../../context/Store";
 import ProductoDomicilio from "../tudomicilio/ProductoDomicilio";
-import ProductoCart from "./ProductoCart";
 import { ContainCard } from "./productoCartStyles";
 
-const ContentCard = React.memo((props) => {
+export default function ContentCard  (props){
 
-   
-  //  const [productos, setProductos] = useState([])
-
-  
-   
-
-   console.log(props.productos)
-   
   return (
     <ContainCard>
-      {props.productos.length === 0 ? (
-        function(){
-          return (
-            <h4 style={{ color: "red" }}>No hay productos en el carrito</h4>
-          );
-        }
-       
-      ) : (
-        props.productos.map((producto) => (
+      {
+        
+   (props.productos.length === 0 ) && 
+     <h4 style={{ color: "red" }}>No hay productos en el carrito</h4>
+   }
+      
+      {
+          props.productos.map((producto) => (
           <ProductoDomicilio
             key={producto.id}
             widthCel="100px"
@@ -41,11 +31,11 @@ const ContentCard = React.memo((props) => {
             padding={false}
             {...producto}
           />
-        ))
-      )}
+          ))
+      } 
+      
    
     </ContainCard>
   );
-})
+}
  
-export default ContentCard;

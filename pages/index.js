@@ -10,10 +10,12 @@ import SectionFamilia from '../components/index/familia/SectionFamilia'
 import Publicidad from '../components/index/publicidad/Publicidad'
 import styles from '../styles/Home.module.css'
 import {data} from '../data/data'
+import { useEffect } from 'react'
 
-export default function Home(props) {
 
- 
+export default function Home (props) {
+
+  
   return (
     <div
       style={{
@@ -38,7 +40,7 @@ export default function Home(props) {
         onBanner={() => <CarouselBanner />}
       />
       <Publicidad />
-      {/* <h1 className="title_home">Super Descuentos</h1>
+      <h1 className="title_home">Super Descuentos</h1>
       <Carousel
         color="#EF1837"
         pcBig={5}
@@ -47,7 +49,11 @@ export default function Home(props) {
         tel={2}
         dots={false}
         dctos={true}
-        onDctos={() => <Producto />}
+        onDctos={() =>
+          data.productos.map((producto) => (
+            <Producto key={producto.id} {...producto} />
+          ))
+        }
       />
       <h1 className="title_home">Ofertas</h1>
       <Carousel
@@ -58,9 +64,13 @@ export default function Home(props) {
         tel={2}
         dots={false}
         offer={true}
-        onOffer={() => <Producto />} */}
-      {/* /> */}
-      <ContentCarouselBaner style={{marginTop:'20px'}}> 
+        onOffer={() =>
+          data.productos.map((producto) => (
+            <Producto key={producto.id} {...producto} />
+          ))
+        }
+      />
+      <ContentCarouselBaner style={{ marginTop: "20px" }}>
         <img src="/index/baner.png" alt="baner publicidad" />
       </ContentCarouselBaner>
       <h1 className="title_home">Tu hogar</h1>
@@ -72,13 +82,15 @@ export default function Home(props) {
         tel={2}
         dots={false}
         offer={true}
-        onOffer={() => data.productos.map(producto => (
-          <Producto key={producto.id} {...producto}/>
-        ))}
+        onOffer={() =>
+          data.productos.map((producto) => (
+            <Producto key={producto.id} {...producto} />
+          ))
+        }
       />
-     
+
       <h1 className="title_home">Familia Luz Mar</h1>
-      <SectionFamilia/>
+      <SectionFamilia />
     </div>
   );
 }

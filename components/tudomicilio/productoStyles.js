@@ -17,7 +17,7 @@ export const CardProductoDomicilios = styled.div`
   @media (min-width: 900px) {
     height: ${(props) => props.heightPc};
     width: ${(props) => props.widthPc};
-
+    z-index: 999;
     h1 {
       font-size: ${(props) => props.h1};
     }
@@ -71,4 +71,5 @@ export const Delete = styled.button`
   top: 0;
   right: 0;
   cursor: pointer;
+  z-index:999;
 `;

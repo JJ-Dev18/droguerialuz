@@ -75,23 +75,9 @@ export default function Carousel(props) {
       {props.banner && props.onBanner()}
       {props.banner && props.onBanner()}
       {props.dctos && props.onDctos()}
-      {props.dctos && props.onDctos()}
-      {props.dctos && props.onDctos()}
-      {props.dctos && props.onDctos()}
-      {props.dctos && props.onDctos()}
-      {props.dctos && props.onDctos()}
       {props.offer && props.onOffer()}
-      {props.offer && props.onOffer()}
-      {props.offer && props.onOffer()}
-      {props.offer && props.onOffer()}
-      {props.offer && props.onOffer()}
-      {props.offer && props.onOffer()}
-      {props.safe && props.onSafe()}
-      {props.safe && props.onSafe()}
       {props.safe && props.onSafe()}
       {props.home && props.onHome()}
-      {props.home && props.onHome()}
-      {props.baby && props.onBaby()}
       {props.baby && props.onBaby()}
     </Slider>
   );
