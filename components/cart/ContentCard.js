@@ -33,6 +33,8 @@ export default function ContentCard  (props){
           />
           ))
       } 
+
+      <span> Total : {props.total}</span>
       
    
     </ContainCard>

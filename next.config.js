@@ -22,5 +22,11 @@
 //   ),
 // });
 module.exports = {
-  stricted : true
-}
+  images: {
+    domains: ["assets.vercel.com", "lh3.googleusercontent.com"],
+    formats: ["image/avif", "image/webp"],
+  },
+};
+// module.exports = {
+//   stricted : true
+// }

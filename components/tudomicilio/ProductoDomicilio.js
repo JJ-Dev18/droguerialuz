@@ -6,7 +6,9 @@ import { CantidadProductoCarrito, CardProductoDomicilios, ContentButtonsProductD
 import { faMinus, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ProductoDomicilio = ({widthCel,heightCel,heightPc,widthPc,widthImg,marginleft,h1,p,padding,counter,id,nombre,descripcion,price,quantiti,deleteP}) => {
+const ProductoDomicilio = ({widthCel,
+  heightCel,heightPc,widthPc,widthImg,marginleft,h1,p,padding,counter,
+  id,nombre,descripcion,price,quantiti,deleteP,add,decrement}) => {
 
    
   return (
@@ -32,12 +34,12 @@ const ProductoDomicilio = ({widthCel,heightCel,heightPc,widthPc,widthImg,marginl
         <InfoProductoDomicilios>
           <h1>{nombre}</h1>
           <p>{descripcion}</p>
-        </InfoProductoDomicilios>
+        </InfoProductoDomicilios> 
         {counter ? (
           <ContentButtonsProductDomicilios>
-            <Counter cantidad={quantiti} />
+            <Counter cantidad={quantiti} add={add} id={id} decrement={decrement}/>
 
-            <ButtonComprar>$20.000</ButtonComprar>
+            <ButtonComprar>{price}</ButtonComprar>
           </ContentButtonsProductDomicilios>
         )
       :

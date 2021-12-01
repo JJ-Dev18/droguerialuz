@@ -72,7 +72,7 @@ export const BuscadorInput = styled.input`
   width: 100%;
   padding: 10px;
   text-align: center;
-  z-index: 999;
+  z-index: 99;
   border: none;
   outline: none;
   background: url(${(props)=> props.icon}) no-repeat;

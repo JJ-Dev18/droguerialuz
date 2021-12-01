@@ -2,14 +2,15 @@ import { ButtonCarrito, ButtonComprar, ContentButtonsProductos, ContentImage, Co
 import Link from 'next/link'
 import { useAlert } from "react-alert";
 import useAppContext from "../../../context/Store";
+import { cartAdd } from "../../../context/actions";
 const Producto = (props) => {
   const alert = useAlert();
   const { value } = useAppContext()
   const { state , dispatch} = value
   const addCarrito = (e)=> {
     e.preventDefault()
-    dispatch({ type: "CART_ADD_ITEM", payload: { ...props, quantiti: 1 } });
-     alert.show("Producto agregado al carrito");
+    dispatch(cartAdd(props));
+     alert.success("Producto agregado al carrito");
   }
   return (
     <Link href={`/producto/${props.id}`} passHref>

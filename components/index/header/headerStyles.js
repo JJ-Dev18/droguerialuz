@@ -165,6 +165,7 @@ export const ButtonsHeader = styled.div`
      color :red ;
     
     }
+    
   }
 `;
 export const Navigator = styled.nav`

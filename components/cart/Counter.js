@@ -29,7 +29,10 @@ const Counter = (props) => {
       <span>Cantidad</span>
 
       <ContentBotones>
-        <button onClick={decrement} className="cursor">
+        <button onClick={()=> {
+          props.decrement(props.id)
+          decrement()
+        }} className="cursor">
           <FontAwesomeIcon
             icon={faMinus}
             size="1x"
@@ -38,7 +41,10 @@ const Counter = (props) => {
         </button>
 
         <Cantidad> {counter}</Cantidad>
-        <button onClick={increment} className="cursor">
+        <button onClick={()=> {
+         props.add(props.id)
+         increment()
+        }} className="cursor">
           <FontAwesomeIcon
             icon={faPlus}
             size="1x"

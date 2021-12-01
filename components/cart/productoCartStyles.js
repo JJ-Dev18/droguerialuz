@@ -8,7 +8,9 @@ padding: 10px;
 width: 100vw;
 height: auto;
 background: white;
-
+span{
+  color: var(--color--secondary) !important;
+}
 @media (min-width:900px){
   width: 17vw;
 }

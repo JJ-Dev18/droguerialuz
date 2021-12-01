@@ -8,12 +8,13 @@ import Layout from "../components/Layout";
 import { StoreProvider } from "../context/Store";
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import AlertMUITemplate from "react-alert-template-mui";
+import AlertTemplate from "react-alert-template-basic";
 
 // optional configuration
 const options = {
   // you can also just use 'bottom center'
   position: positions.BOTTOM_CENTER,
-  timeout: 1000,
+  timeout: 3000,
   offset: "30px",
   // you can also just use 'scale'
   transition: transitions.SCALE,
@@ -24,7 +25,7 @@ config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS
 function MyApp({ Component, pageProps }) {
   return (
     <StoreProvider>
-      <AlertProvider template={AlertMUITemplate} {...options}>
+      <AlertProvider template={AlertTemplate} {...options}>
         <Layout>
           <Component {...pageProps} />
         </Layout>

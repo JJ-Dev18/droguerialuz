@@ -9,6 +9,7 @@ import { TituloProducto } from "../components/tudomicilio/productoStyles";
 import Publicidad from "../components/index/publicidad/Publicidad";
 import SectionFamilia from "../components/index/familia/SectionFamilia";
 import useAppContext from "../context/Store";
+import {  cartDelete, decrementProduct, incrementProduct } from "../context/actions";
 
 export default function Domicilio() {
   const alert = useAlert()
@@ -17,10 +18,17 @@ export default function Domicilio() {
   const { cart } = state
 
    const deleteP = (props)=> {
-    
-     dispatch({ type: "CART_REMOVE_ITEM", payload: { ...props, quantiti: 1 } });
+     dispatch(cartDelete(props));
      alert.show("Producto eliminado del carrito");
   }
+   const incrementProd = (id)=> {
+    dispatch(incrementProduct(id));
+    //  alert.success("Producto agregado al carrito");
+  }
+  const decrementProd = (id)=> {
+    dispatch(decrementProduct(id))
+  }
+  
   return (
     <>
       <Head>
@@ -37,6 +45,8 @@ export default function Domicilio() {
             <ProductoDomicilio
               key={item.id}
               deleteP={deleteP}
+              add={incrementProd}
+              decrement={decrementProd}
               widthCel="370px"
               heightCel="150px"
               widthImg="120px"

@@ -44,6 +44,9 @@ h1{
 .cursor{
   cursor: pointer;
 }
+.rounded{
+  border-radius: 50%;
+}
 .slick-initialized .slick-slide {
     justify-content: center !important;
     display: flex !important;

@@ -11,28 +11,49 @@ import ContentCard from '../../cart/ContentCard';
 import { useRouter } from 'next/router';
 import useAppContext from '../../../context/Store';
 import { useAlert } from "react-alert";
+import { cartDelete, logout } from '../../../context/actions';
+import MenuUser from '../user/MenuUser';
 
 
-const Header = () => {
+const Header = (props) => {
    const alert = useAlert();
   const [open, setopen] = useState(false);
   const [openCarrito, setCarrito] = useState(false);
+  const [userMenu, setuserMenu] = useState(false)
   const [dropdown, setdropdown] = useState(false);
   const {value} = useAppContext();
   const { state, dispatch} = value;
-  const { cartItems} = state.cart
-  //  const {cartItems} = state.cart
+  const { cartItems,total} = state.cart
+  const { logged } = state
+  const { avatar } = state.user
   const cantProductos = cartItems.length
   const router = useRouter();
-
+  console.log(state.cart)
+  const openLogin = ()=> {
+      props.setLogin(true)
+      setopen(false);
+  }
+  const openRegister = ()=>{
+    props.setRegister(true)
+    setopen(false)
+  }
   const closeMenu = () => {
     setopen(false);
   };
    const deleteP = (props) => {
-     
-     dispatch({ type: "CART_REMOVE_ITEM", payload: { ...props, quantiti: 1 } });
-     alert.show("Producto eliminado del carrito");
+     dispatch(cartDelete(props));
+     alert.error("Producto eliminado del carrito");
    };
+
+   const loggout = ()=> {
+     dispatch(logout())
+    //  google.accounts.id.disableAutoSelect();
+    //  google.accounts.id.revoke(localStorage.getItem("correo"), (done) => {
+       localStorage.clear();
+       //  location.reload();
+    //  });
+     setopen(false)
+   }
   
   return (
     <ContentHeader>
@@ -40,14 +61,28 @@ const Header = () => {
         <p>PREGUNTA POR NUESTRAS MEJORES PROMOCIONES</p>
       </ContentPregunta>
       <HeaderPrincipal>
-        <Logo src={"/index/header/logo.svg"} alt="logo drogueria"    width="60%" height="50px" />
+        <Logo
+          src={"/index/header/logo.svg"}
+          alt="logo drogueria"
+          width="60%"
+          height="50px"
+        />
         <ListLinks open={open}>
-          <Enlaces onClick={closeMenu}>
-            <Link href="/ingresar">Ingresar</Link>
-          </Enlaces>
-          <Enlaces onClick={closeMenu}>
-            <Link href="/registrate">Registrate</Link>
-          </Enlaces>
+          {!logged ? (
+            <>
+              <Enlaces onClick={openLogin} className="cursor">
+                {/* <Link href="/ingresar">Ingresar</Link> */}
+                Ingresar
+              </Enlaces>
+              <Enlaces onClick={openRegister} className="cursor">
+                Registrate
+              </Enlaces>
+            </>
+          ) : (
+            <Enlaces onClick={loggout} className="cursor">
+              Cerrar Sesion
+            </Enlaces>
+          )}
 
           <ContentRestEnlaces>
             <Enlaces onClick={closeMenu}>
@@ -62,14 +97,29 @@ const Header = () => {
           </ContentRestEnlaces>
 
           <ContentButtons>
-            <ButtonsHeader>
-              <Image
-                src={"/index/header/user.svg"}
-                alt="imagen boton usario"
-                width="20px"
-                height="20px"
-                // layout="fill"
-              />
+            <ButtonsHeader
+              background=" #223059"
+              onClick={() => setuserMenu(true)}
+              onMouseOver={() => setuserMenu(true)}
+              onMouseLeave={() => setuserMenu(false)}
+            >
+              {logged ? (
+                <Image
+                  src={avatar ? avatar : "/index/header/user.svg"}
+                  alt="imagen boton usario"
+                  width="20px"
+                  height="20px"
+                  className="rounded"
+                />
+              ) : (
+                <Image
+                  src={"/index/header/user.svg"}
+                  alt="imagen boton usario"
+                  width="20px"
+                  height="20px"
+                />
+              )}
+              {userMenu && <MenuUser logged={logged} />}
             </ButtonsHeader>
             <ButtonsHeader
               background=" #ffff"
@@ -77,7 +127,6 @@ const Header = () => {
                 closeMenu();
                 // router.push("/domicilio");
               }}
-             
               onMouseOver={() => setCarrito(true)}
               onMouseLeave={() => setCarrito(false)}
             >
@@ -90,12 +139,11 @@ const Header = () => {
                 icon={faShoppingCart}
                 size="1x"
               ></FontAwesomeIcon>
-              {openCarrito && 
-              
-              <ContentCard productos={cartItems} deleteP={deleteP}/>
-              }
+              {openCarrito && (
+                <ContentCard productos={cartItems} deleteP={deleteP} total={total}/>
+              )}
 
-              <Badge cantidad={cantProductos}/>
+              <Badge cantidad={cantProductos} />
             </ButtonsHeader>
           </ContentButtons>
 
