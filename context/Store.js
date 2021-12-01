@@ -43,6 +43,8 @@ const reducer = (state,action)=> {
       const cartItems = state.cart.cartItems.map((item) => 
          item.id == action.payload ? {...product,quantiti: product.quantiti +1 } : item
         )
+         Cookies.set("cartItems", JSON.stringify(cartItems));
+         Cookies.set("total", JSON.stringify(state.cart.total + precio));
       return {
         ...state,
         cart: { ...state.cart, total: state.cart.total + precio, cartItems},
@@ -58,6 +60,8 @@ const reducer = (state,action)=> {
           ? { ...product, quantiti: product.quantiti - 1 }
           : item
       );
+        Cookies.set("cartItems", JSON.stringify(cartItems));
+        Cookies.set("total", JSON.stringify(state.cart.total - precio));
       return {
         ...state,
         cart: { ...state.cart, total: state.cart.total - precio, cartItems },
