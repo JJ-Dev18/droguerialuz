@@ -1,23 +1,23 @@
 import styled from 'styled-components'
 
-export const ContentProducto = styled.div ` 
-position: relative;
-display: flex;
-flex-direction: column;
-border: 2px solid var(--color--secondary);
-width: 150px;
-height: 220px;
-border-radius: 0 35px 35px 35px ;
-justify-content: center;
-align-items: center;
-cursor: pointer;
-@media (min-width:1000px){
-  width: 250px;
-  height: 400px;
-  border-radius: 10px;
-
-}
-`
+export const ContentProducto = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--color--secondary);
+  width: 150px;
+  height: 220px;
+  border-radius: 0 35px 35px 35px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  @media (min-width: 1000px) {
+    width: 200px;
+    height: 300px;
+    border-radius: 10px;
+  }
+`;
 export const Descuento = styled.div`
   background-color: var(--color--secondary);
   position: absolute;
@@ -25,7 +25,7 @@ export const Descuento = styled.div`
   left: 0;
   width: 25%;
   height: 13%;
-  border-radius: 6px 0 35px 0;
+  border-radius: 0px 0 35px 0;
   color: white;
   /* font-size: 12px; */
   font-size: ${(props) => props.cel};

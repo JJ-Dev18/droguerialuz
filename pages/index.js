@@ -9,11 +9,11 @@ import Producto from '../components/index/carouselProductos/Producto'
 import SectionFamilia from '../components/index/familia/SectionFamilia'
 import Publicidad from '../components/index/publicidad/Publicidad'
 import styles from '../styles/Home.module.css'
-import {data} from '../data/data'
+// import {data} from '../data/data'
 import { useEffect } from 'react'
 
 
-export default function Home (props) {
+export default function Home ({data}) {
 
   
   return (
@@ -50,24 +50,26 @@ export default function Home (props) {
         dots={false}
         dctos={true}
         onDctos={() =>
-          data.productos.map((producto) => (
-            <Producto key={producto.id} {...producto} />
+          data.map((producto) => (
+            <Producto key={producto.idProducto} {...producto} />
           ))
         }
       />
       <h1 className="title_home">Ofertas</h1>
       <Carousel
         color="#EF1837"
-        pcBig={5}
+        pcBig={4}
         pc={4}
         tablet={3}
         tel={2}
         dots={false}
         offer={true}
         onOffer={() =>
-          data.productos.map((producto) => (
-            <Producto key={producto.id} {...producto} />
-          ))
+          data
+            .map((prod) => {
+              if(prod.descuento > 0 )
+              return <Producto key={prod.idProducto} {...prod} />;
+            })
         }
       />
       <ContentCarouselBaner style={{ marginTop: "20px" }}>
@@ -81,10 +83,10 @@ export default function Home (props) {
         tablet={3}
         tel={2}
         dots={false}
-        offer={true}
-        onOffer={() =>
-          data.productos.map((producto) => (
-            <Producto key={producto.id} {...producto} />
+        home={true}
+        onHome={() =>
+          data.map((producto) => (
+            <Producto key={producto.idProducto} {...producto} />
           ))
         }
       />
@@ -96,12 +98,12 @@ export default function Home (props) {
 }
 
 export async function getStaticProps(context) {
+   
+  const resp = await fetch(`${process.env.NEXT_PUBLIC_API}/api/products`)
+  const data = await resp.json()
+
   
-  if(!data){
-    return {
-      notFound : true
-    }
-  }
+  
   return {
     props: {data}, // will be passed to the page component as props
   };

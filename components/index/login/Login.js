@@ -32,7 +32,7 @@ const Login = (props) => {
     const body = { id_token: response.tokenId };
     console.log(response.tokenId);
     let url = window.location.hostname.includes("localhost")
-      ? "http://localhost:8080/api/auth/google"
+      ? `${process.env.NEXT_PUBLIC_API}/api/auth/google`
       : "https://primer-web-server.herokuapp.com/api/auth/google";
 
     fetch(url, {
@@ -58,7 +58,7 @@ const Login = (props) => {
 
   const login = (e) => {
     e.preventDefault();
-    fetch("http://localhost:8080/api/auth/login", {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -67,13 +67,13 @@ const Login = (props) => {
     })
       .then((resp) => resp.json())
       .then((res) => {
-        if (res.msg) { 
+        if (res.msg) {
           alert.error("Credenciales incorrectas");
-        }else{
-           dispatch(loggin(res.usuario));
-           localStorage.setItem("correo", res.usuario.correo);
-           localStorage.setItem("token", res.token);
-           closeLogin();
+        } else {
+          dispatch(loggin(res.usuario));
+          localStorage.setItem("correo", res.usuario.correo);
+          localStorage.setItem("token", res.token);
+          closeLogin();
         }
       });
   };

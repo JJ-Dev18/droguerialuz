@@ -13,11 +13,14 @@ const Producto = (props) => {
      alert.success("Producto agregado al carrito");
   }
   return (
-    <Link href={`/producto/${props.id}`} passHref>
+    <Link href={`/producto/${props.idProducto}`} passHref>
       <ContentProducto>
-        <Descuento cel="12px" pc="16px">
-          30%
-        </Descuento>
+        {props.descuento > 0 && (
+          <Descuento cel="12px" pc="16px">
+            {props.descuento}%
+          </Descuento>
+        )}
+
         <ContentImage>
           <img
             src="https://www.larebajavirtual.com/images/productos/sii/F/300x300/dolex_gripa-30363-1626291131.png"

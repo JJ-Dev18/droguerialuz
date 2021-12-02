@@ -1,30 +1,231 @@
 import { faBeer } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useCheck } from "../../../hooks/useCheck";
-import { Categoria, ContentDropDown, ListSubCategoria, SubCategoria, SubMenu } from "./DropDownStyles";
+import {
+  Categoria,
+  ContentDropDown,
+  ListSubCategoria,
+  SubCategoria,
+  SubMenu,
+} from "./DropDownStyles";
 import { NavLink } from "./NavLink";
 
+const DropDownCategories = ({ categorias }) => {
 
-const DropDownCategories = () => {
+  const [initialForm, setInitialForm] = useState(() => {
+    let initialstate = {};
+    categorias.map((categoria, index) => {
+      initialstate[`${categoria.nombre}`] = false;
+    });
+    return initialstate;
+  });
 
-  // const [categoria, setcategoria] = useState(false)
-   const initialForm = {
-     BEBEYMATERNIDAD: false,
-     MERQUEAQUI: false,
-    
-   };
-    const [formValues, handleInputChange, reset] = useCheck(initialForm);
-   const {BEBEYMATERNIDAD,MERQUEAQUI} = formValues;
+  const [formValues, handleInputChange, reset] = useCheck(initialForm);
+  //  const {BEBEYMATERNIDAD,MERQUEAQUI} = formValues;
+  console.log(formValues, "thisis formvalue");
 
-   console.log(BEBEYMATERNIDAD,MERQUEAQUI)
-  const checkedCategoria = (e)=> {
-     console.log(e)
-  }
+  const checkedCategoria = (e) => {
+    console.log(e);
+  };
   return (
     <ContentDropDown>
       <ul>
-        <Categoria select={BEBEYMATERNIDAD}>
+        {Object.keys(formValues).map((categoria) => (
+          <>
+            <Categoria select={formValues[`${categoria}`]} key={categoria}>
+              <input
+                type="radio"
+                name={categoria}
+                onChange={handleInputChange}
+                checked={formValues[`${categoria}`]}
+                // style="height: 29px; width: 250px;"
+              />
+              <NavLink href="">
+                <a href="">
+                  <FontAwesomeIcon icon={faBeer} size="2x"></FontAwesomeIcon>
+                  {categoria}
+                </a>
+              </NavLink>
+            </Categoria>
+            <p>{JSON.stringify(formValues[`${categoria}`])}</p>
+            <SubCategoria open={formValues[`${categoria}`]}>
+              <ListSubCategoria>
+                <li>
+                  <SubMenu>
+                    <li>
+                      <span>Amoblado</span>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                  </SubMenu>
+                </li>
+                <li>
+                  <SubMenu>
+                    <li>
+                      <span>Amoblado</span>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                  </SubMenu>
+                </li>
+                <li>
+                  <SubMenu>
+                    <li>
+                      <span>Amoblado</span>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                  </SubMenu>
+                </li>
+                <li>
+                  <SubMenu>
+                    <li>
+                      <span>Amoblado</span>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                  </SubMenu>
+                </li>
+                <li>
+                  <SubMenu>
+                    <li>
+                      <span>Amoblado</span>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                  </SubMenu>
+                </li>
+                <li>
+                  <SubMenu>
+                    <li>
+                      <span>Amoblado</span>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                  </SubMenu>
+                </li>{" "}
+                <li>
+                  <SubMenu>
+                    <li>
+                      <span>Amoblado</span>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                  </SubMenu>
+                </li>{" "}
+                <li>
+                  <SubMenu>
+                    <li>
+                      <span>Amoblado</span>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                  </SubMenu>
+                </li>{" "}
+                <li>
+                  <SubMenu>
+                    <li>
+                      <span>Amoblado</span>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                  </SubMenu>
+                </li>{" "}
+                <li>
+                  <SubMenu>
+                    <li>
+                      <span>Amoblado</span>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                  </SubMenu>
+                </li>{" "}
+                <li>
+                  <SubMenu>
+                    <li>
+                      <span>Amoblado</span>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                  </SubMenu>
+                </li>
+                <li>
+                  <SubMenu>
+                    <li>
+                      <span>Amoblado</span>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                  </SubMenu>
+                </li>
+                <li>
+                  <SubMenu>
+                    <li>
+                      <span>Amoblado</span>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                    <li>
+                      <a>otro bebe </a>
+                    </li>
+                  </SubMenu>
+                </li>
+              </ListSubCategoria>
+            </SubCategoria>
+          </>
+        ))}
+        {/* <Categoria select={BEBEYMATERNIDAD}>
           <input
             type="radio"
             name="BEBEYMATERNIDAD"
@@ -38,179 +239,7 @@ const DropDownCategories = () => {
               BEBE Y MATERNINAD
             </a>
           </NavLink>
-          <SubCategoria open={BEBEYMATERNIDAD}>
-            <ListSubCategoria>
-              <li>
-                <SubMenu>
-                  <li>
-                    <span>Amoblado</span>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                </SubMenu>
-              </li>
-              <li>
-                <SubMenu>
-                  <li>
-                    <span>Amoblado</span>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                </SubMenu>
-              </li>
-              <li>
-                <SubMenu>
-                  <li>
-                    <span>Amoblado</span>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                </SubMenu>
-              </li>
-              <li>
-                <SubMenu>
-                  <li>
-                    <span>Amoblado</span>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                </SubMenu>
-              </li>
-              <li>
-                <SubMenu>
-                  <li>
-                    <span>Amoblado</span>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                </SubMenu>
-              </li>
-              <li>
-                <SubMenu>
-                  <li>
-                    <span>Amoblado</span>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                </SubMenu>
-              </li>{" "}
-              <li>
-                <SubMenu>
-                  <li>
-                    <span>Amoblado</span>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                </SubMenu>
-              </li>{" "}
-              <li>
-                <SubMenu>
-                  <li>
-                    <span>Amoblado</span>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                </SubMenu>
-              </li>{" "}
-              <li>
-                <SubMenu>
-                  <li>
-                    <span>Amoblado</span>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                </SubMenu>
-              </li>{" "}
-              <li>
-                <SubMenu>
-                  <li>
-                    <span>Amoblado</span>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                </SubMenu>
-              </li>{" "}
-              <li>
-                <SubMenu>
-                  <li>
-                    <span>Amoblado</span>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                </SubMenu>
-              </li>
-              <li>
-                <SubMenu>
-                  <li>
-                    <span>Amoblado</span>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                </SubMenu>
-              </li>
-              <li>
-                <SubMenu>
-                  <li>
-                    <span>Amoblado</span>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                  <li>
-                    <a>otro bebe </a>
-                  </li>
-                </SubMenu>
-              </li>
-            </ListSubCategoria>
-          </SubCategoria>
+          
         </Categoria>
         <Categoria select={MERQUEAQUI}>
           <input
@@ -244,11 +273,10 @@ const DropDownCategories = () => {
              
             </ListSubCategoria>
           </SubCategoria>
-        </Categoria>
-
+        </Categoria> */}
       </ul>
     </ContentDropDown>
   );
-}
- 
+};
+
 export default DropDownCategories;

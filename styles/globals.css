@@ -15,7 +15,11 @@ body {
   margin: 0;
   font-family: "Sancoale Bold", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  overflow-x: hidden;
+ 
+  /* scroll-behavior: auto; */
+}
+body{
+   overflow-x: hidden;
 }
 ul{
   list-style: none;

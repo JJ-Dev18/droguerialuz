@@ -3,27 +3,27 @@ import Carousel from "../../components/index/carousel/Carousel";
 import SectionFamilia from "../../components/index/familia/SectionFamilia";
 import Publicidad from "../../components/index/publicidad/Publicidad";
 import Producto from "../../components/index/carouselProductos/Producto";
-import { data } from "../../data/data";
+// import { data } from "../../data/data";
 
-const ProductoDetail = (props) => {
-
+const ProductoDetail = ({data,dataRelacionados}) => {
+  console.log(data)
   
   return (
     <>
-      <ProductoScreen  {...props}/>
+      <ProductoScreen  {...data}/>
       <Publicidad />
-      <h1 className="title_home">Super Descuentos</h1>
+      <h1 className="title_home">Productos Relacionados</h1>
       <Carousel
         color="#EF1837"
-        pcBig={5}
+        pcBig={2}
         pc={4}
         tablet={3}
         tel={2}
         dots={false}
         dctos={true}
         onDctos={() =>
-          data.productos.map((producto) => (
-            <Producto key={producto.id} {...producto} />
+          dataRelacionados.map((producto) => (
+            <Producto key={producto.idProducto} {...producto} />
           ))
         }
       />
@@ -35,11 +35,13 @@ const ProductoDetail = (props) => {
 export default ProductoDetail;
 
 export const getStaticPaths = async () => {
-
-  const paths = data.productos.map( producto => ({
-    params : { slug : producto.id}
+  const resp = await fetch(`${process.env.NEXT_PUBLIC_API}/api/products`)
+  const data = await  resp.json()
+  console.log(data)
+  const paths = data.map( producto => ({
+    params : { slug : `${producto.idProducto}`}
   }))
-  console.log(paths)
+  
   return {
     paths, //indicates that no page needs be created at build time
     fallback: "blocking", //indicates the type of fallback
@@ -47,13 +49,13 @@ export const getStaticPaths = async () => {
 };
 
 export async function getStaticProps({params}) {
-  const producto = data.productos.find( producto => producto.id === params.slug)
-  if (!producto) {
-    return {
-      notFound: true,
-    };
-  }
+  const resp = await fetch(`${process.env.NEXT_PUBLIC_API}/api/products/${params.slug}`)
+  const data = await resp.json()
+  const {Grupo_idGrupo } = data;
+
+  const respRelacionados = await fetch(`${process.env.NEXT_PUBLIC_API}/api/products/grupo/${Grupo_idGrupo}`);
+  const dataRelacionados = await respRelacionados.json()
   return {
-    props: { ...producto }, // will be passed to the page component as props
+    props: { data, dataRelacionados}, // will be passed to the page component as props
   };
 }

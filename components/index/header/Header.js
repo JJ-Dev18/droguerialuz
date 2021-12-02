@@ -170,7 +170,7 @@ const Header = (props) => {
             <FontAwesomeIcon icon={faChevronDown} size="1x"></FontAwesomeIcon>
             Categorias
           </span>
-          {dropdown && <DropDownCategories />}
+          {dropdown && <DropDownCategories categorias={props.categorias} />}
         </Categories>
         <ListEnlacesNavegacion>
           <EnlacesNavegacion>

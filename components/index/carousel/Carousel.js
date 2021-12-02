@@ -36,6 +36,8 @@ export default function Carousel(props) {
   var settings = {
     dots: props.dots,
     infinite: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
     speed: 500,
     slidesToShow: props.pcBig,
     slidesToScroll: 1,

@@ -26,7 +26,7 @@ const Register = (props) => {
   }
   const register = (e)=> {
 e.preventDefault()
- fetch("http://localhost:8080/api/usuarios", {
+ fetch(`${process.env.NEXT_PUBLIC_API}/api/usuarios`, {
    method: "POST",
    headers: {
      "Content-Type": "application/json",
@@ -35,16 +35,15 @@ e.preventDefault()
  })
    .then((res) => res.json())
    .then((resp) => {
-      console.log(resp)
-     if(resp.errors){
-       for(let error in resp.errors){
-         alert.info(`${resp.errors[error].msg}`)
+     console.log(resp);
+     if (resp.errors) {
+       for (let error in resp.errors) {
+         alert.info(`${resp.errors[error].msg}`);
        }
-     }
-     else{
-          alert.success(resp.message)
-          dispatch(loggin(formValues))
-          closeRegister()
+     } else {
+       alert.success(resp.message);
+       dispatch(loggin(formValues));
+       closeRegister();
      }
    });
   }
