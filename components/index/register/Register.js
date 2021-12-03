@@ -21,9 +21,7 @@ const Register = (props) => {
   
   const { correo,password,nombre,telefono,direccion,cedula} = formValues
 
-  const closeRegister = ()=> {
-    props.setRegister(false)
-  }
+  
   const register = (e)=> {
 e.preventDefault()
  fetch(`${process.env.NEXT_PUBLIC_API}/api/usuarios`, {
@@ -49,7 +47,7 @@ e.preventDefault()
   }
   return (
     <LoginContent>
-      <ButtonCerrar onClick={closeRegister}>
+      <ButtonCerrar onClick={props.closeRegister}>
         <FontAwesomeIcon icon={faWindowClose} size="2x" color="red" />
       </ButtonCerrar>
       <h2>Registro</h2>

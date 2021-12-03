@@ -10,27 +10,29 @@ import { useForm } from "../../../hooks/useForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
 import useAppContext from "../../../context/Store";
-import { loggin, loginEmailAndPassword } from "../../../context/actions";
+import { loggin, logginAdmin, loginEmailAndPassword } from "../../../context/actions";
 import { GoogleLogin } from "react-google-login";
 import { useAlert } from "react-alert";
+import { useRouter } from "next/router";
+
 
 const Login = (props) => {
   const { value } = useAppContext();
   const { state, dispatch } = value;
   const { logged } = state;
   const alert = useAlert();
-  
+  const router = useRouter()
   const [formValues, handleInputChange] = useForm({
     correo: "",
     password: "",
   });
   const { correo, password } = formValues;
-  console.log(state);
+ 
   const handleCredentialResponse = (response) => {
     // decodeJwtResponse() is a custom function defined by you
     // to decode the credential response.
     const body = { id_token: response.tokenId };
-    console.log(response.tokenId);
+    
     let url = window.location.hostname.includes("localhost")
       ? `${process.env.NEXT_PUBLIC_API}/api/auth/google`
       : "https://primer-web-server.herokuapp.com/api/auth/google";
@@ -45,16 +47,15 @@ const Login = (props) => {
       .then((resp) => resp.json())
       .then((resp) => {
         dispatch(loggin(resp.usuario));
+        
         localStorage.setItem("correo", resp.usuario.correo);
         localStorage.setItem("token", resp.token);
-        closeLogin()
+        props.closeLogin()
       })
       .catch(console.warn);
   };
 
-  const closeLogin = () => {
-    props.setLogin(false);
-  };
+ 
 
   const login = (e) => {
     e.preventDefault();
@@ -70,10 +71,16 @@ const Login = (props) => {
         if (res.msg) {
           alert.error("Credenciales incorrectas");
         } else {
-          dispatch(loggin(res.usuario));
+          if(res.usuario.rol == 2){
+            dispatch(loggin(res.usuario));
+          }
+          if(res.usuario.rol == 1 ){
+            dispatch(logginAdmin(res.usuario))
+            router.push('/admin')
+          }
           localStorage.setItem("correo", res.usuario.correo);
           localStorage.setItem("token", res.token);
-          closeLogin();
+          props.closeLogin();
         }
       });
   };
@@ -90,7 +97,7 @@ const Login = (props) => {
   return (
     <>
       <LoginContent>
-        <ButtonCerrar onClick={closeLogin}>
+        <ButtonCerrar onClick={props.closeLogin}>
           <FontAwesomeIcon icon={faWindowClose} size="2x" color="red" />
         </ButtonCerrar>
         <h2>Iniciar Sesion</h2>

@@ -1,3 +1,5 @@
+import Layout from "../components/Layout";
+
 const Domicilio = () => {
   return (
   <div>
@@ -6,3 +8,5 @@ const Domicilio = () => {
 }
  
 export default Domicilio;
+
+Domicilio.Layout = Layout

@@ -9,6 +9,7 @@ import { ContainCard, ContentButtonComprar } from "./productoCartStyles";
 
 export default function ContentCard  (props){
   const router = useRouter()
+ 
   return (
     <ContainCard>
       {props.productos.length === 0 && (
@@ -17,7 +18,7 @@ export default function ContentCard  (props){
 
       {props.productos.map((producto) => (
         <ProductoDomicilio
-          key={producto.id}
+          key={producto.idProducto}
           widthCel="200px"
           heightCel="100px"
           widthImg="50px"
@@ -27,7 +28,7 @@ export default function ContentCard  (props){
           img={producto.images ? producto.images[0].img : producto.img}
           h1="15px"
           p="12px"
-          deleteP={props.deleteP}
+          deleteP={()=> props.deleteP(producto.idProducto)}
           padding={false}
           {...producto}
         />

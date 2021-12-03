@@ -2,6 +2,7 @@ import Producto from "../../components/index/carouselProductos/Producto";
 import styled from 'styled-components'
 import Busqueda from "../../components/global/Busqueda";
 import { useEffect, useState } from "react";
+import Layout from "../../components/Layout";
 
 const ContentProductosCategoria = styled.div`
   display: grid;
@@ -50,6 +51,7 @@ const ProductosCategoria = (props) => {
 }
  
 export default ProductosCategoria;
+ProductosCategoria.Layout = Layout
 
 export const getStaticPaths = async () => {
   const resp = await fetch(`${process.env.NEXT_PUBLIC_API}/api/grupos`)

@@ -30,9 +30,9 @@ const reducer = (state,action)=> {
     case types.removeCart: {
       
       const cartItems = state.cart.cartItems.filter(
-        (item) => item.idProducto !== action.payload.idProducto
+        (item) => item.idProducto !== action.payload
       );
-      const item =  state.cart.cartItems.find( (item) => item.idProducto === action.payload.idProducto)
+      const item =  state.cart.cartItems.find( (item) => item.idProducto === action.payload)
       const precio = item.quantiti * item.price
       Cookies.set("cartItems", JSON.stringify(cartItems));
       Cookies.set("total",JSON.stringify(state.cart.total - precio))
@@ -70,6 +70,8 @@ const reducer = (state,action)=> {
       };
     }
     case types.login: {
+      Cookies.set("user", JSON.stringify(action.payload));
+      
       return {
         ...state,
         logged: true,
@@ -80,10 +82,31 @@ const reducer = (state,action)=> {
       return {
         ...state,
         logged: false,
+        adminLogged: false ,
         user: {
         },
       };
     }
+    case types.loginAdmin: {
+       Cookies.set("user", JSON.stringify(action.payload));
+      return{
+        ...state,
+        logged: true,
+        adminLogged:  true,       
+        user : action.payload
+      }
+    }
+    case types.logoutAdmin : {
+      return{
+        ...state,
+        logged: false,
+        adminLogged: false,
+        user: {
+
+        }
+      }
+    }
+    
     default:
       return state;
   }
@@ -99,6 +122,7 @@ const initialState = {
       : [],
   },
   logged: false,
+  adminLogged:false,
   user:{
    
   }

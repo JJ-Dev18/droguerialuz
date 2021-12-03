@@ -34,15 +34,21 @@ export const loggin = (user) => ({
 export const logout = () => ({
   type: types.loggout,
 });
-
+export const logginAdmin = (user) => ({
+  type: types.loginAdmin,
+  payload : user
+})
+export const loggoutAdmin = () => ({
+  type: types.logoutAdmin
+})
 export const cartAdd = (props) => ({
   type: types.addCart,
   payload: { ...props, quantiti: 1 },
 });
 
-export const cartDelete = (props) => ({
+export const cartDelete = (id) => ({
   type: types.removeCart,
-  payload: { ...props, quantiti: 1 },
+  payload:id,
 });
 
 export const incrementProduct = (id) => ({

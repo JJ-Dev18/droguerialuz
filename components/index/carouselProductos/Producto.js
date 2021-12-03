@@ -3,15 +3,21 @@ import Link from 'next/link'
 import { useAlert } from "react-alert";
 import useAppContext from "../../../context/Store";
 import { cartAdd } from "../../../context/actions";
+import { useCallback } from "react";
 const Producto = (props) => {
   const alert = useAlert();
   const { value } = useAppContext()
   const { state , dispatch} = value
-  const addCarrito = (e)=> {
-    e.preventDefault()
-    dispatch(cartAdd(props));
+    
+
+  const addCarrito = useCallback((e) => {
+     e.preventDefault();
+     dispatch(cartAdd(props));
      alert.success("Producto agregado al carrito");
-  }
+    },
+    [],
+  )
+  
 
   return (
     <Link href={`/producto/${props.idProducto}`} passHref>

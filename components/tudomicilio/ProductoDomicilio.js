@@ -5,12 +5,13 @@ import { ButtonComprar } from "../index/carouselProductos/productoStyles";
 import { CantidadProductoCarrito, CardProductoDomicilios, ContentButtonsProductDomicilios, ContentInfoProductDomicilios, Delete, InfoProductoDomicilios } from "./productoStyles";
 import { faMinus, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 
-const ProductoDomicilio = ({widthCel,
+const ProductoDomicilio = React.memo(({widthCel,
   heightCel,heightPc,widthPc,widthImg,marginleft,h1,p,padding,counter,
   idProducto,nombre,descripcion,price,quantiti,stock,deleteP,add,decrement,img}) => {
  
-     console.log(stock)
+ 
    
   return (
     <CardProductoDomicilios
@@ -26,7 +27,7 @@ const ProductoDomicilio = ({widthCel,
     >
       <img src={img} alt="producto" />
       
-      <Delete onClick={()=> deleteP({idProducto,nombre,descripcion,price})}>
+      <Delete onClick={deleteP}>
         <FontAwesomeIcon icon={faTrash} color="#EF1837"></FontAwesomeIcon>
       </Delete>
       <ContentInfoProductDomicilios>
@@ -36,7 +37,7 @@ const ProductoDomicilio = ({widthCel,
         </InfoProductoDomicilios> 
         {counter ? (
           <ContentButtonsProductDomicilios>
-            <Counter cantidad={quantiti} add={add} id={idProducto} decrement={decrement} stock={stock}/>
+            <Counter cantidad={quantiti} add={add}  decrement={decrement} stock={stock}/>
 
             <ButtonComprar>$ {price}</ButtonComprar>
           </ContentButtonsProductDomicilios>
@@ -47,6 +48,6 @@ const ProductoDomicilio = ({widthCel,
       </ContentInfoProductDomicilios>
     </CardProductoDomicilios>
   );
-}
+})
  
 export default ProductoDomicilio;

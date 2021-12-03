@@ -48,7 +48,7 @@ const Busqueda = ({data,setData}) => {
   
   return (
     <ContentBusqueda>
-      <form onSubmit={searchSubmit}>
+      
       <InputBusqueda
         placeholder="Busqueda por nombre"
         type="text"
@@ -58,7 +58,7 @@ const Busqueda = ({data,setData}) => {
         onChange={handleChange}
       />
 
-      </form>
+      
     </ContentBusqueda>
   );
 }

@@ -11,6 +11,7 @@ import Publicidad from '../components/index/publicidad/Publicidad'
 import styles from '../styles/Home.module.css'
 // import {data} from '../data/data'
 import { useEffect } from 'react'
+import Layout from '../components/Layout'
 
 
 export default function Home ({data}) {
@@ -96,7 +97,7 @@ export default function Home ({data}) {
     </div>
   );
 }
-
+Home.Layout = Layout
 export async function getStaticProps(context) {
    
   const resp = await fetch(`${process.env.NEXT_PUBLIC_API}/api/products`)

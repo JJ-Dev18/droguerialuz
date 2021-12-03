@@ -3,6 +3,7 @@ import Carousel from "../../components/index/carousel/Carousel";
 import SectionFamilia from "../../components/index/familia/SectionFamilia";
 import Publicidad from "../../components/index/publicidad/Publicidad";
 import Producto from "../../components/index/carouselProductos/Producto";
+import Layout from "../../components/Layout";
 // import { data } from "../../data/data";
 
 const ProductoDetail = ({data,dataRelacionados}) => {
@@ -10,7 +11,7 @@ const ProductoDetail = ({data,dataRelacionados}) => {
   
   return (
     <>
-      <ProductoScreen  {...data}/>
+      <ProductoScreen {...data} />
       <Publicidad />
       <h1 className="title_home">Productos Relacionados</h1>
       <Carousel
@@ -27,13 +28,14 @@ const ProductoDetail = ({data,dataRelacionados}) => {
           ))
         }
       />
+      <h1 className="title_home">Familia Luz Mar</h1>
       <SectionFamilia />
     </>
   );
 }
  
 export default ProductoDetail;
-
+ProductoDetail.Layout = Layout
 export const getStaticPaths = async () => {
   const resp = await fetch(`${process.env.NEXT_PUBLIC_API}/api/products`)
   const data = await  resp.json()

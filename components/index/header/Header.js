@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect, useCallback} from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import the FontAwesomeIcon component
@@ -11,7 +11,7 @@ import ContentCard from '../../cart/ContentCard';
 import { useRouter } from 'next/router';
 import useAppContext from '../../../context/Store';
 import { useAlert } from "react-alert";
-import { cartDelete, logout } from '../../../context/actions';
+import { cartDelete, loggoutAdmin, logout } from '../../../context/actions';
 import MenuUser from '../user/MenuUser';
 
 
@@ -24,29 +24,37 @@ const Header = (props) => {
   const {value} = useAppContext();
   const { state, dispatch} = value;
   const { cartItems,total} = state.cart
-  const { logged } = state
+  const { logged,adminLogged } = state
   const { avatar } = state.user
   const cantProductos = cartItems.length
   const router = useRouter();
-  console.log(state.cart)
+  console.log('header renderizado')
+ 
   const openLogin = ()=> {
-      props.setLogin(true)
-      setopen(false);
+    props.openLogin()
+    setopen(false)
   }
   const openRegister = ()=>{
-    props.setRegister(true)
+    props.openRegister()
     setopen(false)
   }
   const closeMenu = () => {
     setopen(false);
   };
-   const deleteP = (props) => {
-     dispatch(cartDelete(props));
+  const deleteP = useCallback((id) => {
+     dispatch(cartDelete(id));
      alert.error("Producto eliminado del carrito");
-   };
-
+   },
+    [],
+  )
    const loggout = ()=> {
-     dispatch(logout())
+     if(adminLogged){
+       dispatch(loggoutAdmin())
+       router.push("/")
+     }
+     else{
+       dispatch(logout())
+     }
     //  google.accounts.id.disableAutoSelect();
     //  google.accounts.id.revoke(localStorage.getItem("correo"), (done) => {
        localStorage.clear();
@@ -119,12 +127,12 @@ const Header = (props) => {
                   height="20px"
                 />
               )}
-              {userMenu && <MenuUser logged={logged} />}
+              {userMenu && <MenuUser logged={logged} openLogin={openLogin}/>}
             </ButtonsHeader>
             <ButtonsHeader
               background=" #ffff"
               onClick={() => {
-                closeMenu();
+              setCarrito(true);
                 // router.push("/domicilio");
               }}
               onMouseOver={() => setCarrito(true)}

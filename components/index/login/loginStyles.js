@@ -1,25 +1,26 @@
 import styled from 'styled-components'
 
-export const LoginContent = styled.div ` 
-position : fixed;
-top : 0;
-bottom: 0;
-left: 0;
-right: 0;
-width: 375px;
-height: 375px;
-background: white;
-border-radius : 20px;
-padding: 15px;
-z-index : 9999;
-margin: auto;
-display: flex;
-flex-direction: column;
-h2{
-  text-align: center;
-  color: var(--color--secondary);
-}
-`
+export const LoginContent = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 375px;
+  height: 375px;
+  background: var(--color--background);
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  border-radius: 20px;
+  padding: 15px;
+  z-index: 9999;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  h2 {
+    text-align: center;
+    color: var(--color--secondary);
+  }
+`;
 export const FormLogin = styled.form ` 
 display: flex;
 flex-direction: column;

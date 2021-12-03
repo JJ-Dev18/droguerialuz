@@ -26,10 +26,19 @@ export const CardProductoDomicilios = styled.div`
     }
   }
 `;
+export const ContentTitulo = styled.div ` 
+display: flex;
+width: 400px;
+height: 40px;
+align-items: center;
+margin-top: 20px;
+
+`
 export const TituloProducto = styled.h1 `
   color: var(--color--secondary);
   text-align: left;
   margin-left: 20px;
+  margin-right: 20px;
   font-size: 1.8rem;
   @media (min-width:900px){
     font-size: 2.5rem;

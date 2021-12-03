@@ -11,7 +11,7 @@ export const ContainCard = styled.div`
   span {
     color: var(--color--secondary) !important;
   }
-  @media (min-width: 900px) {
+  @media (min-width: 768px) {
     width: 17vw;
     top: 45px;
     left: 0;

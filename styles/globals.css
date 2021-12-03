@@ -15,11 +15,15 @@ body {
   margin: 0;
   font-family: "Sancoale Bold", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
- 
+    
   /* scroll-behavior: auto; */
 }
 body{
-   overflow-x: hidden;
+  overflow-x: hidden;
+}
+.contentPrincipal{
+  width: 100vw;
+  overflow-x: hidden;
 }
 ul{
   list-style: none;
@@ -43,6 +47,7 @@ h1{
   --color--secondary : #223059;
   --color--terciary : #354B8C;
   --color--button : #EF1837;
+  --color--background : hsla(0,0%,100%,.18);
   
 }
 .cursor{
@@ -138,6 +143,9 @@ h1{
 
  @media screen and (min-width:900px){
     
+ .arrow_rigth{
+   right: 20px;
+ }
   .slick-dots li{
    width: 15px !important;
    height: 15px !important;
@@ -184,6 +192,10 @@ h1{
 }
 
   @media screen and (min-width:1301px){
+     /* html,
+body {
+  overflow-x: inherit;
+} */
     .title_home{
       margin-left: 5.5rem;
     }

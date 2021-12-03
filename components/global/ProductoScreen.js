@@ -5,6 +5,7 @@ import useAppContext from "../../context/Store";
 import {useAlert} from 'react-alert'
 import "rc-rate/assets/index.css";
 import { cartAdd } from "../../context/actions";
+import { useCallback } from "react";
 
 const ProductoScreen = (props) => {
   //  console.log(props)
@@ -12,11 +13,12 @@ const ProductoScreen = (props) => {
    const { value } = useAppContext()
    const { state, dispatch} = value
 
-  const addCarrito = (e) => {
+  const addCarrito = useCallback((e) => {
     e.preventDefault();
     dispatch(cartAdd(props));
     alert.success("Producto agregado al carrito");
-  };
+  }, []);
+  
   return (
     <ContentDetalleProducto>
       <CardProducto>

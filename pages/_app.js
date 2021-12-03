@@ -4,7 +4,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 
 // import Font Awesome CSS
 import { config } from "@fortawesome/fontawesome-svg-core";
-import Layout from "../components/Layout";
+// import Layout from "../components/Layout";
 import { StoreProvider } from "../context/Store";
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import AlertMUITemplate from "react-alert-template-mui";
@@ -22,17 +22,22 @@ const options = {
 };
 
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS
+const Noop = ({ children }) => <>{children}</>;
 
 function MyApp({ Component, pageProps,grupos }) {
- 
+ const Auth = Component.Auth || Noop;
+ const Layout = Component.Layout || Noop
   return (
     <StoreProvider>
+      <Auth>
       <AlertProvider template={AlertTemplate} {...options}>
         <Layout  grupos={grupos}>
           <Component {...pageProps} />
         </Layout>
       </AlertProvider>
+      </Auth>
     </StoreProvider>
+
   );
 }
 MyApp.getInitialProps = async (appContext) => {
@@ -41,9 +46,6 @@ MyApp.getInitialProps = async (appContext) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/grupos/categorias`);
   const dataGrupos = await res.json();
  
-  //  const paths = data.map( categoria => ({
-  //   params : { slug : `${producto.idProducto}`}
-  // }))
   return {  grupos: dataGrupos  }
 }
 export default MyApp;

@@ -2,7 +2,7 @@ import { faCog, faShoppingBasket, faSignInAlt, faUserAlt } from "@fortawesome/fr
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ContentMenuUser } from "./userStyles";
 
-const MenuUser = ({logged}) => {
+const MenuUser = ({logged,openLogin}) => {
   return (
     <ContentMenuUser>
       <ul>
@@ -21,7 +21,7 @@ const MenuUser = ({logged}) => {
             </li>
           </>
         ) : (
-          <li>
+          <li onClick={openLogin}>
             <FontAwesomeIcon icon={faSignInAlt}></FontAwesomeIcon>
             Iniciar Sesion
           </li>
