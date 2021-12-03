@@ -5,7 +5,7 @@ import Script from 'next/script'
 import { useState } from "react";
 import useAppContext, { StoreProvider } from "../context/Store";
 import Register from "./index/register/Register";
-const Layout = ({ children,categorias }) => {
+const Layout = ({ children,grupos }) => {
 
   const [loginOpen, setLogin] = useState(false)
   const [registerOpen, setRegisterOpen] = useState(false)
@@ -16,7 +16,7 @@ const Layout = ({ children,categorias }) => {
       {loginOpen && <Login setLogin={setLogin} loginOpen={loginOpen} />}
        {registerOpen && <Register setRegister={setRegisterOpen} />}
         
-      <Header setLogin={setLogin}  setRegister={setRegisterOpen} categorias={categorias}/>
+      <Header setLogin={setLogin}  setRegister={setRegisterOpen}  grupos={grupos}/>
 
          
 

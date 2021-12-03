@@ -23,12 +23,12 @@ const options = {
 
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS
 
-function MyApp({ Component, pageProps,categorias }) {
+function MyApp({ Component, pageProps,grupos }) {
  
   return (
     <StoreProvider>
       <AlertProvider template={AlertTemplate} {...options}>
-        <Layout categorias={categorias}>
+        <Layout  grupos={grupos}>
           <Component {...pageProps} />
         </Layout>
       </AlertProvider>
@@ -37,14 +37,13 @@ function MyApp({ Component, pageProps,categorias }) {
 }
 MyApp.getInitialProps = async (appContext) => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`
-  const resp = await fetch(`${process.env.NEXT_PUBLIC_API}/api/categorias`);
-  const data = await resp.json()
-  const categorias = data.map(categoria => ({
-     nombre : categoria.nombre
-  }))
+ 
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/grupos/categorias`);
+  const dataGrupos = await res.json();
+ 
   //  const paths = data.map( categoria => ({
   //   params : { slug : `${producto.idProducto}`}
   // }))
-  return { categorias  }
+  return {  grupos: dataGrupos  }
 }
 export default MyApp;

@@ -11,13 +11,13 @@ const reducer = (state,action)=> {
     case types.addCart: {
       const newItem = action.payload;
       const existItem = state.cart.cartItems.find(
-        (item) => item.nombre === newItem.nombre
+        (item) => item.idProducto === newItem.idProducto
       );
       const precio = newItem.quantiti * newItem.price
       
       const cartItems = existItem
         ? state.cart.cartItems.map((item) =>
-            item.nombre === existItem.nombre ? {...newItem,quantiti: item.quantiti + 1} : item
+            item.idProducto === existItem.idProducto ? {...newItem,quantiti: item.quantiti + 1} : item
           )
         : [...state.cart.cartItems, newItem];
       Cookies.set("cartItems", JSON.stringify(cartItems));
@@ -28,20 +28,22 @@ const reducer = (state,action)=> {
       };
     }
     case types.removeCart: {
+      
       const cartItems = state.cart.cartItems.filter(
-        (item) => item.id !== action.payload.id
+        (item) => item.idProducto !== action.payload.idProducto
       );
-      const item =  state.cart.cartItems.find( (item) => item.id === action.payload.id)
+      const item =  state.cart.cartItems.find( (item) => item.idProducto === action.payload.idProducto)
       const precio = item.quantiti * item.price
       Cookies.set("cartItems", JSON.stringify(cartItems));
       Cookies.set("total",JSON.stringify(state.cart.total - precio))
       return { ...state, cart: { ...state.cart,total: state.cart.total - precio, cartItems } };
     }
     case types.incrementProduct: {
-      const product = state.cart.cartItems.find( item => item.id == action.payload)
+      console.log(action)
+      const product = state.cart.cartItems.find( item => item.idProducto == action.payload)
       const precio =  Number(product.price)
       const cartItems = state.cart.cartItems.map((item) => 
-         item.id == action.payload ? {...product,quantiti: product.quantiti +1 } : item
+         item.idProducto == action.payload ? {...product,quantiti: product.quantiti +1 } : item
         )
          Cookies.set("cartItems", JSON.stringify(cartItems));
          Cookies.set("total", JSON.stringify(state.cart.total + precio));
@@ -52,11 +54,11 @@ const reducer = (state,action)=> {
     }
     case types.decrementProduct :{
       const product = state.cart.cartItems.find(
-        (item) => item.id == action.payload
+        (item) => item.idProducto == action.payload
       );
       const precio = Number(product.price);
       const cartItems = state.cart.cartItems.map((item) =>
-        item.id == action.payload
+        item.idProducto == action.payload
           ? { ...product, quantiti: product.quantiti - 1 }
           : item
       );

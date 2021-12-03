@@ -22,15 +22,16 @@ const Cantidad = styled.div`
 `;
 
 const Counter = (props) => {
+
   const { counter, increment, decrement, reset } = useCounter(props.cantidad);
-  console.log(props.cantidad)
+
   return (
     <ContentCounter>
       <span>Cantidad</span>
 
       <ContentBotones>
-        <button onClick={()=> {
-          props.decrement(props.id)
+        <button  disabled={(counter == 1)} onClick={()=> {
+           props.decrement(props.id)
           decrement()
         }} className="cursor">
           <FontAwesomeIcon
@@ -41,7 +42,9 @@ const Counter = (props) => {
         </button>
 
         <Cantidad> {counter}</Cantidad>
-        <button onClick={()=> {
+        <button 
+        disabled={(counter == props.stock)}
+        onClick={()=> {
          props.add(props.id)
          increment()
         }} className="cursor">

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Downshift from "downshift";
 
 export const ContentBuscador = styled.div`
   display: flex;
@@ -90,4 +91,16 @@ export const BuscadorInput = styled.input`
     color: gray;
     font-size: 0.875rem;
   }
+`;
+
+export const ListResults = styled.ul` 
+height:250px;
+overflow-y: scroll;
+border: "1px solid red";
+position: absolute;
+width:100%;
+
+::-webkit-scrollbar{
+  display: none;
+}
 `;

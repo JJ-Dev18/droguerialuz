@@ -1,7 +1,7 @@
 import Producto from "../../components/index/carouselProductos/Producto";
 import styled from 'styled-components'
 import Busqueda from "../../components/global/Busqueda";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ContentProductosCategoria = styled.div`
   display: grid;
@@ -33,6 +33,10 @@ padding: 20px;
 const ProductosCategoria = (props) => {
   const [data, setData] = useState(props.data)
 
+   useEffect(() => {
+     setData(props.data)
+   }, [props.data,setData])
+
   return (
     <ContainerCategoria>
       <Busqueda data={props.data} setData={setData}/>
@@ -50,7 +54,7 @@ export default ProductosCategoria;
 export const getStaticPaths = async () => {
   const resp = await fetch(`${process.env.NEXT_PUBLIC_API}/api/grupos`)
   const data = await resp.json()
-  console.log(data)
+ 
   const paths = data.map((grupo)=> ({
     params : { categoria : `${grupo.idGrupo}` }
   }))
@@ -65,9 +69,13 @@ export async function getStaticProps({ params }) {
 
   const resp = await fetch(`${process.env.NEXT_PUBLIC_API}/api/products/grupo/${params.categoria}`)
   const data = await resp.json()
-  
-  console.log(data)
+  let hash ={}
+  let productos = data.filter(function (current) {
+     let exists = !hash[current.idProducto];
+     hash[current.idProducto] = true;
+     return exists;
+   });
   return {
-    props: { data }, // will be passed to the page component as props
+    props: { data : productos}, // will be passed to the page component as props
   };
 }

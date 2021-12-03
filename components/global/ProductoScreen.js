@@ -4,15 +4,18 @@ import { CarouselProducto } from "./CarouselProducto";
 import useAppContext from "../../context/Store";
 import {useAlert} from 'react-alert'
 import "rc-rate/assets/index.css";
+import { cartAdd } from "../../context/actions";
 
 const ProductoScreen = (props) => {
+  //  console.log(props)
    const alert = useAlert()
    const { value } = useAppContext()
    const { state, dispatch} = value
+
   const addCarrito = (e) => {
     e.preventDefault();
-    dispatch({ type: "CART_ADD_ITEM", payload: { ...props, quantiti: 1 } });
-    alert.show("Producto agregado al carrito");
+    dispatch(cartAdd(props));
+    alert.success("Producto agregado al carrito");
   };
   return (
     <ContentDetalleProducto>
@@ -20,7 +23,7 @@ const ProductoScreen = (props) => {
         <Descuento cel="12px" pc="18px" width="15%">
           30%
         </Descuento>
-        <CarouselProducto />
+        <CarouselProducto images={props.images} />
       </CardProducto>
       <ContentInfoProducto>
         <h1>{props.nombre}</h1>
@@ -38,10 +41,11 @@ const ProductoScreen = (props) => {
             />
           </ButtonCarrito>
         </ContentButtonsProductos>
-        <StyledRate defaultValue={3} />
+        <StyledRate defaultValue={ (!props.calificacion) ? 0 : props.calificacion} disabled />
       </ContentInfoProducto>
     </ContentDetalleProducto>
   );
 }
+
  
 export default ProductoScreen;

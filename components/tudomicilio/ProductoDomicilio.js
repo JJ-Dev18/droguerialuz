@@ -8,8 +8,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ProductoDomicilio = ({widthCel,
   heightCel,heightPc,widthPc,widthImg,marginleft,h1,p,padding,counter,
-  id,nombre,descripcion,price,quantiti,deleteP,add,decrement}) => {
-
+  idProducto,nombre,descripcion,price,quantiti,stock,deleteP,add,decrement,img}) => {
+ 
+     console.log(stock)
    
   return (
     <CardProductoDomicilios
@@ -23,11 +24,9 @@ const ProductoDomicilio = ({widthCel,
       p={p}
       padding={padding}
     >
-      <img src="/producto/3.jpg" alt="producto" />
-      {
-
-      }
-      <Delete onClick={()=> deleteP({id,nombre,descripcion,price})}>
+      <img src={img} alt="producto" />
+      
+      <Delete onClick={()=> deleteP({idProducto,nombre,descripcion,price})}>
         <FontAwesomeIcon icon={faTrash} color="#EF1837"></FontAwesomeIcon>
       </Delete>
       <ContentInfoProductDomicilios>
@@ -37,9 +36,9 @@ const ProductoDomicilio = ({widthCel,
         </InfoProductoDomicilios> 
         {counter ? (
           <ContentButtonsProductDomicilios>
-            <Counter cantidad={quantiti} add={add} id={id} decrement={decrement}/>
+            <Counter cantidad={quantiti} add={add} id={idProducto} decrement={decrement} stock={stock}/>
 
-            <ButtonComprar>{price}</ButtonComprar>
+            <ButtonComprar>$ {price}</ButtonComprar>
           </ContentButtonsProductDomicilios>
         )
       :

@@ -1,7 +1,7 @@
 import { faBeer } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCheck } from "../../../hooks/useCheck";
 import {
   Categoria,
@@ -12,19 +12,25 @@ import {
 } from "./DropDownStyles";
 import { NavLink } from "./NavLink";
 
-const DropDownCategories = ({ categorias }) => {
+const DropDownCategories = ({ grupos }) => {
 
-  const [initialForm, setInitialForm] = useState(() => {
-    let initialstate = {};
-    categorias.map((categoria, index) => {
-      initialstate[`${categoria.nombre}`] = false;
-    });
-    return initialstate;
-  });
+ 
+  const [initialForm, setInitialForm] = useState(()=>{
+   let hash= {}
+   let initialstate= {}
+   let cat = grupos.filter(function (current) {
+     let exists = !hash[current.categoria];
+     hash[current.categoria] = true;
+     return exists;
+   }).map((categoria, index) => {
+     initialstate[`${categoria.categoria}`] = false;
+   });
+   return initialstate;
+  })
 
   const [formValues, handleInputChange, reset] = useCheck(initialForm);
   //  const {BEBEYMATERNIDAD,MERQUEAQUI} = formValues;
-  console.log(formValues, "thisis formvalue");
+  
 
   const checkedCategoria = (e) => {
     console.log(e);
@@ -33,8 +39,8 @@ const DropDownCategories = ({ categorias }) => {
     <ContentDropDown>
       <ul>
         {Object.keys(formValues).map((categoria) => (
-          <>
-            <Categoria select={formValues[`${categoria}`]} key={categoria}>
+          <React.Fragment key={categoria}>
+            <Categoria select={formValues[`${categoria}`]}>
               <input
                 type="radio"
                 name={categoria}
@@ -49,181 +55,24 @@ const DropDownCategories = ({ categorias }) => {
                 </a>
               </NavLink>
             </Categoria>
-            <p>{JSON.stringify(formValues[`${categoria}`])}</p>
             <SubCategoria open={formValues[`${categoria}`]}>
               <ListSubCategoria>
                 <li>
-                  <SubMenu>
-                    <li>
-                      <span>Amoblado</span>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                  </SubMenu>
-                </li>
-                <li>
-                  <SubMenu>
-                    <li>
-                      <span>Amoblado</span>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                  </SubMenu>
-                </li>
-                <li>
-                  <SubMenu>
-                    <li>
-                      <span>Amoblado</span>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                  </SubMenu>
-                </li>
-                <li>
-                  <SubMenu>
-                    <li>
-                      <span>Amoblado</span>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                  </SubMenu>
-                </li>
-                <li>
-                  <SubMenu>
-                    <li>
-                      <span>Amoblado</span>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                  </SubMenu>
-                </li>
-                <li>
-                  <SubMenu>
-                    <li>
-                      <span>Amoblado</span>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                  </SubMenu>
-                </li>{" "}
-                <li>
-                  <SubMenu>
-                    <li>
-                      <span>Amoblado</span>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                  </SubMenu>
-                </li>{" "}
-                <li>
-                  <SubMenu>
-                    <li>
-                      <span>Amoblado</span>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                  </SubMenu>
-                </li>{" "}
-                <li>
-                  <SubMenu>
-                    <li>
-                      <span>Amoblado</span>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                  </SubMenu>
-                </li>{" "}
-                <li>
-                  <SubMenu>
-                    <li>
-                      <span>Amoblado</span>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                  </SubMenu>
-                </li>{" "}
-                <li>
-                  <SubMenu>
-                    <li>
-                      <span>Amoblado</span>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                  </SubMenu>
-                </li>
-                <li>
-                  <SubMenu>
-                    <li>
-                      <span>Amoblado</span>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                  </SubMenu>
-                </li>
-                <li>
-                  <SubMenu>
-                    <li>
-                      <span>Amoblado</span>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                    <li>
-                      <a>otro bebe </a>
-                    </li>
-                  </SubMenu>
+                  {grupos
+                    .filter((grupo) => grupo.categoria === categoria)
+                    .map((grup) => (
+                      <SubMenu key={grup.idGrupo}>
+                        <NavLink href={`/productos/${grup.idGrupo}`}>
+                          <li>
+                            <span>{grup.nombre}</span>
+                          </li>
+                        </NavLink>
+                      </SubMenu>
+                    ))}
                 </li>
               </ListSubCategoria>
             </SubCategoria>
-          </>
+          </React.Fragment>
         ))}
         {/* <Categoria select={BEBEYMATERNIDAD}>
           <input

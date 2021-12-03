@@ -1,20 +1,23 @@
 import styled from 'styled-components'
 
-export const ContainCard = styled.div ` 
-position: absolute;
-top: 45px;
-left: 0;
-padding: 10px;
-width: 100vw;
-height: auto;
-background: white;
-span{
-  color: var(--color--secondary) !important;
-}
-@media (min-width:900px){
-  width: 17vw;
-}
-`
+export const ContainCard = styled.div`
+  position: absolute;
+  left: -105px;
+  top: -345px;
+  width: 370px;
+  padding: 10px;
+  height: auto;
+  background: white;
+  span {
+    color: var(--color--secondary) !important;
+  }
+  @media (min-width: 900px) {
+    width: 17vw;
+    top: 45px;
+    left: 0;
+    padding: 10px;
+  }
+`;
 
 export const CardProductoCart = styled.div ` 
 width: 100%;
@@ -28,4 +31,10 @@ img{
   object-fit: contain;
 }
 
+`
+
+export const ContentButtonComprar = styled.div ` 
+display: flex;
+justify-content: space-between;
+margin-top: 10px;
 `

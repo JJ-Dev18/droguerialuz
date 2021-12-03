@@ -23,7 +23,12 @@
 // });
 module.exports = {
   images: {
-    domains: ["assets.vercel.com", "lh3.googleusercontent.com"],
+    domains: [
+      "assets.vercel.com",
+      "lh3.googleusercontent.com",
+      "www.droguerialuzmar.com.co",
+      "locatelcolombia.vtexassets.com",
+    ],
     formats: ["image/avif", "image/webp"],
   },
 };

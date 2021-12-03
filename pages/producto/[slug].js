@@ -6,7 +6,7 @@ import Producto from "../../components/index/carouselProductos/Producto";
 // import { data } from "../../data/data";
 
 const ProductoDetail = ({data,dataRelacionados}) => {
-  console.log(data)
+  
   
   return (
     <>
@@ -37,7 +37,7 @@ export default ProductoDetail;
 export const getStaticPaths = async () => {
   const resp = await fetch(`${process.env.NEXT_PUBLIC_API}/api/products`)
   const data = await  resp.json()
-  console.log(data)
+ 
   const paths = data.map( producto => ({
     params : { slug : `${producto.idProducto}`}
   }))
@@ -55,7 +55,13 @@ export async function getStaticProps({params}) {
 
   const respRelacionados = await fetch(`${process.env.NEXT_PUBLIC_API}/api/products/grupo/${Grupo_idGrupo}`);
   const dataRelacionados = await respRelacionados.json()
+  let hash = {};
+  let productos = dataRelacionados.filter(function (current) {
+    let exists = !hash[current.idProducto];
+    hash[current.idProducto] = true;
+    return exists;
+  });
   return {
-    props: { data, dataRelacionados}, // will be passed to the page component as props
+    props: { data, dataRelacionados : productos}, // will be passed to the page component as props
   };
 }
