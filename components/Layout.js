@@ -7,11 +7,12 @@ import { useCallback, useState, useEffect } from "react";
 import useAppContext, { StoreProvider } from "../context/Store";
 import Register from "./index/register/Register";
 import { loggin, logginAdmin } from "../context/actions";
+import { useRouter } from "next/router";
 const Layout = ({ children,grupos }) => {
 
   const [loginOpen, setLogin] = useState(false)
   const [registerOpen, setRegisterOpen] = useState(false)
-  console.log('renderizado el layout ')
+  const router = useRouter()
   const { value } = useAppContext()
   const { state , dispatch } = value 
   const { user } = state 
@@ -34,11 +35,12 @@ const Layout = ({ children,grupos }) => {
       let user = JSON.parse(Cookies.get("user"));
       if(user.rol === 1){
         dispatch(logginAdmin(user))
+        router.push('/admin')
       }
       else{
         dispatch(loggin(user));
       }
-
+    // TODO MANTENER LA SESION DE EL ADMINISTRADOR 
     }
   }, [])
 

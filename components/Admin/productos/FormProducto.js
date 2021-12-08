@@ -1,0 +1,119 @@
+
+import { FormControl, InputLabel, MenuItem, Select, Typography, Button } from "@mui/material";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import { useState } from "react";
+import { useForm } from "../../../hooks/useForm";
+import {useAlert} from 'react-alert'
+
+const initialstate = {
+  nombre: "",
+  descripcion : "",
+  price: "",
+  stock : "",
+  descuento:"",
+  grupo: ""
+}
+
+const FormProducto = ({grupos}) => {
+  const alert = useAlert()
+  const [formvalues, handleInputChange,reset ] = useForm(initialstate)
+  const { nombre ,descripcion,price,stock,descuento,grupo} = formvalues
+  const [loading, setLoading] = useState(false)
+  const [file, setfile] = useState(null);
+
+  const loadFile = ({ target }) => {
+    setfile(target.files[0]);
+  };
+ const agregarProducto = ()=>{
+   const formData = new FormData();
+   formData.append("nombre", nombre);
+   formData.append("descripcion", descripcion);
+   formData.append("price", price);
+   formData.append("stock", stock);
+   formData.append("descuento", descuento);
+   formData.append("img", file);
+   setLoading(true)
+   fetch(`${process.env.NEXT_PUBLIC_API}/api/products`, {
+     method: "POST",
+     headers: {
+       "x-token": token,
+     },
+     body: formData,
+   })
+     .then((resp) => resp.json())
+     .then((res) => {
+      
+       setLoading(false)
+     });
+ }
+  return (
+    <Box
+      component="form"
+      sx={{
+        "& > :not(style)": { m: 1, width: "25ch" },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <Typography variant="h4" color="initial"> Agregar Producto </Typography>
+      <TextField
+        id="outlined-name"
+        label="Nombre"
+        name="nombre"
+        value={nombre}
+        onChange={handleInputChange}
+      />
+      <TextField
+        id="outlined-name"
+        label="Descripcion"
+        name="descripcion"
+        value={descripcion}
+        onChange={handleInputChange}
+      />
+      <TextField
+        id="outlined-name"
+        label="Precio"
+        name="precio"
+        value={price}
+        onChange={handleInputChange}
+      />
+      <TextField
+        id="outlined-name"
+        label="Stock"
+        name="stock"
+        value={stock}
+        onChange={handleInputChange}
+      />
+      <TextField
+        id="outlined-name"
+        label="Descuento"
+        name="descuento"
+        value={descuento}
+        onChange={handleInputChange}
+      />
+      <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+        <InputLabel id="demo-simple-select-standard-label">Grupo</InputLabel>
+        <Select
+          labelId="demo-simple-select-standard-label"
+          id="demo-simple-select-standard"
+          value={grupo}
+          name="grupo"
+          onChange={handleInputChange}
+          label="Grupo"
+        >
+          {grupos.map((grupo) => (
+            <MenuItem key={grupo.idGrupo} value={grupo.idGrupo}>
+              {grupo.nombre}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <Button variant="contained" color="primary" onClick={agregarProducto} disabled={loading}>
+        Agregar
+      </Button>
+    </Box>
+  );
+};
+
+export default FormProducto;

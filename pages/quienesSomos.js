@@ -3,7 +3,6 @@ import Image from "next/image";
 import SectionFamilia from "../components/index/familia/SectionFamilia";
 import Layout from "../components/Layout";
 import QuienesSomosSection from "../components/quienesSomos/QuienesSomosSection";
-import styles from "../styles/Home.module.css";
 
 export default function QuienesSomos() {
   return (

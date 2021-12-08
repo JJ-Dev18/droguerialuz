@@ -1,27 +1,21 @@
-// const withSass = require("sass");
-// const withLess = require("@zeit/next-less");
-// const withCSS = require("@zeit/next-css");
 
-// const isProd = process.env.NODE_ENV === "production";
+const withTM = require('next-transpile-modules')([
+  '@mui/material',
+  '@mui/system',
+  '@mui/icons-material', // If @mui/icons-material is being used
+]);
 
-// // fix: prevents error when .less files are required by node
-// if (typeof require !== "undefined") {
-//   require.extensions[".less"] = (file) => {};
-// }
-
-// module.exports = withCSS({
-//   cssModules: true,
-//   cssLoaderOptions: {
-//     importLoaders: 1,
-//     localIdentName: "[local]___[hash:base64:5]",
-//   },
-//   ...withLess(
-//       lessLoaderOptions: {
-//         javascriptEnabled: true,
-//       },
-//   ),
-// });
 module.exports = {
+  
+};
+module.exports = withTM({
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@mui/styled-engine": "@mui/styled-engine-sc",
+    };
+    return config;
+  },
   images: {
     domains: [
       "assets.vercel.com",
@@ -31,7 +25,8 @@ module.exports = {
     ],
     formats: ["image/avif", "image/webp"],
   },
-};
+});
+
 // module.exports = {
 //   stricted : true
 // }

@@ -1,15 +1,16 @@
 import "normalize.css";
 import "../styles/globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-
+import Head from "next/head";
 // import Font Awesome CSS
 import { config } from "@fortawesome/fontawesome-svg-core";
 // import Layout from "../components/Layout";
 import { StoreProvider } from "../context/Store";
+import { ThemeProvider } from "styled-components";
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import AlertMUITemplate from "react-alert-template-mui";
 import AlertTemplate from "react-alert-template-basic";
-
+import Theme from "../components/global/ThemeProvider";
 
 // optional configuration
 const options = {
@@ -24,28 +25,39 @@ const options = {
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS
 const Noop = ({ children }) => <>{children}</>;
 
-function MyApp({ Component, pageProps,grupos }) {
- const Auth = Component.Auth || Noop;
- const Layout = Component.Layout || Noop
+function MyApp({ Component, pageProps, grupos }) {
+  const Auth = Component.Auth || Noop;
+  const Layout = Component.Layout || Noop;
   return (
-    <StoreProvider>
-      <Auth>
-      <AlertProvider template={AlertTemplate} {...options}>
-        <Layout  grupos={grupos}>
-          <Component {...pageProps} />
-        </Layout>
-      </AlertProvider>
-      </Auth>
-    </StoreProvider>
-
+    <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"
+        />
+      </Head>
+      <StoreProvider>
+        <Theme>
+          <Auth>
+            <AlertProvider template={AlertTemplate} {...options}>
+              <Layout grupos={grupos}>
+                <Component {...pageProps} />
+              </Layout>
+            </AlertProvider>
+          </Auth>
+        </Theme>
+      </StoreProvider>
+    </>
   );
 }
 MyApp.getInitialProps = async (appContext) => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`
- 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/grupos/categorias`);
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API}/api/grupos/categorias`
+  );
   const dataGrupos = await res.json();
- 
-  return {  grupos: dataGrupos  }
-}
+
+  return { grupos: dataGrupos };
+};
 export default MyApp;
