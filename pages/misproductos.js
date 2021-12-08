@@ -20,17 +20,17 @@ export default function MisProductos() {
       dispatch(cartDelete(props));
       alert.error("Producto eliminado del carrito");
     },
-    [],
+    [alert,dispatch],
   )
    const incrementProd =   useCallback((idProducto) => {
          dispatch(incrementProduct(idProducto));
        },
-       [],
+       [dispatch],
      )
   
   const decrementProd = useCallback((idProducto) => {
     dispatch(decrementProduct(idProducto));
-  }, []);
+  }, [dispatch]);
   
   
   return (

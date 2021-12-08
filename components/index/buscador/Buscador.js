@@ -64,6 +64,7 @@ const Buscador = ({data}) => {
                         )
                         .map((item, index) => (
                           <li
+                          key={item.idProducto}
                             {...getItemProps({
                               key: item.idProducto,
                               index,

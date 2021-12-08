@@ -17,7 +17,7 @@ const ProductoScreen = (props) => {
     e.preventDefault();
     dispatch(cartAdd(props));
     alert.success("Producto agregado al carrito");
-  }, []);
+  }, [dispatch,alert]);
   
   return (
     <ContentDetalleProducto>

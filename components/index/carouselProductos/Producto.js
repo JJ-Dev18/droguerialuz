@@ -15,7 +15,7 @@ const Producto = (props) => {
      dispatch(cartAdd(props));
      alert.success("Producto agregado al carrito");
     },
-    [],
+    [dispatch,alert]
   )
   
 

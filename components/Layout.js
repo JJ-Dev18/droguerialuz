@@ -42,7 +42,7 @@ const Layout = ({ children,grupos }) => {
       }
     // TODO MANTENER LA SESION DE EL ADMINISTRADOR 
     }
-  }, [])
+  }, [dispatch,router])
 
   return (
     <div className="contentPrincipal">

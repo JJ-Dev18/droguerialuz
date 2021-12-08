@@ -29,7 +29,7 @@ const DropDownCategories = ({ grupos }) => {
        
     return initialstate;
   };
-  const stateInitial = useMemo(() => sacarCategorias, grupos);
+  const stateInitial = useMemo(() => sacarCategorias(), [grupos]);
 
   const [initialForm, setInitialForm] = useState(stateInitial);
  

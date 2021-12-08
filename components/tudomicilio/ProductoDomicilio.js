@@ -7,7 +7,7 @@ import { faMinus, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-const ProductoDomicilio = React.memo(({widthCel,
+const ProductoDomicilio = ({widthCel,
   heightCel,heightPc,widthPc,widthImg,marginleft,h1,p,padding,counter,
   idProducto,nombre,descripcion,price,quantiti,stock,deleteP,add,decrement,img}) => {
  
@@ -48,6 +48,7 @@ const ProductoDomicilio = React.memo(({widthCel,
       </ContentInfoProductDomicilios>
     </CardProductoDomicilios>
   );
-})
+}
  
 export default ProductoDomicilio;
+// ProductoDomicilio.displayName = "Producto Domicilio";

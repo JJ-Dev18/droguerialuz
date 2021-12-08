@@ -24,7 +24,7 @@ const Admin = () => {
       }
       // TODO MANTENER LA SESION DE EL ADMINISTRADOR
     }
-  }, []);
+  }, [dispatch]);
   
   if (!adminLogged) {
     return <AccesoDenegado />;

@@ -45,7 +45,7 @@ const Header = (props) => {
      dispatch(cartDelete(id));
      alert.error("Producto eliminado del carrito");
    },
-    [],
+    [dispatch,alert],
   )
    const loggout = ()=> {
      if(adminLogged){

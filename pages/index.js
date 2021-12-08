@@ -9,8 +9,6 @@ import Producto from '../components/index/carouselProductos/Producto'
 import SectionFamilia from '../components/index/familia/SectionFamilia'
 import Publicidad from '../components/index/publicidad/Publicidad'
 
-// import {data} from '../data/data'
-import { useEffect } from 'react'
 import Layout from '../components/Layout'
 
 
