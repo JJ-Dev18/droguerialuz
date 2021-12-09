@@ -7,7 +7,7 @@ const WithAdminRoute = ({ children }) => {
   const { value } = useAppContext()
    const { state, dispatch } = value;
    const { adminLogged } = state;
-   console.log(adminLogged,"adminLogged")
+   
   useEffect(() => {
     setTimeout(() => {
       if (!adminLogged) {

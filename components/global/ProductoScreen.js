@@ -1,6 +1,6 @@
 import { ButtonCarrito, ButtonComprar, ContentButtonsProductos, Descuento } from "../index/carouselProductos/productoStyles";
 import { CardProducto, ContentDetalleProducto, ContentInfoProducto, StyledRate } from "./carouselProctoStyles";
-import { CarouselProducto } from "./CarouselProducto";
+import  CarouselProducto  from "./CarouselProducto";
 import useAppContext from "../../context/Store";
 import {useAlert} from 'react-alert'
 import "rc-rate/assets/index.css";

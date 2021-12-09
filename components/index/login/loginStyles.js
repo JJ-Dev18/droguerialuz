@@ -8,7 +8,7 @@ export const LoginContent = styled.div`
   right: 0;
   width: 375px;
   height: 375px;
-  background: var(--color--background);
+  background: white;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   border-radius: 20px;
   padding: 15px;

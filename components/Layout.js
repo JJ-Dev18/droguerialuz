@@ -16,7 +16,7 @@ const Layout = ({ children,grupos }) => {
   const { value } = useAppContext()
   const { state , dispatch } = value 
   const { user } = state 
-  console.log(state)
+  
   const closeLogin = useCallback(() => {
      setLogin(false)},
     [],)

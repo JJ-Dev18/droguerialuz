@@ -2,11 +2,13 @@ import MiniDrawer from "../../components/Admin/MiniDrawer";
 import FormProducto from "../../components/Admin/productos/FormProducto";
 
 const AddProducto = ({grupos}) => {
-  return ( 
-    <MiniDrawer>
-    <FormProducto grupos={grupos}/>
-    </MiniDrawer>
-   );
+  return (
+    <>
+      <MiniDrawer>
+        <FormProducto grupos={grupos} />
+      </MiniDrawer>
+    </>
+  );
 }
  
 export default AddProducto;

@@ -3,8 +3,8 @@ import Slider from "react-slick";
 import { ContentProducto, NavegacionImg } from "./carouselProctoStyles";
 import Image from "next/image";
 
-export const CarouselProducto = ({ images }) => {
-  console.log(images);
+ const CarouselProducto = ({ images }) => {
+  
   const settings = {
     customPaging: function (i) {
       return (
@@ -54,3 +54,5 @@ export const CarouselProducto = ({ images }) => {
     </Slider>
   );
 };
+
+export default CarouselProducto;

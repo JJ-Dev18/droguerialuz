@@ -3,7 +3,7 @@ import Image from 'next/image'
 const CarouselBanner = () => {
   return (
     <ContentCarouselBaner>
-      <Image src="/index/carousel/banner/banner.webp" alt="banner carousel" layout="intrinsic" width="2000px" height="550px" />
+      <Image src="/index/carousel/banner/banner.webp" alt="banner carousel" layout="intrinsic" width="2000px" height="650px" />
     </ContentCarouselBaner>
   );
 }
