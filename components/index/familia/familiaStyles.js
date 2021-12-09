@@ -22,8 +22,8 @@ export const Empleado = styled.div`
   align-items: center;
   justify-content: center;
   img {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% ;
     object-fit: contain;
   }
   h3 {
@@ -31,19 +31,27 @@ export const Empleado = styled.div`
     margin: 0;
     font-size: 0.8125rem;
   }
-  span {
+  h4 {
     font-size: 0.8125rem;
+    margin: 0;
+  }
+  span{
+    width: 100% !important;
+    height: 100% !important;
   }
 
   @media (min-width: 900px) {
     height: 400px;
     img{
-      height: 60%;
+      height: 60% !important ;
+    }
+    span{
+      height: 60% !important;
     }
     h3{
       font-size: 1.2rem;
     }
-    span{
+    h4{
      font-size: 1rem;
     }
   }

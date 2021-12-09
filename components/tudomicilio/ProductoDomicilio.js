@@ -6,7 +6,7 @@ import { CantidadProductoCarrito, CardProductoDomicilios, ContentButtonsProductD
 import { faMinus, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-
+import Image from 'next/image'
 const ProductoDomicilio = ({widthCel,
   heightCel,heightPc,widthPc,widthImg,marginleft,h1,p,padding,counter,
   idProducto,nombre,descripcion,price,quantiti,stock,deleteP,add,decrement,img}) => {
@@ -25,7 +25,7 @@ const ProductoDomicilio = ({widthCel,
       p={p}
       padding={padding}
     >
-      <img src={img} alt="producto" />
+      <Image src={img} alt="producto" layout="intrinsic" width="200px" height="200px"/>
       
       <Delete onClick={deleteP}>
         <FontAwesomeIcon icon={faTrash} color="#EF1837"></FontAwesomeIcon>
@@ -39,7 +39,7 @@ const ProductoDomicilio = ({widthCel,
           <ContentButtonsProductDomicilios>
             <Counter cantidad={quantiti} add={add}  decrement={decrement} stock={stock}/>
 
-            <ButtonComprar>$ {price}</ButtonComprar>
+            <ButtonComprar>Ahora $ {price}</ButtonComprar>
           </ContentButtonsProductDomicilios>
         )
       :

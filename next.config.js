@@ -5,9 +5,7 @@ const withTM = require('next-transpile-modules')([
   '@mui/icons-material', // If @mui/icons-material is being used
 ]);
 
-module.exports = {
-  
-};
+
 module.exports = withTM({
   webpack: (config) => {
     config.resolve.alias = {
@@ -22,6 +20,7 @@ module.exports = withTM({
       "lh3.googleusercontent.com",
       "www.droguerialuzmar.com.co",
       "locatelcolombia.vtexassets.com",
+      "res.cloudinary.com",
     ],
     formats: ["image/avif", "image/webp"],
   },

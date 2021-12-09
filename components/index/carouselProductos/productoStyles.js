@@ -112,8 +112,8 @@ export const ButtonCarrito = styled.button`
   border-radius: 50%;
   
   border: none;
-  width: 25px;
-  height: 25px;
+  width: 28px;
+  height: 28px;
   cursor: pointer;
   display: flex;
   align-items: center;

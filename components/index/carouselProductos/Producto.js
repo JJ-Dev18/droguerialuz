@@ -4,6 +4,8 @@ import { useAlert } from "react-alert";
 import useAppContext from "../../../context/Store";
 import { cartAdd } from "../../../context/actions";
 import { useCallback } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from 'next/image'
 const Producto = (props) => {
   const alert = useAlert();
   const { value } = useAppContext()
@@ -29,10 +31,7 @@ const Producto = (props) => {
         )}
 
         <ContentImage>
-          <img
-            src={props.img}
-            alt="producto imagen"
-          />
+          <Image src={props.img} alt="producto imagen" layout="intrinsic" width="100%" height="100%"/>
         </ContentImage>
         <InfoProducto>
           <h1>{props.nombre}</h1>
@@ -40,10 +39,12 @@ const Producto = (props) => {
           <ContentButtonsProductos>
             <ButtonComprar>Ahora $ {props.price}</ButtonComprar>
             <ButtonCarrito onClick={addCarrito}>
-              <img
+              <Image
                 src="/index/header/carrito.svg"
                 alt="imagen boton carrito"
                 width="25px"
+                height="25px"
+                // layout="responsive"
               />
             </ButtonCarrito>
           </ContentButtonsProductos>

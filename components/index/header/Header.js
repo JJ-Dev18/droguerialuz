@@ -28,7 +28,7 @@ const Header = (props) => {
   const { avatar } = state.user
   const cantProductos = cartItems.length
   const router = useRouter();
-  console.log('header renderizado')
+
  
   const openLogin = ()=> {
     props.openLogin()
@@ -148,7 +148,7 @@ const Header = (props) => {
                 size="1x"
               ></FontAwesomeIcon>
               {openCarrito && (
-                <ContentCard productos={cartItems} deleteP={deleteP} total={total}/>
+                <ContentCard productos={cartItems} deleteP={deleteP} total={total} closeMenu={closeMenu}/>
               )}
 
               <Badge cantidad={cantProductos} />

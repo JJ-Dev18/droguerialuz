@@ -1,9 +1,9 @@
 import { ContentCarouselBaner } from "./carouselStyles";
-
+import Image from 'next/image'
 const CarouselBanner = () => {
   return (
     <ContentCarouselBaner>
-      <img src="/index/carousel/banner/baner.webp" alt="banner carousel" />
+      <Image src="/index/carousel/banner/banner.webp" alt="banner carousel" layout="intrinsic" width="2000px" height="550px" />
     </ContentCarouselBaner>
   );
 }

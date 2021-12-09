@@ -36,7 +36,10 @@ export default function ContentCard  (props){
 
       <ContentButtonComprar>
         <span> Total : {props.total}</span>
-        <ButtonComprar onClick={() => router.push("/misproductos")}>
+        <ButtonComprar onClick={() =>{
+           router.push("/misproductos");
+           props.closeMenu()
+        }}>
           Ver Carro
         </ButtonComprar>
       </ContentButtonComprar>

@@ -19,7 +19,7 @@ const WithAdminRoute = ({ children }) => {
       }
       
     }, 2000);
-  }, [adminLogged,router]);
+  }, [adminLogged]);
 
   return <>{children}</>;
 };

@@ -72,7 +72,7 @@ export default function Home ({data}) {
         }
       />
       <ContentCarouselBaner style={{ marginTop: "20px" }}>
-        <img src="/index/baner.png" alt="baner publicidad" />
+        <Image src="/index/baner.webp" alt="baner publicidad" layout='intrinsic' width="2000px" height="500px" />
       </ContentCarouselBaner>
       <h1 className="title_home">Tu hogar</h1>
       <Carousel
@@ -96,6 +96,7 @@ export default function Home ({data}) {
   );
 }
 Home.Layout = Layout
+
 export async function getStaticProps(context) {
    
   const resp = await fetch(`${process.env.NEXT_PUBLIC_API}/api/products`)
