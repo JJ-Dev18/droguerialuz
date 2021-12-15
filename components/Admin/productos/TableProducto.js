@@ -9,11 +9,15 @@ import Paper from "@mui/material/Paper";
 import { Autocomplete, Button, ButtonGroup, Stack, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+import { useRouter } from "next/router";
+import { useAlert } from "react-alert"
 
 export default function TableProducto({productos}) {
 
   const [rows, setRows] = React.useState(productos);
+  console.log(rows)
+  const router = useRouter()
+  const alert = useAlert()
   const requestSearch = (event,newValue) => {
     if(newValue !== null){
       const filteredRows = productos.filter((row) => {
@@ -26,7 +30,16 @@ export default function TableProducto({productos}) {
     }
 };
 
-
+ const deleteProducto = (id)=> {
+   fetch(`${process.env.NEXT_PUBLIC_API}/api/products/${id}`, {
+     method: 'DELETE'
+   }).then(res => res.json())
+   .then(resp => {
+      alert.error(resp.message);
+     let newRows = rows.filter((row) => row.idProducto !== id);
+     setRows(newRows);
+   })
+ }
 
 
 
@@ -70,14 +83,15 @@ export default function TableProducto({productos}) {
                     variant="text"
                     aria-label="outlined button group"
                   >
-                    <Button>
+                    <Button
+                      onClick={() =>
+                        router.push(`/admin/producto/${row.idProducto}`)
+                      }
+                    >
                       <EditIcon />
                     </Button>
-                    <Button>
+                    <Button onClick={()=> deleteProducto(row.idProducto)}>
                       <DeleteIcon sx={{ color: "red" }} />
-                    </Button>
-                    <Button>
-                      <VisibilityIcon sx={{ color: "black" }} />
                     </Button>
                   </ButtonGroup>
                 </TableCell>

@@ -5,48 +5,69 @@ import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { useForm } from "../../../hooks/useForm";
 import {useAlert} from 'react-alert'
+import { DropZone } from "./DropZone";
 
-const initialstate = {
-  nombre: "",
-  descripcion : "",
-  price: "",
-  stock : "",
-  descuento:"",
-  grupo: ""
-}
 
-const FormProducto = ({grupos}) => {
-  const alert = useAlert()
-  const [formvalues, handleInputChange,reset ] = useForm(initialstate)
-  const { nombre ,descripcion,price,stock,descuento,grupo} = formvalues
-  const [loading, setLoading] = useState(false)
-  const [file, setfile] = useState(null);
-
-  const loadFile = ({ target }) => {
-    setfile(target.files[0]);
+const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
+  const initialstate = {
+    nombre: data?.nombre || "",
+    descripcion: data?.descripcion || "",
+    price: data?.price || "",
+    stock: data?.stock || "",
+    descuento: data?.descuento || "0",
+    grupo: data?.Grupo_idGrupo || "",
   };
- const agregarProducto = ()=>{
-   const formData = new FormData();
-   formData.append("nombre", nombre);
-   formData.append("descripcion", descripcion);
-   formData.append("price", price);
-   formData.append("stock", stock);
-   formData.append("descuento", descuento);
-   formData.append("img", file);
-   setLoading(true)
-   fetch(`${process.env.NEXT_PUBLIC_API}/api/products`, {
-     method: "POST",
-     headers: {
-       "x-token": token,
-     },
-     body: formData,
-   })
-     .then((resp) => resp.json())
-     .then((res) => {
-      
-       setLoading(false)
-     });
- }
+  const alert = useAlert();
+  const [formvalues, handleInputChange, reset] = useForm(initialstate);
+  const { nombre, descripcion, price, stock, descuento, grupo } = formvalues;
+  const [loading, setLoading] = useState(false);
+  const [files, setFiles] = useState([]);
+
+  const dataProducto = { nombre, descripcion, price, stock, descuento };
+
+  const editProducto = () => {
+    setLoading(true);
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/products/${data.idProducto}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataProducto),
+    })
+      .then((resp) => resp.json())
+      .then((res) => {
+        
+        setLoading(false);
+        alert.success(res.message);
+        setdataProducto({...data,dataProducto})
+        reset();
+      });
+  };
+
+  const agregarProducto = () => {
+    const formData = new FormData();
+    formData.append("nombre", nombre);
+    formData.append("descripcion", descripcion);
+    formData.append("price", price);
+    formData.append("stock", stock);
+    formData.append("descuento", descuento);
+    formData.append("Grupo_idGrupo", grupo);
+    files.forEach((img, index) => formData.append(`img${index}`, img));
+    setLoading(true);
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/products`, {
+      method: "POST",
+      //  headers: {
+      //    "x-token": token,
+      //  },
+      body: formData,
+    })
+      .then((resp) => resp.json())
+      .then((res) => {
+        setLoading(false);
+        alert.success(res.msg);
+        reset();
+      });
+  };
   return (
     <Box
       component="form"
@@ -56,7 +77,9 @@ const FormProducto = ({grupos}) => {
       noValidate
       autoComplete="off"
     >
-      <Typography variant="h4" color="initial"> Agregar Producto </Typography>
+      <Typography variant="h4" color="initial">
+        {edit ? "Editar Producto" : "Agregar Producto"}
+      </Typography>
       <TextField
         id="outlined-name"
         label="Nombre"
@@ -74,7 +97,7 @@ const FormProducto = ({grupos}) => {
       <TextField
         id="outlined-name"
         label="Precio"
-        name="precio"
+        name="price"
         value={price}
         onChange={handleInputChange}
       />
@@ -101,6 +124,7 @@ const FormProducto = ({grupos}) => {
           name="grupo"
           onChange={handleInputChange}
           label="Grupo"
+          disabled={disabledG}
         >
           {grupos.map((grupo) => (
             <MenuItem key={grupo.idGrupo} value={grupo.idGrupo}>
@@ -109,8 +133,14 @@ const FormProducto = ({grupos}) => {
           ))}
         </Select>
       </FormControl>
-      <Button variant="contained" color="primary" onClick={agregarProducto} disabled={loading}>
-        Agregar
+      <DropZone files={files} setFiles={setFiles} />
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={edit ? editProducto : agregarProducto}
+        disabled={loading}
+      >
+        {edit ? "Editar" : "Agregar"}
       </Button>
     </Box>
   );

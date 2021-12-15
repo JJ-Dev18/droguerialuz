@@ -6,6 +6,7 @@ const AddProducto = ({grupos}) => {
     <>
       <MiniDrawer>
         <FormProducto grupos={grupos} />
+        
       </MiniDrawer>
     </>
   );

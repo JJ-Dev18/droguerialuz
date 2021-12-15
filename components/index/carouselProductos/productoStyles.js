@@ -47,8 +47,12 @@ export const ContentImage = styled.div `
 display: flex;
 justify-content: center;
 align-items: center;
-width: 50%;
-height: 50%;
+width: 80%;
+height: 80%;
+span{
+  width: 100% !important;
+  height : 100% !important;
+}
 img{
   object-fit: contain;
   width: 100%;
