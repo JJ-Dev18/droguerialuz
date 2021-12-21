@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import MiniDrawer from "../../components/Admin/MiniDrawer";
-import TableProducto from "../../components/Admin/productos/TableProducto";
+import MiniDrawer from "../../../components/Admin/MiniDrawer";
+import TableProducto from "../../../components/Admin/productos/TableProducto";
 
 const Productos = ({productos}) => {
   

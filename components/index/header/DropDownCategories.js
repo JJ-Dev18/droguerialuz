@@ -51,7 +51,7 @@ const DropDownCategories = ({ grupos }) => {
               />
               <NavLink href="">
                 <a href="">
-                  <FontAwesomeIcon icon={faBeer} size="2x"></FontAwesomeIcon>
+                  {/* <FontAwesomeIcon icon={faBeer} size="2x"></FontAwesomeIcon> */}
                   {categoria}
                 </a>
               </NavLink>

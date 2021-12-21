@@ -5,8 +5,7 @@ const AddProducto = ({grupos}) => {
   return (
     <>
       <MiniDrawer>
-        <FormProducto grupos={grupos} />
-        
+        <FormProducto grupos={grupos} />     
       </MiniDrawer>
     </>
   );

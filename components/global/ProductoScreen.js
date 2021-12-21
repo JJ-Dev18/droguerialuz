@@ -22,16 +22,17 @@ const ProductoScreen = (props) => {
   return (
     <ContentDetalleProducto>
       <CardProducto>
-        <Descuento cel="12px" pc="18px" width="15%">
-          30%
-        </Descuento>
+        {props.descuento > 0 && (
+          <Descuento cel="12px" pc="18px" width="15%">
+            {props.descuento}%
+          </Descuento>
+        )}
+
         <CarouselProducto images={props.images} />
       </CardProducto>
       <ContentInfoProducto>
         <h1>{props.nombre}</h1>
-        <p>
-          {props.descripcion}
-        </p>
+        <p>{props.descripcion}</p>
         <span>Antes $35.000</span>
         <ContentButtonsProductos space={true}>
           <ButtonComprar>Ahorra ${props.price}</ButtonComprar>
@@ -43,7 +44,10 @@ const ProductoScreen = (props) => {
             />
           </ButtonCarrito>
         </ContentButtonsProductos>
-        <StyledRate defaultValue={ (!props.calificacion) ? 0 : props.calificacion} disabled />
+        <StyledRate
+          defaultValue={!props.calificacion ? 0 : props.calificacion}
+          disabled
+        />
       </ContentInfoProducto>
     </ContentDetalleProducto>
   );

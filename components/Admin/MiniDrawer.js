@@ -26,6 +26,11 @@ import useAppContext from '../../context/Store';
 import { loggoutAdmin } from '../../context/actions';
 import { useRouter } from 'next/router';
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import CategoryIcon from "@mui/icons-material/Category";
+import GroupIcon from "@mui/icons-material/Group";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
+import GroupWorkIcon from "@mui/icons-material/GroupWork";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -103,6 +108,7 @@ export default function MiniDrawer({children}) {
    const { adminLogged } = state;
   const [open, setOpen] = React.useState(true);
   const [openProductos, setOpenProductos] = React.useState(false);
+  const [openUsuarios, setOpenUsuarios] = React.useState(false)
 
 
   const cerrarSesion = () => {
@@ -113,6 +119,21 @@ export default function MiniDrawer({children}) {
  const handleClick = () => {
    setOpenProductos(!openProductos);
  };
+ const handleUsuarios = ()=> {
+   setOpenUsuarios(!openUsuarios)
+ }
+ const handleClickCategorias = () => {
+   router.push("/admin/categoria")
+ }
+  const handleClickGrupos = () => {
+    router.push("/admin/grupo");
+  };
+  const handleClickUsuarios = () => {
+    router.push("/admin/usuarios");
+  };
+   const handleClickCompras = () => {
+     router.push("/admin/compras");
+   };
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -166,7 +187,7 @@ export default function MiniDrawer({children}) {
             <List component="div" disablePadding>
               <ListItemButton
                 sx={{ pl: 4 }}
-                onClick={() => router.push("/admin/productos")}
+                onClick={() => router.push("/admin/producto")}
               >
                 <ListItemIcon>
                   <FormatListBulletedIcon />
@@ -186,14 +207,74 @@ export default function MiniDrawer({children}) {
           </Collapse>
         </List>
         <Divider />
+
         <List>
-          <ListItem button onClick={cerrarSesion}>
+          <ListItemButton onClick={handleClickCategorias}>
             <ListItemIcon>
-              <LogoutIcon />
+              <CategoryIcon />
             </ListItemIcon>
-            <ListItemText primary="Cerrar Sesion" />
-          </ListItem>
+            <ListItemText primary="Categorias" />
+          </ListItemButton>
         </List>
+        <Divider />
+        <List>
+          <ListItemButton onClick={handleUsuarios}>
+            <ListItemIcon>
+              <GroupIcon />
+            </ListItemIcon>
+            <ListItemText primary="Usuarios" />
+            {openUsuarios ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={openUsuarios} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => router.push("/admin/usuarios")}
+              >
+                <ListItemIcon>
+                  <FormatListBulletedIcon />
+                </ListItemIcon>
+                <ListItemText primary="Listar Usuarios" />
+              </ListItemButton>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => router.push("/admin/addUsuarios")}
+              >
+                <ListItemIcon>
+                  <AddBoxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Agregar Usuarios" />
+              </ListItemButton>
+            </List>
+          </Collapse>
+        </List>
+       
+        <Divider />
+        <List>
+          <ListItemButton onClick={handleClickCompras}>
+            <ListItemIcon>
+              <ShoppingBasketIcon />
+            </ListItemIcon>
+            <ListItemText primary="Compras" />
+          </ListItemButton>
+        </List>
+        <Divider />
+        <List>
+          <ListItemButton onClick={handleClickGrupos}>
+            <ListItemIcon>
+              <DirectionsBikeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Domicilios" />
+          </ListItemButton>
+        </List>
+        <Divider />
+
+        <ListItem button onClick={cerrarSesion}>
+          <ListItemIcon>
+            <LogoutIcon />
+          </ListItemIcon>
+          <ListItemText primary="Cerrar Sesion" />
+        </ListItem>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />

@@ -8,7 +8,7 @@ export const ContentDropDown = styled.div`
   top: 50px;
   left: 25%;
   width: 700px;
-  height: 400px;
+  /* height: 400px; */
   z-index:9999;
   
   & [type="radio"] {
@@ -24,7 +24,7 @@ export const ContentDropDown = styled.div`
   
 `;
 export const Categoria = styled.li`
-  width: 250px;
+  /* width: 250px; */
   height: 40px;
   text-align: start;
   background: ${(props) =>
@@ -55,7 +55,7 @@ export const ListSubCategoria = styled.ul`
     width: 100%;
     /* position: relative; */
     li {
-      width: 50%;
+      width: 70%;
     }
   
 `;
@@ -64,7 +64,7 @@ export const SubCategoria = styled.div`
   background: var(--color--terciary);
   right: 0;
   top: 0;
-  width: calc(100% - 250px);
+  width: calc(100% - 275px);
   z-index: 1;
   padding: 0 10px;
   /* opacity: 1; */

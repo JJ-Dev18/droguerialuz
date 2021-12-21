@@ -8,9 +8,9 @@ const ProductoDetail = ({data,grupos}) => {
   return (
     <>
       <MiniDrawer>
-        <p>Producto Detail</p>
+        <h2>Detalle del Producto</h2>
         <ProductoScreen {...dataProducto} />
-        <FormProducto data={dataProducto} grupos={grupos} edit={true} disabledG={true} setdataProducto={setdataProducto} />
+        <FormProducto data={data} grupos={grupos} edit={true} disabledG={true} setdataProducto={setdataProducto} />
       </MiniDrawer>
     </>
   );

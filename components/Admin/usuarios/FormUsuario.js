@@ -1,21 +1,27 @@
-
-import { FormControl, InputLabel, MenuItem, Select, Typography, Button } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+  Button,
+} from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { useForm } from "../../../hooks/useForm";
-import {useAlert} from 'react-alert'
+import { useAlert } from "react-alert";
 import { DropZone } from "./DropZone";
 
-
-const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
+const FormUsuario = ({  data, disabledG, edit, setdataUsuario }) => {
   const initialstate = {
     nombre: data?.nombre || "",
-    descripcion: data?.descripcion || "",
-    price: data?.price || "",
-    stock: data?.stock || "",
-    descuento: data?.descuento || "0",
-    grupo: data?.Grupo_idGrupo || "",
+    telefono: data?.telefono || "",
+    cedula: data?.cedula || "",
+    direccion: data?.direccion || "",
+    correo: data?.correo || "",
+    password: data?.password || "",
+    rol : data?.rol || ''
   };
   const alert = useAlert();
   const [formvalues, handleInputChange, reset] = useForm(initialstate);
@@ -23,9 +29,9 @@ const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
   const [loading, setLoading] = useState(false);
   const [files, setFiles] = useState([]);
 
-  const dataProducto = { nombre, descripcion, price, stock, descuento };
+  const dataUsuario = { nombre, telefono, cedula, direccion, correo, password };
 
-  const editProducto = () => {
+  const editUsuario = () => {
     setLoading(true);
     fetch(`${process.env.NEXT_PUBLIC_API}/api/products/${data.idProducto}`, {
       method: "PUT",
@@ -36,14 +42,13 @@ const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
     })
       .then((resp) => resp.json())
       .then((res) => {
-        
         setLoading(false);
         alert.success(res.message);
-        setdataProducto({...data,...dataProducto})
+        setdataProducto({ ...data, ...dataUsuario });
       });
   };
 
-  const agregarProducto = () => {
+  const agregarUsuario = () => {
     const formData = new FormData();
     formData.append("nombre", nombre);
     formData.append("descripcion", descripcion);
@@ -77,7 +82,7 @@ const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
       autoComplete="off"
     >
       <Typography variant="h5" color="initial">
-        {edit ? "Editar Producto" : "Agregar Producto"}
+        {edit ? "Editar Usuario" : "Agregar Usuario"}
       </Typography>
       <TextField
         id="outlined-name"
@@ -89,54 +94,62 @@ const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
       <TextField
         id="outlined-name"
         label="Descripcion"
-        name="descripcion"
-        value={descripcion}
+        name="telefono"
+        value={telefono}
         onChange={handleInputChange}
       />
       <TextField
         id="outlined-name"
         label="Precio"
-        name="price"
-        value={price}
+        name="cedula"
+        value={cedula}
         onChange={handleInputChange}
       />
       <TextField
         id="outlined-name"
         label="Stock"
-        name="stock"
-        value={stock}
+        name="direccion"
+        value={direccion}
         onChange={handleInputChange}
       />
       <TextField
         id="outlined-name"
         label="Descuento"
-        name="descuento"
-        value={descuento}
+        name="correo"
+        value={correo}
+        onChange={handleInputChange}
+      />
+      <TextField
+        id="outlined-name"
+        label="Descuento"
+        name="paswword"
+        type="password"
+        value={password}
         onChange={handleInputChange}
       />
       <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-standard-label">Grupo</InputLabel>
+        <InputLabel id="demo-simple-select-standard-label">Rol</InputLabel>
         <Select
           labelId="demo-simple-select-standard-label"
           id="demo-simple-select-standard"
-          value={grupo}
+          value={rol}
           name="grupo"
           onChange={handleInputChange}
           label="Grupo"
           disabled={disabledG}
         >
-          {grupos.map((grupo) => (
-            <MenuItem key={grupo.idGrupo} value={grupo.idGrupo}>
-              {grupo.nombre}
-            </MenuItem>
-          ))}
+          <MenuItem key={roles.idGrupo} value="1">
+            Administrador
+          </MenuItem>
+          <MenuItem key={roles.idGrupo} value="2">
+            Usuario
+          </MenuItem>
         </Select>
       </FormControl>
-      <DropZone files={files} setFiles={setFiles} />
       <Button
         variant="contained"
         color="primary"
-        onClick={edit ? editProducto : agregarProducto}
+        onClick={edit ? editUsuario : agregarUsuario}
         disabled={loading}
       >
         {edit ? "Editar" : "Agregar"}
