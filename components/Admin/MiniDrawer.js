@@ -238,7 +238,7 @@ export default function MiniDrawer({children}) {
               </ListItemButton>
               <ListItemButton
                 sx={{ pl: 4 }}
-                onClick={() => router.push("/admin/addUsuarios")}
+                onClick={() => router.push("/admin/addUsuario")}
               >
                 <ListItemIcon>
                   <AddBoxIcon />
@@ -248,7 +248,7 @@ export default function MiniDrawer({children}) {
             </List>
           </Collapse>
         </List>
-       
+
         <Divider />
         <List>
           <ListItemButton onClick={handleClickCompras}>
@@ -276,7 +276,11 @@ export default function MiniDrawer({children}) {
           <ListItemText primary="Cerrar Sesion" />
         </ListItem>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, p: 3 }}
+        style={{ overflowX: "scroll" }}
+      >
         <DrawerHeader />
         {children}
       </Box>

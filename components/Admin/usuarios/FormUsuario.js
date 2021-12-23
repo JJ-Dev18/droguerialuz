@@ -11,9 +11,10 @@ import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { useForm } from "../../../hooks/useForm";
 import { useAlert } from "react-alert";
-import { DropZone } from "./DropZone";
+// import { DropZone } from "./DropZone";
 
 const FormUsuario = ({  data, disabledG, edit, setdataUsuario }) => {
+  console.log(data)
   const initialstate = {
     nombre: data?.nombre || "",
     telefono: data?.telefono || "",
@@ -25,50 +26,52 @@ const FormUsuario = ({  data, disabledG, edit, setdataUsuario }) => {
   };
   const alert = useAlert();
   const [formvalues, handleInputChange, reset] = useForm(initialstate);
-  const { nombre, descripcion, price, stock, descuento, grupo } = formvalues;
+  const { nombre, telefono,cedula,direccion,correo,password,rol } = formvalues;
   const [loading, setLoading] = useState(false);
-  const [files, setFiles] = useState([]);
 
-  const dataUsuario = { nombre, telefono, cedula, direccion, correo, password };
+  const dataUsuario = { nombre, telefono, cedula, direccion, correo, password , rol};
+  
 
   const editUsuario = () => {
     setLoading(true);
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/products/${data.idProducto}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/usuarios/${data.idUsuario}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(dataProducto),
+      body: JSON.stringify(dataUsuario),
     })
       .then((resp) => resp.json())
       .then((res) => {
         setLoading(false);
         alert.success(res.message);
-        setdataProducto({ ...data, ...dataUsuario });
+        // setdataProducto({ ...data, ...dataUsuario });
       });
   };
 
   const agregarUsuario = () => {
-    const formData = new FormData();
-    formData.append("nombre", nombre);
-    formData.append("descripcion", descripcion);
-    formData.append("price", price);
-    formData.append("stock", stock);
-    formData.append("descuento", descuento);
-    formData.append("Grupo_idGrupo", grupo);
-    files.forEach((img, index) => formData.append(`img${index}`, img));
+   
     setLoading(true);
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/products`, {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/usuarios`, {
       method: "POST",
-      //  headers: {
-      //    "x-token": token,
-      //  },
-      body: formData,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nombre,
+        telefono,
+        cedula,
+        direccion,
+        correo,
+        password,
+        rol,
+      }),
     })
       .then((resp) => resp.json())
       .then((res) => {
+        console.log(res);
         setLoading(false);
-        alert.success(res.msg);
+        alert.success(res.message);
         reset();
       });
   };
@@ -93,36 +96,36 @@ const FormUsuario = ({  data, disabledG, edit, setdataUsuario }) => {
       />
       <TextField
         id="outlined-name"
-        label="Descripcion"
+        label="Telefono"
         name="telefono"
         value={telefono}
         onChange={handleInputChange}
       />
       <TextField
         id="outlined-name"
-        label="Precio"
+        label="cedula"
         name="cedula"
         value={cedula}
         onChange={handleInputChange}
       />
       <TextField
         id="outlined-name"
-        label="Stock"
+        label="direccion"
         name="direccion"
         value={direccion}
         onChange={handleInputChange}
       />
       <TextField
         id="outlined-name"
-        label="Descuento"
+        label="correo"
         name="correo"
         value={correo}
         onChange={handleInputChange}
       />
       <TextField
         id="outlined-name"
-        label="Descuento"
-        name="paswword"
+        label="password"
+        name="password"
         type="password"
         value={password}
         onChange={handleInputChange}
@@ -133,15 +136,15 @@ const FormUsuario = ({  data, disabledG, edit, setdataUsuario }) => {
           labelId="demo-simple-select-standard-label"
           id="demo-simple-select-standard"
           value={rol}
-          name="grupo"
+          name="rol"
           onChange={handleInputChange}
-          label="Grupo"
+          label="Rol"
           disabled={disabledG}
         >
-          <MenuItem key={roles.idGrupo} value="1">
+          <MenuItem  value="1">
             Administrador
           </MenuItem>
-          <MenuItem key={roles.idGrupo} value="2">
+          <MenuItem  value="2">
             Usuario
           </MenuItem>
         </Select>
@@ -158,4 +161,4 @@ const FormUsuario = ({  data, disabledG, edit, setdataUsuario }) => {
   );
 };
 
-export default FormProducto;
+export default FormUsuario;

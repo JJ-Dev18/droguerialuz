@@ -47,7 +47,7 @@ export default function TableUsuarios({ usuarios }) {
   };
 
   return (
-    <Paper>
+    <Paper > 
       <Stack spacing={2} sx={{ width: "100% " }}>
         <Autocomplete
           id="free-solo-demo"
@@ -75,7 +75,7 @@ export default function TableUsuarios({ usuarios }) {
           <TableBody>
             {rows.map((row) => (
               <TableRow
-                key={row.idProducto}
+                key={row.idUsuario}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell>{row.nombre}</TableCell>
@@ -95,7 +95,7 @@ export default function TableUsuarios({ usuarios }) {
                   >
                     <Button
                       onClick={() =>
-                        router.push(`/admin/producto/${row.idUsuario}`)
+                        router.push(`/admin/usuarios/${row.idUsuario}`)
                       }
                     >
                       <EditIcon />
