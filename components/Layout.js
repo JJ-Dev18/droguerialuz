@@ -47,8 +47,8 @@ const Layout = ({ children,grupos }) => {
   return (
     <div className="contentPrincipal">
      
-      {loginOpen && <Login closeLogin={closeLogin} />}
-       {registerOpen && <Register closeRegister={closeRegister} />}
+      {loginOpen && <Login closeLogin={closeLogin} openRegister={openRegister}/>}
+       {registerOpen && <Register closeRegister={closeRegister} openLogin={openLogin}/>}
         
       <Header openLogin={openLogin} openRegister={openRegister}  grupos={grupos}/>
 

@@ -46,12 +46,13 @@ e.preventDefault()
    });
   }
   return (
-    <LoginContent>
+    <LoginContent height="580px">
       <ButtonCerrar onClick={props.closeRegister}>
         <FontAwesomeIcon icon={faWindowClose} size="2x" color="red" />
       </ButtonCerrar>
       <h2>Registro</h2>
       <FormLogin>
+        <label>Correo Electronico</label>
         <input
           type="email"
           name="correo"
@@ -60,30 +61,34 @@ e.preventDefault()
           onChange={handleInputChange}
           require="true"
         />
+        <label>Contrasenia</label>
         <input
-         value={password}
+          value={password}
           type="password"
           name="password"
           placeholder="password"
           onChange={handleInputChange}
           require="true"
         />
+        <label>Nombre</label>
         <input
-         value={nombre}
+          value={nombre}
           type="text"
           name="nombre"
           placeholder="nombre"
           onChange={handleInputChange}
           require
         />
+        <label>Cedula</label>
         <input
-        value={cedula}
+          value={cedula}
           type="text"
           name="cedula"
           placeholder="cedula"
           onChange={handleInputChange}
           require
         />
+        <label>Telefono</label>
         <input
           value={telefono}
           type="text"
@@ -92,6 +97,7 @@ e.preventDefault()
           onChange={handleInputChange}
           require="true"
         />
+        <label>Direccion</label>
         <input
           type="text"
           name="direccion"
@@ -102,6 +108,14 @@ e.preventDefault()
         />
         <button onClick={register}>Registrarse</button>
       </FormLogin>
+      <h4
+        onClick={() => {
+          props.closeRegister();
+          props.openLogin();
+        }}
+      >
+        Iniciar sesion
+      </h4>
     </LoginContent>
   );
 }

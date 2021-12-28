@@ -96,12 +96,13 @@ const Login = (props) => {
 
   return (
     <>
-      <LoginContent>
+      <LoginContent height="350px">
         <ButtonCerrar onClick={props.closeLogin}>
           <FontAwesomeIcon icon={faWindowClose} size="2x" color="red" />
         </ButtonCerrar>
         <h2>Iniciar Sesion</h2>
-        <FormLogin>
+        <FormLogin >
+          <label>Correo Electronico</label>
           <input
             type="text"
             onChange={handleInputChange}
@@ -109,6 +110,7 @@ const Login = (props) => {
             placeholder="Correo"
             value={correo}
           />
+          <label>Contrasena</label>
           <input
             type="password"
             onChange={handleInputChange}
@@ -127,9 +129,12 @@ const Login = (props) => {
             />
           </GoogleWrapper>
         </FormLogin>
-        <span>
-          No tienes cuenta <Link href="">Registrate </Link>{" "}
-        </span>
+        <h4 onClick={()=>{
+          props.closeLogin()
+          props.openRegister()
+        }}>
+          Registrate
+        </h4>
       </LoginContent>
     </>
   );
