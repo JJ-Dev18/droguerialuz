@@ -28,7 +28,7 @@ export const CardProductoDomicilios = styled.div`
 `;
 export const ContentTitulo = styled.div ` 
 display: flex;
-width: 400px;
+width: 600px;
 height: 40px;
 align-items: center;
 margin-top: 20px;

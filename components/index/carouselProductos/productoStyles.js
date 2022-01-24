@@ -108,6 +108,7 @@ export const ButtonComprar = styled.button`
   }
   @media (min-width: 1000px) {
     font-size: 18px;
+    margin-left: 5px;
   }
 `;
 
