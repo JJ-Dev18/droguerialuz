@@ -13,10 +13,9 @@ const Usuarios = ({usuarios}) => {
  
 export default Usuarios;
 
-export async function getStaticProps(context) {
+export async function getServerSideProps() {
   const resp = await fetch(`${process.env.NEXT_PUBLIC_API}/api/usuarios`);
   const data = await resp.json();
-  
 
   return {
     props: { usuarios: data },

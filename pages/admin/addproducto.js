@@ -13,12 +13,11 @@ const AddProducto = ({grupos}) => {
  
 export default AddProducto;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const resp = await fetch(`${process.env.NEXT_PUBLIC_API}/api/grupos`);
   const data = await resp.json();
 
   return {
     props: { grupos: data },
-    revalidate : 1,
   };
 }

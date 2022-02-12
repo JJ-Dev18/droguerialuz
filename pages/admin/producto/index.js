@@ -18,12 +18,11 @@ const Productos = ({productos}) => {
 
 export default Productos;
 
-export async function getStaticProps(context) {
+export async function getServerSideProps() {
   const resp = await fetch(`${process.env.NEXT_PUBLIC_API}/api/products`);
   const data = await resp.json();
 
   return {
     props: { productos: data },
-    revalidate: 1,
   };
 }

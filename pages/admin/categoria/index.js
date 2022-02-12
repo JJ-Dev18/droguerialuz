@@ -70,13 +70,13 @@ const Categoria = ({categorias}) => {
  
 export default Categoria;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const resp = await fetch(
     `${process.env.NEXT_PUBLIC_API}/api/grupos/categorias`
   );
-  const data = await resp.json(); 
-  
+  const data = await resp.json();
+
   return {
-    props: { categorias: data},
+    props: { categorias: data },
   };
 }

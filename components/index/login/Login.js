@@ -33,9 +33,8 @@ const Login = (props) => {
     // to decode the credential response.
     const body = { id_token: response.tokenId };
     
-    let url = window.location.hostname.includes("localhost")
-      ? `${process.env.NEXT_PUBLIC_API}/api/auth/google`
-      : "https://primer-web-server.herokuapp.com/api/auth/google";
+    let url = `${process.env.NEXT_PUBLIC_API}/api/auth/google`
+     
 
     fetch(url, {
       method: "POST",
@@ -85,14 +84,6 @@ const Login = (props) => {
       });
   };
 
-  // const logout = () => {
-  //   console.log("logiout");
-  //   google.accounts.id.disableAutoSelect();
-  //   google.accounts.id.revoke(localStorage.getItem("correo"), (done) => {
-  //     localStorage.clear();
-  //     //  location.reload();
-  //   });
-  // };
 
   return (
     <>

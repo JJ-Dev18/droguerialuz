@@ -12,7 +12,7 @@ const Compras = ({compras}) => {
 }
  
 export default Compras;
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const resp = await fetch(`${process.env.NEXT_PUBLIC_API}/api/compras`);
   const data = await resp.json();
 
