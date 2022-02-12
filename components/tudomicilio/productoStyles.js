@@ -31,7 +31,7 @@ display: flex;
 width: 600px;
 height: 40px;
 align-items: center;
-margin-top: 20px;
+margin-top: 60px;
 
 `
 export const TituloProducto = styled.h1 `

@@ -10,18 +10,19 @@ import { useCallback } from "react";
 import { ButtonComprar } from "../components/index/carouselProductos/productoStyles";
 import Layout from "../components/Layout";
 import md5 from 'md5'
+import { ContentQuienes } from "../components/quienesSomos/quienesSomosStyles";
 
 export default function MisProductos() {
   const alert = useAlert()
   const { value } = useAppContext()
   const { state , dispatch } = value;
-  const { cart,total } = state
-  console.log(state)
+  const { cart,logged,user } = state
+  console.log(user)
   const apikey = "xdweeL4F4Trn2v04kPZ0u7LDv7";
   const merchanId = "962458";
   const accountId = "970217";
-  const referencia = 'dolex pro'
-  const monto = '12000';
+  const referencia = 'dolex pro5'
+  const monto = '1000';
   const signature = md5(`${apikey}~${merchanId}~${referencia}~${monto}~COP`);
   const urlTest ="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/";
   const urlProd = "https://checkout.payulatam.com/ppp-web-gateway-payu/";
@@ -62,7 +63,7 @@ export default function MisProductos() {
         <form method="post" action={urlProd}>
           <input name="merchantId" type="hidden" value={merchanId} />
           <input name="accountId" type="hidden" value={accountId} />
-          <input name="description" type="hidden" value="Test PAYU" />
+          <input name="description" type="hidden" value="Test PAYU # 5" />
           <input name="referenceCode" type="hidden" value={referencia} />
           <input name="amount" type="hidden" value={monto} />
           <input name="tax" type="hidden" value="0" />
@@ -71,32 +72,38 @@ export default function MisProductos() {
           <input name="sourceUrl" type="hidden" value="http//localhost:3000/" />
           <input name="signature" type="hidden" value={signature} />
           <input name="test" type="hidden" value="1" />
-          
+
           <input
             name="buyerEmail"
             type="hidden"
-            value="juanjomb1_vi@hotmail.com"
+            value={user.correo}
           />
           <input
             name="responseUrl"
             type="hidden"
-            value="http://www.test.com/response"
+            value="http://localhost:3000/response"
           />
           <input
             name="confirmationUrl"
             type="hidden"
-            value="http://www.test.com/confirmation"
+            value="https://prueba-drogueria.herokuapp.com/api/compras/confirmate"
           />
           {/* <input name="Submit" type="submit" value="Enviar" /> */}
-          <ButtonComprar name="Submit" type="submit" value="Enviar">
-            Comprar
-          </ButtonComprar>
+          {
+            logged ? <ButtonComprar name="Submit" type="submit" value="Enviar">Comprar</ButtonComprar>
+            : <h3>Debe Iniciar Sesion para comprar</h3>
+          }
+      
         </form>
       </ContentTitulo>
+
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {cart.cartItems.length === 0 ? (
-          <h1> No hay productos en su domicilio </h1>
-        ) : (
+        {cart.cartItems.length === 0 
+        ? 
+          <ContentQuienes>
+            <h1 style={{marginleft:'10px'}}> No hay productos en su domicilio </h1>
+          </ContentQuienes>
+        : (
           cart.cartItems.map((item) => (
             <ProductoDomicilio
               key={item.idProducto}

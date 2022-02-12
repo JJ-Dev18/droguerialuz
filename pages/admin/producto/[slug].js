@@ -42,6 +42,7 @@ export async function getStaticProps({ params }) {
 
   
   return {
-    props: { data , grupos }, // will be passed to the page component as props
+    props: { data, grupos },
+    revalidate: 1, // will be passed to the page component as props
   };
 }

@@ -101,7 +101,7 @@ const Login = (props) => {
           <FontAwesomeIcon icon={faWindowClose} size="2x" color="red" />
         </ButtonCerrar>
         <h2>Iniciar Sesion</h2>
-        <FormLogin >
+        <FormLogin>
           <label>Correo Electronico</label>
           <input
             type="text"
@@ -121,7 +121,7 @@ const Login = (props) => {
           <GoogleWrapper>
             <button onClick={login}>Entrar</button>
             <GoogleLogin
-              clientId="2644750142-shrdbovtgfkjmlsbsjrd3jjn7k0migvn.apps.googleusercontent.com"
+              clientId="668137904613-gal6750055pk8hibojamiat1vnrltd9u.apps.googleusercontent.com"
               buttonText=""
               onSuccess={handleCredentialResponse}
               // onFailure={responseGoogle}
@@ -129,10 +129,12 @@ const Login = (props) => {
             />
           </GoogleWrapper>
         </FormLogin>
-        <h4 onClick={()=>{
-          props.closeLogin()
-          props.openRegister()
-        }}>
+        <h4
+          onClick={() => {
+            props.closeLogin();
+            props.openRegister();
+          }}
+        >
           Registrate
         </h4>
       </LoginContent>

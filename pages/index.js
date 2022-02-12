@@ -111,10 +111,11 @@ export async function getStaticProps(context) {
    
   const resp = await fetch(`${process.env.NEXT_PUBLIC_API}/api/products`)
   const data = await resp.json()
-
+ 
   
   
   return {
-    props: {data}, // will be passed to the page component as props
+    props: { data },
+    // revalidate: 10, // will be passed to the page component as props
   };
 }

@@ -3,7 +3,6 @@ import FormUsuario from "../../../components/Admin/usuarios/FormUsuario";
 
 const Usuario = ({data}) => {
 
-  console.log(data)
 
   return (  
     <>
