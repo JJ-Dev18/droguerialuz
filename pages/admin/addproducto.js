@@ -19,5 +19,6 @@ export async function getStaticProps() {
 
   return {
     props: { grupos: data },
+    revalidate : 1,
   };
 }
