@@ -17,11 +17,18 @@ export default function MisProductos() {
   const { value } = useAppContext()
   const { state , dispatch } = value;
   const { cart,logged,user } = state
-  console.log(user)
+  const referencia = cart.cartItems[0].nombre + '1';
+  const response = window.location.hostname.includes("localhost")
+    ? "http://localhost:3000/response"
+    : "https://www.luzmardroguerias.com/response";
+   const url = window.location.hostname.includes("localhost")
+     ? "http://localhost:3000"
+     : "https://www.luzmardroguerias.com";
+      
   const apikey = "xdweeL4F4Trn2v04kPZ0u7LDv7";
   const merchanId = "962458";
   const accountId = "970217";
-  const referencia = 'dolex pro5'
+  // const referencia = 'dolex pro5'
   const monto = '1000';
   const signature = md5(`${apikey}~${merchanId}~${referencia}~${monto}~COP`);
   const urlTest ="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/";
@@ -69,7 +76,7 @@ export default function MisProductos() {
           <input name="tax" type="hidden" value="0" />
           <input name="taxReturnBase" type="hidden" value="0" />
           <input name="currency" type="hidden" value="COP" />
-          <input name="sourceUrl" type="hidden" value="http//localhost:3000/" />
+          <input name="sourceUrl" type="hidden" value={url} />
           <input name="signature" type="hidden" value={signature} />
           <input name="test" type="hidden" value="1" />
 
@@ -81,7 +88,7 @@ export default function MisProductos() {
           <input
             name="responseUrl"
             type="hidden"
-            value="http://localhost:3000/response"
+            value={response}
           />
           <input
             name="confirmationUrl"

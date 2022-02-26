@@ -41,7 +41,7 @@ e.preventDefault()
      } else {
        alert.success(resp.message);
        dispatch(loggin(formValues));
-       closeRegister();
+       props.closeRegister();
      }
    });
   }
