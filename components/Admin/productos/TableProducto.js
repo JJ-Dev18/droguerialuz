@@ -64,6 +64,7 @@ export default function TableProducto({productos}) {
               <TableCell>Descripcion </TableCell>
               <TableCell>Precio </TableCell>
               <TableCell>Stock </TableCell>
+              <TableCell>Factura </TableCell>
               <TableCell align="center">Descuento </TableCell>
             </TableRow>
           </TableHead>
@@ -77,6 +78,7 @@ export default function TableProducto({productos}) {
                 <TableCell>{row.descripcion}</TableCell>
                 <TableCell>{row.price}</TableCell>
                 <TableCell>{row.stock}</TableCell>
+                <TableCell>{ (row.factura == '1')? 'No' : 'Si'}</TableCell>
                 <TableCell align="center">{row.descuento}</TableCell>
                 <TableCell>
                   <ButtonGroup
@@ -90,7 +92,7 @@ export default function TableProducto({productos}) {
                     >
                       <EditIcon />
                     </Button>
-                    <Button onClick={()=> deleteProducto(row.idProducto)}>
+                    <Button onClick={() => deleteProducto(row.idProducto)}>
                       <DeleteIcon sx={{ color: "red" }} />
                     </Button>
                   </ButtonGroup>

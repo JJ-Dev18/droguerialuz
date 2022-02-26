@@ -1,12 +1,11 @@
 
-import { FormControl, InputLabel, MenuItem, Select, Typography, Button } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select, Typography, Button,Checkbox, FormControlLabel } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { useForm } from "../../../hooks/useForm";
 import {useAlert} from 'react-alert'
 import { DropZone } from "./DropZone";
-
 
 const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
   const initialstate = {
@@ -18,14 +17,22 @@ const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
     grupo: data?.Grupo_idGrupo || "",
   };
   const alert = useAlert();
+  const [checked, setchecked] = useState((data?.factura == '1') ? false : true) 
+  // const [factura, setfactura] = useState(data?.factura || '1')
   const [formvalues, handleInputChange, reset] = useForm(initialstate);
   const { nombre, descripcion, price, stock, descuento, grupo } = formvalues;
   const [loading, setLoading] = useState(false);
   const [files, setFiles] = useState([]);
+  let factura = checked ? "2" : "1";
 
-  const dataProducto = { nombre, descripcion, price, stock, descuento };
+  const dataProducto = { nombre, descripcion, price, stock, descuento ,factura};
+  const handleChange = (event) => {
+    setchecked(event.target.checked);
 
+  };
+  console.log(checked)
   const editProducto = () => {
+   
     setLoading(true);
     fetch(`${process.env.NEXT_PUBLIC_API}/api/products/${data.idProducto}`, {
       method: "PUT",
@@ -44,10 +51,13 @@ const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
   };
 
   const agregarProducto = () => {
+    let factura = checked ? '2' : '1'
+    console.log(factura)
     const formData = new FormData();
     formData.append("nombre", nombre);
     formData.append("descripcion", descripcion);
     formData.append("price", price);
+    formData.append("factura", factura)
     formData.append("stock", stock);
     formData.append("descuento", descuento);
     formData.append("Grupo_idGrupo", grupo);
@@ -132,6 +142,13 @@ const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
           ))}
         </Select>
       </FormControl>
+      <FormControlLabel
+        control={
+          <Checkbox checked={checked} onChange={handleChange} name="Factura" />
+        }
+        label="Factura"
+      />
+      
       <DropZone files={files} setFiles={setFiles} />
       <Button
         variant="contained"

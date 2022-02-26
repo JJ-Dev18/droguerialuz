@@ -18,6 +18,7 @@ const ProductoScreen = (props) => {
     dispatch(cartAdd(props));
     alert.success("Producto agregado al carrito");
   }, [dispatch,alert]);
+  console.log(props)
   
   return (
     <ContentDetalleProducto>
@@ -34,6 +35,9 @@ const ProductoScreen = (props) => {
         <h1>{props.nombre}</h1>
         <p>{props.descripcion}</p>
         <span>Antes $35.000</span>
+        {(props.factura != '1') &&
+          <h4>Este medicamento necesita formula medica</h4>
+        }
         <ContentButtonsProductos space={true}>
           <ButtonComprar>Ahorra ${props.price}</ButtonComprar>
           <ButtonCarrito onClick={addCarrito}>
