@@ -2,6 +2,7 @@ import { useState } from "react";
 import MiniDrawer from "../../../components/Admin/MiniDrawer";
 import FormProducto from "../../../components/Admin/productos/FormProducto";
 import ProductoScreen from "../../../components/global/ProductoScreen";
+import WithAdminRoute from "../../../components/Auth/WithAdminRoute";
 
 const ProductoDetail = ({data,grupos}) => {
   const [dataProducto, setdataProducto] = useState(data)
@@ -46,3 +47,5 @@ export async function getStaticProps({ params }) {
     revalidate: 1, // will be passed to the page component as props
   };
 }
+
+ProductoDetail.Auth = WithAdminRoute;

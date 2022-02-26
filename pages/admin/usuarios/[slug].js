@@ -1,5 +1,6 @@
 import MiniDrawer from "../../../components/Admin/MiniDrawer";
 import FormUsuario from "../../../components/Admin/usuarios/FormUsuario";
+import WithAdminRoute from "../../../components/Auth/WithAdminRoute";
 
 const Usuario = ({data}) => {
 
@@ -39,3 +40,5 @@ export async function getStaticProps({ params }) {
     props: { data  } // will be passed to the page component as props
   };
 }
+
+Usuario.Auth = WithAdminRoute;

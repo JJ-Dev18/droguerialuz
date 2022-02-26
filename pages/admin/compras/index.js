@@ -1,5 +1,6 @@
 import TableCompras from "../../../components/Admin/compras/TableCompras";
 import MiniDrawer from "../../../components/Admin/MiniDrawer";
+import WithAdminRoute from "../../../components/Auth/WithAdminRoute";
 
 const Compras = ({compras}) => {
   return ( 
@@ -20,3 +21,5 @@ export async function getServerSideProps(context) {
     props: { compras: data },
   };
 }
+
+Compras.Auth = WithAdminRoute;

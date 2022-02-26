@@ -1,4 +1,5 @@
 import MiniDrawer from "../../../components/Admin/MiniDrawer";
+import WithAdminRoute from "../../../components/Auth/WithAdminRoute";
 
 const Grupos = (props) => {
   console.log(props)
@@ -27,3 +28,5 @@ export async function getStaticProps() {
     props: { categorias: data },
   };
 }
+
+Grupos.Auth = WithAdminRoute;

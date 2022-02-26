@@ -1,5 +1,6 @@
 import MiniDrawer from "../../../components/Admin/MiniDrawer";
 import TableUsuarios from "../../../components/Admin/usuarios/TableUsuarios";
+import WithAdminRoute from "../../../components/Auth/WithAdminRoute";
 
 const Usuarios = ({usuarios}) => {
   return ( 
@@ -21,3 +22,5 @@ export async function getServerSideProps() {
     props: { usuarios: data },
   };
 }
+
+Usuarios.Auth = WithAdminRoute;

@@ -1,5 +1,6 @@
 import MiniDrawer from "../../components/Admin/MiniDrawer";
 import FormUsuario from "../../components/Admin/usuarios/FormUsuario";
+import WithAdminRoute from "../../components/Auth/WithAdminRoute";
 
 const AddUsuario = () => {
   return ( 
@@ -12,3 +13,5 @@ const AddUsuario = () => {
 }
  
 export default AddUsuario;
+
+AddUsuario.Auth = WithAdminRoute;

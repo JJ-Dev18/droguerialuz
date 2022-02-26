@@ -1,5 +1,6 @@
 import MiniDrawer from "../../components/Admin/MiniDrawer";
 import FormProducto from "../../components/Admin/productos/FormProducto";
+import WithAdminRoute from "../../components/Auth/WithAdminRoute";
 
 const AddProducto = ({grupos}) => {
   return (
@@ -21,3 +22,5 @@ export async function getServerSideProps() {
     props: { grupos: data },
   };
 }
+
+AddProducto.Auth = WithAdminRoute;

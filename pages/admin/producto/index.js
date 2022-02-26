@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import MiniDrawer from "../../../components/Admin/MiniDrawer";
 import TableProducto from "../../../components/Admin/productos/TableProducto";
+import WithAdminRoute from "../../../components/Auth/WithAdminRoute";
 
 const Productos = ({productos}) => {
   
@@ -26,3 +27,4 @@ export async function getServerSideProps() {
     props: { productos: data },
   };
 }
+Productos.Auth = WithAdminRoute;

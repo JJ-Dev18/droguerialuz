@@ -3,6 +3,7 @@ import FormCategoria from "../../../components/Admin/categorias/FormCategoria";
 import TableCategorias from "../../../components/Admin/categorias/TableCategorias";
 import CollapsibleTable from "../../../components/Admin/categorias/TableCategoriasCollapse";
 import MiniDrawer from "../../../components/Admin/MiniDrawer";
+import WithAdminRoute from "../../../components/Auth/WithAdminRoute";
 
 const Categoria = ({categorias}) => {
    
@@ -80,3 +81,5 @@ export async function getServerSideProps() {
     props: { categorias: data },
   };
 }
+
+Categoria.Auth = WithAdminRoute;
