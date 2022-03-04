@@ -134,6 +134,9 @@ export default function MiniDrawer({children}) {
    const handleClickCompras = () => {
      router.push("/admin/compras");
    };
+    const handleClickDomicilios = () => {
+      router.push("/admin/domicilios");
+    };
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -260,7 +263,7 @@ export default function MiniDrawer({children}) {
         </List>
         <Divider />
         <List>
-          <ListItemButton onClick={handleClickGrupos}>
+          <ListItemButton onClick={handleClickDomicilios}>
             <ListItemIcon>
               <DirectionsBikeIcon />
             </ListItemIcon>

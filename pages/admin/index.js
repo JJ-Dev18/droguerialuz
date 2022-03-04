@@ -15,7 +15,7 @@ const Admin = () => {
   const { adminLogged } = state;
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+   
       let user = JSON.parse(Cookies.get("user"));
       if (user.rol === 1) {
         dispatch(logginAdmin(user));
@@ -23,7 +23,7 @@ const Admin = () => {
         dispatch(loggin(user));
       }
       // TODO MANTENER LA SESION DE EL ADMINISTRADOR
-    }
+    
   }, [dispatch]);
   
   if (!adminLogged) {

@@ -47,7 +47,7 @@ const Login = (props) => {
       .then((resp) => {
         dispatch(loggin(resp.usuario));
         
-        localStorage.setItem("correo", resp.usuario.correo);
+        // localStorage.setItem("correo", resp.usuario.correo);
         localStorage.setItem("token", resp.token);
         props.closeLogin()
       })
@@ -77,7 +77,7 @@ const Login = (props) => {
             dispatch(logginAdmin(res.usuario))
             router.push('/admin')
           }
-          localStorage.setItem("correo", res.usuario.correo);
+          // localStorage.setItem("correo", res.usuario.correo);
           localStorage.setItem("token", res.token);
           props.closeLogin();
         }

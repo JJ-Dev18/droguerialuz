@@ -3,7 +3,10 @@ import { useEffect,useState } from "react";
 import { ButtonComprar } from "../components/index/carouselProductos/productoStyles";
 import Layout from "../components/Layout";
 import styled from 'styled-components'
-
+import useAppContext from "../context/Store";
+import { domicilio } from "../context/actions";
+import { useAlert } from "react-alert";
+ 
 const Table = styled.table`
   background: white;
   padding: 20px;
@@ -25,9 +28,13 @@ padding:  40px;
 `
 const Response = () => {
   const router = useRouter();
-  console.log(router.query)
+  const { value } = useAppContexttext();
+  const { state, dispatch } = value;
+  const alert = useAlert()
+   const { cart, logged, user } = state;
+   const [estado, setestado] = useState('')
+    const [direccion, setdireccion] = useState("");
   const transactionState = router.query.transactionState;
-  const [estado, setestado] = useState('')
   const transactionId = router.query.transactionId
   const reference_pol = router.query.reference_pol
   const referenceCode = router.query.referenceCode
@@ -62,6 +69,21 @@ else {
 	setestado(router.query.message);
 }}, []);
   
+const seguirDomicilio = () => {
+    if(user.direccion === ''){
+        setdireccion(
+          window.prompt("Por favor poner direccion", user.direccion)
+        );
+    }
+    dispatch(domicilio({
+      referencia: referenceCode,
+      total : TX_VALUE,
+      descripcion : extra1,
+      direccion
+    }))
+    router.push("/domicilio");
+  
+}
 
     return (
       <ContainerTable>
@@ -117,9 +139,7 @@ else {
         </Table>
 
         <ButtonComprar
-          onClick={() => {
-            router.push("/domicilio");
-          }}
+          onClick={seguirDomicilio}
         >
           Ir al Domicilio
         </ButtonComprar>

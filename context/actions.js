@@ -19,7 +19,7 @@ export const loginEmailAndPassword = (formValues) => {
         // alert.error("Credenciales incorrectas");
       } else {
         dispatch(loggin(res.usuario));
-        localStorage.setItem("correo", res.usuario.correo);
+        // localStorage.setItem("correo", res.usuario.correo);
         localStorage.setItem("token", res.token);
 
       }
@@ -59,4 +59,9 @@ export const incrementProduct = (id) => ({
 export const decrementProduct = (id)=> ({
   type: types.decrementProduct,
   payload: id
+})
+
+export const domicilio = (domicilio) => ({
+  type: types.userDomicilio,
+  payload : domicilio
 })
