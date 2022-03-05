@@ -30,7 +30,7 @@ const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
     setchecked(event.target.checked);
 
   };
-  console.log(checked)
+  
   const editProducto = () => {
    
     setLoading(true);
@@ -52,7 +52,7 @@ const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
 
   const agregarProducto = () => {
     let factura = checked ? '2' : '1'
-    console.log(factura)
+   
     const formData = new FormData();
     formData.append("nombre", nombre);
     formData.append("descripcion", descripcion);

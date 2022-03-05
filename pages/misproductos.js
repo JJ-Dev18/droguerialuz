@@ -33,7 +33,7 @@ export default function MisProductos() {
   const signature = md5(`${apikey}~${merchanId}~${referencia}~${monto}~COP`);
   const urlTest ="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/";
   const urlProd = "https://checkout.payulatam.com/ppp-web-gateway-payu/";
-  console.log(apikey,merchanId,signature)
+  
   // const signature = brypt
   const deleteP = useCallback((props) => {
       dispatch(cartDelete(props));

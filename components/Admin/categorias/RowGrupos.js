@@ -96,7 +96,6 @@ export const  Row = (props) =>  {
         .then((resp) => {
           alert.error(resp.message);
           let newRows = grupos.filter((group) => group.idGrupo !== id);
-          console.log(newRows)
           setGrupos(newRows);
         })
         .catch(err => console.log(error));
@@ -127,7 +126,7 @@ export const  Row = (props) =>  {
               <EditIcon />
             </Button>
             <Button onClick={() =>{
-              console.log
+        
               if(grupos.length == 0 ){
                props.deleteCategoria(row.idCategoria);
               }

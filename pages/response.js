@@ -4,7 +4,7 @@ import { ButtonComprar } from "../components/index/carouselProductos/productoSty
 import Layout from "../components/Layout";
 import styled from 'styled-components'
 import useAppContext from "../context/Store";
-import { domicilio } from "../context/actions";
+import { enviarDomicilio } from "../context/actions";
 import { useAlert } from "react-alert";
  
 const Table = styled.table`
@@ -33,7 +33,6 @@ const Response = () => {
   const alert = useAlert()
    const { cart, logged, user } = state;
    const [estado, setestado] = useState('')
-    const [direccion, setdireccion] = useState("");
   const transactionState = router.query.transactionState;
   const transactionId = router.query.transactionId
   const reference_pol = router.query.reference_pol
@@ -70,16 +69,12 @@ else {
 }}, []);
   
 const seguirDomicilio = () => {
-    if(user.direccion === ''){
-        setdireccion(
-          window.prompt("Por favor poner direccion", user.direccion)
-        );
-    }
-    dispatch(domicilio({
+  
+    dispatch(enviarDomicilio({
       referencia: referenceCode,
       total : TX_VALUE,
       descripcion : extra1,
-      direccion
+      direccion : user.direccion == "" ? window.prompt("Por favor poner direccion", user.direccion) : user.direccion,
     }))
     router.push("/domicilio");
   

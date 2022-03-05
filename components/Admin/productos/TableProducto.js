@@ -15,7 +15,7 @@ import { useAlert } from "react-alert"
 export default function TableProducto({productos}) {
 
   const [rows, setRows] = React.useState(productos);
-  console.log(rows)
+ 
   const router = useRouter()
   const alert = useAlert()
   const requestSearch = (event,newValue) => {

@@ -35,7 +35,6 @@ const Categoria = ({categorias}) => {
    }, [categorias]);
 
   const [rows, setRows] = useState(categoriasConGrupos)
-  console.log(categorias,rows)
   const [categoria, setcategoria] = useState({
     nombre : "",
     id: null 

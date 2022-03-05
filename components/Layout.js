@@ -32,10 +32,11 @@ const Layout = ({ children,grupos }) => {
 
   useEffect(() => {
     if(localStorage.getItem("token")){
-      let user = JSON.parse(Cookies.get("user"));
+      let user = JSON.parse(localStorage.getItem("user"));
       if(user.rol === 1){
         dispatch(logginAdmin(user))
         router.push('/admin')
+        
       }
       else{
         dispatch(loggin(user));

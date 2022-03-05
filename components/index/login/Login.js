@@ -45,9 +45,24 @@ const Login = (props) => {
     })
       .then((resp) => resp.json())
       .then((resp) => {
-        dispatch(loggin(resp.usuario));
+        dispatch(loggin({
+          correo : resp.usuario.correo,
+          nombre: resp.usuario.nombre,
+          direccion : resp.usuario.direccion,
+          rol : resp.usuario.rol,
+          id: resp.usuario.idUsuario,
+        }));
         
-        // localStorage.setItem("correo", resp.usuario.correo);
+         localStorage.setItem(
+           "user",
+           JSON.stringify({
+             id: resp.usuario.idUsuario,
+             correo: resp.usuario.correo,
+             nombre: resp.usuario.nombre,
+             direccion: resp.usuario.direccion,
+             rol: resp.usuario.rol,
+           })
+         );
         localStorage.setItem("token", resp.token);
         props.closeLogin()
       })
@@ -71,13 +86,38 @@ const Login = (props) => {
           alert.error("Credenciales incorrectas");
         } else {
           if(res.usuario.rol == 2){
-            dispatch(loggin(res.usuario));
+            dispatch(
+              loggin({
+                id: res.usuario.idUsuario,
+                correo: res.usuario.correo,
+                nombre: res.usuario.nombre,
+                direccion: res.usuario.direccion,
+                rol: res.usuario.rol,
+              })
+            );
           }
           if(res.usuario.rol == 1 ){
-            dispatch(logginAdmin(res.usuario))
+            dispatch(
+              logginAdmin({
+                id: res.usuario.idUsuario,
+                correo: res.usuario.correo,
+                nombre: res.usuario.nombre,
+                direccion: res.usuario.direccion,
+                rol: res.usuario.rol,
+              })
+            );
             router.push('/admin')
           }
-          // localStorage.setItem("correo", res.usuario.correo);
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              id: res.usuario.idUsuario,
+              correo: res.usuario.correo,
+              nombre: res.usuario.nombre,
+              direccion: res.usuario.direccion,
+              rol: res.usuario.rol,
+            })
+          );
           localStorage.setItem("token", res.token);
           props.closeLogin();
         }

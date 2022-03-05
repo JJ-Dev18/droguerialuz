@@ -8,7 +8,7 @@ import { cartAdd } from "../../context/actions";
 import { useCallback } from "react";
 
 const ProductoScreen = (props) => {
-  //  console.log(props)
+ 
    const alert = useAlert()
    const { value } = useAppContext()
    const { state, dispatch} = value
@@ -18,7 +18,7 @@ const ProductoScreen = (props) => {
     dispatch(cartAdd(props));
     alert.success("Producto agregado al carrito");
   }, [dispatch,alert]);
-  console.log(props)
+  
   
   return (
     <ContentDetalleProducto>

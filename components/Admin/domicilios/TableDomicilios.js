@@ -21,7 +21,7 @@ import { useAlert } from "react-alert";
 
 const TableDomicilios = ({rows,cambiarestado,estado}) => {
  
-  console.log(rows)
+  
   return (
     <Paper>
       <TableContainer component={Paper}>

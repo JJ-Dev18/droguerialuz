@@ -33,7 +33,7 @@ e.preventDefault()
  })
    .then((res) => res.json())
    .then((resp) => {
-     console.log(resp);
+     
      if (resp.errors) {
        for (let error in resp.errors) {
          alert.info(`${resp.errors[error].msg}`);

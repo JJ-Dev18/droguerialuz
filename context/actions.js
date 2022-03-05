@@ -61,7 +61,7 @@ export const decrementProduct = (id)=> ({
   payload: id
 })
 
-export const domicilio = (domicilio) => ({
+export const enviarDomicilio = (domicilio) => ({
   type: types.userDomicilio,
   payload : domicilio
 })

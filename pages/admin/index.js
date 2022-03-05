@@ -16,7 +16,7 @@ const Admin = () => {
 
   useEffect(() => {
    
-      let user = JSON.parse(Cookies.get("user"));
+      let user = localStorage.getItem("user");
       if (user.rol === 1) {
         dispatch(logginAdmin(user));
       } else {

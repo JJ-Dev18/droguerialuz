@@ -4,18 +4,15 @@ import useAppContext from "../context/Store";
 import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 import TableDomicilios from "../components/tudomicilio/TableDomicilios";
+import { enviarDomicilio } from "../context/actions";
 const Domicilio = () => {
 
    const { value } = useAppContext();
    const { state, dispatch } = value;
    const { cart, logged, user } = state;
    const [estado, setestado] = useState('0')
-    const [domicilio, setdomicilio] = useState({
-      referencia: "Prueba",
-      total: 20000,
-      descripcion: "Probando socketrs",
-      direccion: "Calle 103 # 4c -12 ",
-    });
+   const [direccion, setdireccion] = useState('')
+    // const [domicilio, setdomicilio] = useState(user.domicilio || {});
     const cambiarEstado = (estado = "0") => {
         setestado(estado)
     };
@@ -34,35 +31,44 @@ const Domicilio = () => {
        });
        socket.on("recibir-estado", ({estado})=>{
          setestado(estado);
-         console.log(estado)
        });
 
-       if(domicilio){
-         socket.emit("enviar-domicilio", {domicilio,user});
+       if(user.domicilio){
+         socket.emit("enviar-domicilio", {...user.domicilio,user});
        }
    }
-  
-  
+  // const enviarDomicilios = ()=> {
+   
+  //   dispatch(
+  //     enviarDomicilio({
+  //       referencia: 'referenceCode',
+  //       total: 30000,
+  //       descripcion: 'Descripcion',
+  //       direccion : user.direccion == "" ? window.prompt("Por favor poner direccion", user.direccion) : user.direccion,
+  //     })
+  //   );
+  // }
    useEffect(() => {  
      
       conexionDomicilio()
      
    }, [logged])
-   useEffect(() => {
-     
-   }, [])
+   
    
   return (
     <ContentQuienes>
-      {logged ? (
+      {logged ? 
+       user.domicilio ?
         <>
         <h2>Domicilios Activos</h2>
-       <TableDomicilios estado={estado} row={domicilio}/>
+       <TableDomicilios estado={estado} row={user.domicilio}/>
         </>
-   
-      ) : (
+       : <>
+         <h3 >No hay domicilios activos</h3>
+       </>
+       :
         <h3>Debe Iniciar Sesion para comprar</h3>
-      )}
+      }
     </ContentQuienes>
   );
 }

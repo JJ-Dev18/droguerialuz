@@ -39,7 +39,7 @@ const reducer = (state,action)=> {
       return { ...state, cart: { ...state.cart,total: state.cart.total - precio, cartItems } };
     }
     case types.incrementProduct: {
-      console.log(action)
+      
       const product = state.cart.cartItems.find( item => item.idProducto == action.payload)
       const precio =  Number(product.price)
       const cartItems = state.cart.cartItems.map((item) => 
@@ -70,7 +70,7 @@ const reducer = (state,action)=> {
       };
     }
     case types.login: {
-      Cookies.set("user", JSON.stringify(action.payload));
+        // localStorage.setItem("user", JSON.stringify(action.payload));
       
       return {
         ...state,
@@ -88,7 +88,8 @@ const reducer = (state,action)=> {
       };
     }
     case types.loginAdmin: {
-       Cookies.set("user", JSON.stringify(action.payload));
+     
+        // localStorage.setItem("user", JSON.stringify(action.payload));
       return{
         ...state,
         logged: true,

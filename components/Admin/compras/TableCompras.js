@@ -20,7 +20,6 @@ import { useAlert } from "react-alert";
 
 export default function TableCompras({ compras }) {
   const [rows, setRows] = React.useState(compras);
-  console.log(rows);
   const router = useRouter();
   const alert = useAlert();
   const requestSearch = (event, newValue) => {

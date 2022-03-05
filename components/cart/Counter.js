@@ -24,7 +24,7 @@ const Cantidad = styled.div`
 const Counter = (props) => {
 
   const { counter, increment, decrement, reset } = useCounter(props.cantidad);
-  console.log('counter enderizado')
+  
   return (
     <ContentCounter>
       <span>Cantidad</span>
