@@ -65,9 +65,9 @@ const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
     setLoading(true);
     fetch(`${process.env.NEXT_PUBLIC_API}/api/products`, {
       method: "POST",
-      //  headers: {
-      //    "x-token": token,
-      //  },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: formData,
     })
       .then((resp) => resp.json())
@@ -146,7 +146,7 @@ const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
         control={
           <Checkbox checked={checked} onChange={handleChange} name="Factura" />
         }
-        label="Factura"
+        label="Formula"
       />
       
       <DropZone files={files} setFiles={setFiles} />

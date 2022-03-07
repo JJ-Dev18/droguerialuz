@@ -5,58 +5,89 @@ import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 import TableDomicilios from "../components/tudomicilio/TableDomicilios";
 import { enviarDomicilio } from "../context/actions";
+import { useSocket } from "../hooks/useSocket";
+
+// const connectSocketServer = () => {
+//    const socket=   io.connect(process.env.NEXT_PUBLIC_API, {
+//    transports: ['websocket'],
+//   //  extraHeaders: {
+//   //    "x-token": localStorage.getItem("token"),
+//   //  },
+//  });
+//  return socket;
+ 
+// }
+
 const Domicilio = () => {
 
    const { value } = useAppContext();
    const { state, dispatch } = value;
    const { cart, logged, user } = state;
    const [estado, setestado] = useState('0')
+   const [token, settoken] = useState('t')
+   const { socket, online } = useSocket(process.env.NEXT_PUBLIC_API);
+  //  const [online, setonline] = useState(false)
    const [direccion, setdireccion] = useState('')
     // const [domicilio, setdomicilio] = useState(user.domicilio || {});
     const cambiarEstado = (estado = "0") => {
         setestado(estado)
     };
+  //  const conexionDomicilio = () =>{
 
-   const conexionDomicilio = () =>{
-      const socket = io(process.env.NEXT_PUBLIC_API, {
-        extraHeaders: {
-          "x-token": localStorage.getItem("token"),
-        },
-      });
-      socket.on("connect", () => {
-        console.log("Sockets online");
-      });
-       socket.on("disconnect", () => {
-         console.log("Sockets offline");
-       });
-       socket.on("recibir-estado", ({estado})=>{
+  //     const socket = io(process.env.NEXT_PUBLIC_API, {
+  //       extraHeaders: {
+  //         "x-token": localStorage.getItem("token"),
+  //       },
+  //     });
+  //     socket.on("connect", () => {
+  //       console.log("Sockets online");
+  //     });
+  //      socket.on("disconnect", () => {
+  //        console.log("Sockets offline");
+  //      });
+  //      socket.on("recibir-estado", ({estado})=>{
+  //        setestado(estado);
+  //      });
+
+  //      if(user.domicilio){
+  //        socket.emit("enviar-domicilio", {...user.domicilio,user});
+  //      }
+  //  }
+  const enviarDomicilios = ()=> {
+   
+    dispatch(
+      enviarDomicilio({
+        referencia: 'referenceCode',
+        total: 30000,
+        descripcion: 'Descripcion',
+        direccion : user.direccion == "" ? window.prompt("Por favor poner direccion", user.direccion) : user.direccion,
+      })
+    );
+  }
+ useEffect(() => {
+   settoken(localStorage.getItem("token"));
+ }, []);
+
+
+   useEffect(() => {
+      socket.on("recibir-estado", ({estado})=>{
          setestado(estado);
        });
+      
+   }, [socket]);
 
-       if(user.domicilio){
+    useEffect(() => {
+      if(user.domicilio){
          socket.emit("enviar-domicilio", {...user.domicilio,user});
        }
-   }
-  // const enviarDomicilios = ()=> {
-   
-  //   dispatch(
-  //     enviarDomicilio({
-  //       referencia: 'referenceCode',
-  //       total: 30000,
-  //       descripcion: 'Descripcion',
-  //       direccion : user.direccion == "" ? window.prompt("Por favor poner direccion", user.direccion) : user.direccion,
-  //     })
-  //   );
-  // }
-   useEffect(() => {  
-     
-      conexionDomicilio()
-     
-   }, [logged])
+      console.log(user.domicilio)
+    }, [socket,user]);
+  
    
    
   return (
     <ContentQuienes>
+      <p>{ online ? 'Online' : 'offline'}</p>
       {logged ? 
        user.domicilio ?
         <>
@@ -64,6 +95,7 @@ const Domicilio = () => {
        <TableDomicilios estado={estado} row={user.domicilio}/>
         </>
        : <>
+         {/* <button onClick={enviarDomicilios}>enviar </button> */}
          <h3 >No hay domicilios activos</h3>
        </>
        :

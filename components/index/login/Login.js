@@ -45,13 +45,16 @@ const Login = (props) => {
     })
       .then((resp) => resp.json())
       .then((resp) => {
-        dispatch(loggin({
-          correo : resp.usuario.correo,
-          nombre: resp.usuario.nombre,
-          direccion : resp.usuario.direccion,
-          rol : resp.usuario.rol,
-          id: resp.usuario.idUsuario,
-        }));
+        dispatch(
+          loggin({
+            correo: resp.usuario.correo,
+            nombre: resp.usuario.nombre,
+            direccion: resp.usuario.direccion,
+            rol: resp.usuario.rol,
+            id: resp.usuario.idUsuario,
+           
+          })
+        );
         
          localStorage.setItem(
            "user",
@@ -61,6 +64,7 @@ const Login = (props) => {
              nombre: resp.usuario.nombre,
              direccion: resp.usuario.direccion,
              rol: resp.usuario.rol,
+             
            })
          );
         localStorage.setItem("token", resp.token);

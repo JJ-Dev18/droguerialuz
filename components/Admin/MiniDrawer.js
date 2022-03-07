@@ -114,6 +114,7 @@ export default function MiniDrawer({children}) {
   const cerrarSesion = () => {
     dispatch(loggoutAdmin());
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     router.push("/");
   };
  const handleClick = () => {

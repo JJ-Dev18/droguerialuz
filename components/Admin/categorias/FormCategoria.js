@@ -28,14 +28,17 @@ const FormCategoria = ({ edit ,data, setRows, categoria, setcategoria,setedit,id
       body :JSON.stringify({nombre : categoria.nombre})
     }).then(res => res.json())
     .then(resp => {
+      
       setTimeout(() => {
         
         setloading(false)
       }, 1500);
-      alert.success(resp.message)
-      setRows([...data,{idCategoria: resp.rows.insertId,nombre : categoria.nombre}])
-      setcategoria({id : null , nombre : ""})
-    })
+      if(!resp.errors){
+        alert.success(resp.message)
+        setRows([...data,{idCategoria: resp.rows.insertId,nombre : categoria.nombre}])
+        setcategoria({id : null , nombre : ""})
+      }else alert.error(resp.errors[0].msg)
+    }).catch(error => console.log(error))
   }
   const editarCategoria = ()=> {
       setedit(false)

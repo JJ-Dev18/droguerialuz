@@ -72,7 +72,7 @@ const Footer = () => {
           </Info>
         </GridInfo>
         <Copyrigth>
-          Todos los derechos reservados <br /> Copyright © 2021 – Advanced
+          Todos los derechos reservados <br /> Copyright © 2021 – Space
           Marketing SAS
         </Copyrigth>
       </ContentInfoFooter>
