@@ -64,9 +64,9 @@ const Domicilio = () => {
       })
     );
   }
- useEffect(() => {
-   settoken(localStorage.getItem("token"));
- }, []);
+//  useEffect(() => {
+//    settoken(localStorage.getItem("token"));
+//  }, []);
 
 
    useEffect(() => {

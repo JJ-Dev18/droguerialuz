@@ -9,6 +9,7 @@ export const useSocket = ( serverPath ) => {
     }, []);
     // console.log(token)
     // const socket = 
+    console.log('token',token)
     const socket = useMemo(
       () =>
         io.connect(serverPath, {
@@ -18,7 +19,7 @@ export const useSocket = ( serverPath ) => {
           },
         }),
 
-      [serverPath,token]
+      [serverPath]
     );
 
     const [ online, setOnline ] = useState(false);
@@ -46,7 +47,7 @@ export const useSocket = ( serverPath ) => {
         socket.on('connect', () => {
             setOnline( true );
         })
-       
+        console.log("connect")
 
     }, [ socket ])
 
@@ -55,6 +56,7 @@ export const useSocket = ( serverPath ) => {
         socket.on('disconnect', () => {
             setOnline( false );
         })
+        console.log('disconnect')
         
 
     }, [ socket ])

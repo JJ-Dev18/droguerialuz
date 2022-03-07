@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useForm } from "../../../hooks/useForm";
 import {useAlert} from 'react-alert'
 import { DropZone } from "./DropZone";
+import axios from "axios";
 
 const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
   const initialstate = {
@@ -50,7 +51,7 @@ const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
       });
   };
 
-  const agregarProducto = () => {
+  const agregarProducto = async () => {
     let factura = checked ? '2' : '1'
    
     const formData = new FormData();
@@ -63,19 +64,40 @@ const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
     formData.append("Grupo_idGrupo", grupo);
     files.forEach((img, index) => formData.append(`img${index}`, img));
     setLoading(true);
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/products`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: formData,
+    console.log('cargando....')
+    
+    axios({
+      method: "post",
+      url: `${process.env.NEXT_PUBLIC_API}/api/products`,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
     })
-      .then((resp) => resp.json())
-      .then((res) => {
+      .then(function (res) {
+        //handle success
+        
         setLoading(false);
-        alert.success(res.msg);
+        alert.success(res.data.msg);
         reset();
+      })
+      .catch(function (response) {
+        //handle error
+        console.log(response);
       });
+    
+    // fetch(`${process.env.NEXT_PUBLIC_API}/api/products`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    //   body: formData,
+    // })
+    //   .then((resp) => resp.json())
+    //   .then((res) => {
+    //     console.log(res)
+    //     setLoading(false);
+    //     alert.success(res.msg);
+    //     reset();
+    //   });
   };
   return (
     <Box

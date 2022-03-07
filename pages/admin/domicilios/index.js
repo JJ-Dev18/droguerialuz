@@ -14,19 +14,15 @@ const Domicilio = () => {
   const [estado, setestado] = useState("0");
   const [domicilionuevo, setdomicilio] = useState({})
   const [id, setuid] = useState('')
-  const [token, settoken] = useState('to')
+  // const [token, settoken] = useState('to')
   const { socket, online } = useSocket(process.env.NEXT_PUBLIC_API);
   const [rows, setRows] = useState([]);
   
   
- useEffect(() => {
-   logged ? socket.connected() : socket.disconnect();
- }, [logged])
- 
   
-  useEffect(() => {
-   settoken(localStorage.getItem("token"))
-  }, [])
+  // useEffect(() => {
+  //  settoken(localStorage.getItem("token"))
+  // }, [])
   
   useEffect(() => {
     socket.on("recibir-domicilio", ({ domicilio, uid }) => {
