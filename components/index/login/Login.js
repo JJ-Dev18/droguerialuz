@@ -55,6 +55,7 @@ const Login = (props) => {
             rol: resp.usuario.rol,
             id: resp.usuario.idUsuario,
             avatar: resp.usuario.avatar,
+            domicilio : null
           })
         );
         
@@ -66,7 +67,8 @@ const Login = (props) => {
              nombre: resp.usuario.nombre,
              direccion: resp.usuario.direccion,
              rol: resp.usuario.rol,
-             avatar: resp.usuario.avatar
+             avatar: resp.usuario.avatar,
+             domicilio: null
              
            })
          );
@@ -102,6 +104,7 @@ const Login = (props) => {
                 direccion: res.usuario.direccion,
                 rol: res.usuario.rol,
                 avatar: res.usuario.avatar,
+                domicilio: null,
               })
             );
           }
@@ -113,7 +116,7 @@ const Login = (props) => {
                 nombre: res.usuario.nombre,
                 direccion: res.usuario.direccion,
                 rol: res.usuario.rol,
-                
+                domicilio: null,
               })
             );
             router.push('/admin')
@@ -127,6 +130,7 @@ const Login = (props) => {
               direccion: res.usuario.direccion,
               rol: res.usuario.rol,
               avatar: res.usuario.avatar,
+              domicilio: null,
             })
           );
           localStorage.setItem("token", res.token);

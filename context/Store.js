@@ -108,13 +108,11 @@ const reducer = (state,action)=> {
       }
     }
     case types.userDomicilio : {
-      return{
+      console.log(action.payload)
+      return {
         ...state,
-        user:{
-          ...state.user,
-          domicilio : action.payload
-        }
-      }
+        domicilio: { ...action.payload },
+      };
     }
     
     default:

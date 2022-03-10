@@ -18,6 +18,7 @@ export default function MisProductos() {
   const { state , dispatch } = value;
   const { cart,logged,user } = state
   const referencia = cart.cartItems[0].nombre + '1';
+  const descripcion = cart.cartItems[0].descripcion ;
   const response = window.location.hostname.includes("localhost")
     ? "http://localhost:3000/response"
     : "https://www.luzmardroguerias.com/response";
@@ -50,11 +51,8 @@ export default function MisProductos() {
   const decrementProd = useCallback((idProducto) => {
     dispatch(decrementProduct(idProducto));
   }, [dispatch]);
-  const enviarDatos = ()=>{
-    fetch("https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/",{
-      method: 'POST'
-    });
-  }
+
+  
   
   return (
     <>
@@ -70,7 +68,7 @@ export default function MisProductos() {
         <form method="post" action={urlProd}>
           <input name="merchantId" type="hidden" value={merchanId} />
           <input name="accountId" type="hidden" value={accountId} />
-          <input name="description" type="hidden" value="Test PAYU # 5" />
+          <input name="description" type="hidden" value={descripcion} />
           <input name="referenceCode" type="hidden" value={referencia} />
           <input name="amount" type="hidden" value={monto} />
           <input name="tax" type="hidden" value="0" />
@@ -90,11 +88,7 @@ export default function MisProductos() {
             type="hidden"
             value={response}
           />
-          <input
-            name="confirmationUrl"
-            type="hidden"
-            value="https://prueba-drogueria.herokuapp.com/api/compras/confirmate"
-          />
+         
           {/* <input name="Submit" type="submit" value="Enviar" /> */}
           {
             logged ? <ButtonComprar name="Submit" type="submit" value="Enviar">Comprar</ButtonComprar>

@@ -23,7 +23,7 @@ const Domicilio = () => {
 
    const { value } = useAppContext();
    const { state, dispatch } = value;
-   const { cart, logged, user } = state;
+   const { cart, logged, user, domicilio } = state;
    const [estado, setestado] = useState('0')
    const [token, settoken] = useState(null)
   //  const [socket ] = useState(connectSocketServer())
@@ -34,7 +34,7 @@ const Domicilio = () => {
     const cambiarEstado = (estado = "0") => {
         setestado(estado)
     };
-     console.log(rows)
+    //  console.log(rows)
     useEffect(() => {
       settoken(localStorage.getItem("token"));
     }, [logged]);
@@ -112,18 +112,19 @@ const Domicilio = () => {
    }, [socket]);
 
     useEffect(() => {
-      if(user.domicilio){
-         socket.emit("crear-domicilio", {...user.domicilio,idUsuario: user.id});
+
+      if(domicilio){
+         socket.emit("crear-domicilio", {...domicilio,idUsuario: user.id});
        }
       
-    }, [socket,user]);
+    }, [socket,domicilio,online]);
   
   
    
   return (
     <ContentQuienes>
       <p>{ online ? 'Online' : 'offline'}</p>
-      <button onClick={enviarDomicilios}>enviar </button>
+      {/* <button onClick={enviarDomicilios}>enviar </button> */}
       {logged ? 
        rows.length != 0 ?
         <>
