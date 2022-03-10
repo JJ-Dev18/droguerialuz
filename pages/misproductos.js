@@ -23,7 +23,7 @@ export default function MisProductos() {
     : "https://www.luzmardroguerias.com/response";
    const url = window.location.hostname.includes("localhost")
      ? "http://localhost:3000"
-     : "https://www.luzmardroguerias.com";
+     : "https://luzmardroguerias.com";
       
   const apikey = "xdweeL4F4Trn2v04kPZ0u7LDv7";
   const merchanId = "962458";
@@ -78,7 +78,7 @@ export default function MisProductos() {
           <input name="currency" type="hidden" value="COP" />
           <input name="sourceUrl" type="hidden" value={url} />
           <input name="signature" type="hidden" value={signature} />
-          <input name="test" type="hidden" value="1" />
+          <input name="test" type="hidden" value="0" />
 
           <input
             name="buyerEmail"

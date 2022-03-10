@@ -45,6 +45,8 @@ const Login = (props) => {
     })
       .then((resp) => resp.json())
       .then((resp) => {
+        console.log(resp);
+
         dispatch(
           loggin({
             correo: resp.usuario.correo,
@@ -52,7 +54,7 @@ const Login = (props) => {
             direccion: resp.usuario.direccion,
             rol: resp.usuario.rol,
             id: resp.usuario.idUsuario,
-           
+            avatar: resp.usuario.avatar,
           })
         );
         
@@ -64,6 +66,7 @@ const Login = (props) => {
              nombre: resp.usuario.nombre,
              direccion: resp.usuario.direccion,
              rol: resp.usuario.rol,
+             avatar: resp.usuario.avatar
              
            })
          );
@@ -86,6 +89,7 @@ const Login = (props) => {
     })
       .then((resp) => resp.json())
       .then((res) => {
+        console.log(res)
         if (res.msg) {
           alert.error("Credenciales incorrectas");
         } else {
@@ -97,6 +101,7 @@ const Login = (props) => {
                 nombre: res.usuario.nombre,
                 direccion: res.usuario.direccion,
                 rol: res.usuario.rol,
+                avatar: res.usuario.avatar,
               })
             );
           }
@@ -108,6 +113,7 @@ const Login = (props) => {
                 nombre: res.usuario.nombre,
                 direccion: res.usuario.direccion,
                 rol: res.usuario.rol,
+                
               })
             );
             router.push('/admin')
@@ -120,6 +126,7 @@ const Login = (props) => {
               nombre: res.usuario.nombre,
               direccion: res.usuario.direccion,
               rol: res.usuario.rol,
+              avatar: res.usuario.avatar,
             })
           );
           localStorage.setItem("token", res.token);

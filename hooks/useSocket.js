@@ -1,68 +1,63 @@
 import { useMemo, useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
-export const useSocket = ( serverPath ) => {
 
-    const [token, settoken] = useState('null')
-    useEffect(() => {
-        settoken(localStorage.getItem("token"));
-    }, []);
-    // console.log(token)
-    // const socket = 
-    console.log('token',token)
+export const useSocket = ( serverPath ,logged,token) => {
+
     const socket = useMemo(
       () =>
         io.connect(serverPath, {
-          transports: ["websocket"],
-          query: {
-            "x-token": token,
-          },
+              transports: ["websocket"],
+              query: {
+                "x-token": token,
+              },          
         }),
-
-      [serverPath]
+      [serverPath,token]
     );
+   
 
-    const [ online, setOnline ] = useState(false);
+  const [online, setOnline] = useState(false);
 
+  
 
-    // useEffect(() => {
-    //     console.log(logged)
-    //    if(logged){
-    //        socket.connected
-    //    }else{ socket.disconnect}
-
-    // }, [logged]);
-
-    useEffect(() => {
-      
-        setOnline( socket.connected );
-       
-        return () => {
-          socket.disconnect();
-        };
-        
-    }, [ socket ])
-
-    useEffect( () => {
-        socket.on('connect', () => {
-            setOnline( true );
-        })
-        console.log("connect")
-
-    }, [ socket ])
-
-    useEffect( () => {
-
-        socket.on('disconnect', () => {
-            setOnline( false );
-        })
-        console.log('disconnect')
-        
-
-    }, [ socket ])
-
-    return {
-        socket,
-        online
+  useEffect(() => {
+    if (!logged) {
+      socket.disconnect();
     }
+  }, [logged, socket]);
+
+  useEffect(() => {
+    if (logged) {
+      socket.connect();
+    }
+  }, [logged, socket]);
+
+  useEffect(() => {
+    setOnline(socket.connected);
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [socket]);
+
+  useEffect(() => {
+  
+      socket.on("connect", () => {
+        setOnline(true);
+      });
+      
+    
+  }, [socket]);
+
+  useEffect(() => {
+    socket.on("disconnect", () => {
+      setOnline(false);
+    });
+   
+  }, [socket]);
+
+  return {
+    socket,
+    online,
+  };
 }

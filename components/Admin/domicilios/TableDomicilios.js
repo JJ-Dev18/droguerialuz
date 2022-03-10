@@ -50,12 +50,12 @@ const TableDomicilios = ({rows,cambiarestado,estado}) => {
                 <TableCell align="center">{row.total}</TableCell>
 
                 <TableCell>
-                  {estado == "0" && <Chip label="En proceso" color="primary" />}
-                  {estado == "1" && (
+                  {row.estado == "0" && <Chip label="En proceso" color="primary" />}
+                  {row.estado == "1" && (
                     <Chip label="Empacando" color="secondary" />
                   )}
-                  {estado == "2" && <Chip label="En camino" color="warning" />}
-                  {estado == "3" && <Chip label="Entrregado" color="success" />}
+                  {row.estado == "2" && <Chip label="En camino" color="warning" />}
+                  {row.estado == "3" && <Chip label="Entregado" color="success" />}
                 </TableCell>
                 <TableCell>
                   <ButtonGroup
@@ -64,19 +64,19 @@ const TableDomicilios = ({rows,cambiarestado,estado}) => {
                   >
                     <Button
                       color="secondary"
-                      onClick={() => cambiarestado("1", row.id)}
+                      onClick={() => cambiarestado("1", row.id, row.idUsuario)}
                     >
                       Pasar a Empacando
                     </Button>
                     <Button
                       color="warning"
-                      onClick={() => cambiarestado("2", row.id)}
+                      onClick={() => cambiarestado("2", row.id, row.idUsuario)}
                     >
                       Pasar a En camino
                     </Button>
                     <Button
                       color="success"
-                      onClick={() => cambiarestado("3", row.id)}
+                      onClick={() => cambiarestado("3", row.id, row.idUsuario)}
                     >
                       Pasar a Entregado
                     </Button>

@@ -14,32 +14,38 @@ const Domicilio = () => {
   const [estado, setestado] = useState("0");
   const [domicilionuevo, setdomicilio] = useState({})
   const [id, setuid] = useState('')
-  // const [token, settoken] = useState('to')
-  const { socket, online } = useSocket(process.env.NEXT_PUBLIC_API);
+  const [token, settoken] = useState(null)
+  const { socket, online } = useSocket(process.env.NEXT_PUBLIC_API,logged,token);
   const [rows, setRows] = useState([]);
   
   
   
-  // useEffect(() => {
-  //  settoken(localStorage.getItem("token"))
-  // }, [])
-  
   useEffect(() => {
-    socket.on("recibir-domicilio", ({ domicilio, uid }) => {
-      console.log(uid, domicilio);
-      setRows([...rows, { ...domicilio, id: uid }]);
-      setuid(uid);
-    });
+   settoken(localStorage.getItem("token"))
+  }, [logged])
+
+   useEffect(() => {
+     socket.on("current-domicilios", (domicilios) => {
+      //  domicilios.map( dom => {
+      //    socket.emit("enviar-domicilios-cliente", dom.idUsuario);
+      //  })
+       setRows(domicilios);
+      //  console.log(rows)
+     });
+    //  return () => socket.off("current-domicilios");
+   }, [socket]);
+  // useEffect(() => {
+  //   socket.emit("current-domicilios-cliente", );
   
     
-  }, [socket])
+  // }, [socket])
   
   
   
   
-  const cambiarEstado = (estado,id) => {
+  const cambiarEstado = (estado,id,idUsuario) => {
 
-    socket.emit("enviar-estado", { estado, id });
+    socket.emit("enviar-estado", { estado, idUsuario,id });
   };
 
   return (

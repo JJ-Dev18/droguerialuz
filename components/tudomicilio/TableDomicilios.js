@@ -21,12 +21,14 @@ import { useRouter } from "next/router";
 import { useAlert } from "react-alert";
 
 
-const TableDomicilios = (props) => {
+const TableDomicilios = ({data,estado}) => {
   
-  const [rows, setRows] = React.useState([{
-    ...props.row
-  }]);
- 
+  const [rows, setrows] = React.useState(data)
+  console.log(data)
+  React.useEffect(() => {
+     setrows(data)
+  }, [data])
+  
   return (
     <Paper>
       <TableContainer component={Paper}>
@@ -43,7 +45,7 @@ const TableDomicilios = (props) => {
           <TableBody>
             {rows.map((row) => (
               <TableRow
-                key={row.referencia}
+                key={row.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell>{row.referencia}</TableCell>
@@ -52,12 +54,12 @@ const TableDomicilios = (props) => {
                 <TableCell align="center">{row.total}</TableCell>
 
                 <TableCell>
-                  {props.estado == "0" && <Chip label="En proceso" color="primary" />}
-                  {props.estado == "1" && (
+                  {row.estado == "0" && <Chip label="En proceso" color="primary" />}
+                  {row.estado == "1" && (
                     <Chip label="Empacando" color="secondary" />
                   )}
-                  {props.estado == "2" && <Chip label="En camino" color="warning" />}
-                  {props.estado == "3" && <Chip label="Entrregado" color="success" />}
+                  {row.estado == "2" && <Chip label="En camino" color="warning" />}
+                  {row.estado == "3" && <Chip label="Entregado" color="success" />}
                 </TableCell>
               </TableRow>
             ))}
