@@ -1,11 +1,11 @@
 import Cookies from "js-cookie";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AccesoDenegado from "../../components/Admin/AccesoDenegado";
 import MiniDrawer from "../../components/Admin/MiniDrawer";
 import WithAdminRoute from "../../components/Auth/WithAdminRoute";
-import { loggin, logginAdmin, loggoutAdmin } from "../../context/actions";
+import { loggin, logginAdmin, loggoutAdmin, logout } from "../../context/actions";
 import useAppContext from "../../context/Store";
 
 const Admin = () => {
@@ -13,22 +13,73 @@ const Admin = () => {
   const { value } = useAppContext();
   const { state, dispatch } = value;
   const { adminLogged } = state;
+  const [userLog, setuserLog] = useState(null)
 
-  useEffect(() => {
-   
-      let user = localStorage.getItem("user");
-      if (user.rol === 1) {
-        dispatch(logginAdmin(user));
-      } else {
-        dispatch(loggin(user));
-      }
-      // TODO MANTENER LA SESION DE EL ADMINISTRADOR
-    
-  }, [dispatch]);
+ useEffect(() => {
+   if (localStorage.getItem("token")) {
+     fetch(`${process.env.NEXT_PUBLIC_API}/api/auth/comprobarToken`, {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify({ token: localStorage.getItem("token") }),
+     })
+       .then((res) => res.json())
+       .then((resp) => {
+         console.log(resp);
+         if (resp.expirado) {
+           dispatch(logout());
+         } else {
+           localStorage.setItem(
+             "user",
+             JSON.stringify({
+               id: resp[0].idUsuario,
+               correo: resp[0].correo,
+               nombre: resp[0].nombre,
+               direccion: resp[0].direccion,
+               rol: resp[0].rol,
+               domicilio: null,
+               avatar: resp[0].avatar,
+             })
+           );
+           if (resp[0].rol === 1) {
+             dispatch(
+               logginAdmin({
+                 id: resp[0].idUsuario,
+                 correo: resp[0].correo,
+                 nombre: resp[0].nombre,
+                 direccion: resp[0].direccion,
+                 rol: resp[0].rol,
+                 domicilio: null,
+                 avatar: resp[0].avatar,
+               })
+             );
+             router.push("/admin");
+           } else {
+             dispatch(
+               loggin({
+                 id: resp[0].idUsuario,
+                 correo: resp[0].correo,
+                 nombre: resp[0].nombre,
+                 direccion: resp[0].direccion,
+                 rol: resp[0].rol,
+                 domicilio: null,
+                 avatar: resp[0].avatar,
+               })
+             );
+           }
+         }
+       });
+     // TODO MANTENER LA SESION DE EL ADMINISTRADOR
+   }
+ }, []);
+
   
-  if (!adminLogged) {
-    return <AccesoDenegado />;
-  }
+  
+  // if (!adminLogged || localStorage.getItem("user")?.rol == 2) {
+  //   return <AccesoDenegado />;
+  // }
+  
 
   return (
     <>

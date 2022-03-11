@@ -14,14 +14,16 @@ const Domicilio = () => {
   const [estado, setestado] = useState("0");
   const [domicilionuevo, setdomicilio] = useState({})
   const [id, setuid] = useState('')
+  const [logeado, setlogeado] = useState(logged)
   const [token, settoken] = useState(null)
-  const { socket, online } = useSocket(process.env.NEXT_PUBLIC_API,logged,token);
+  const { socket, online } = useSocket(process.env.NEXT_PUBLIC_API,logeado,token);
   const [rows, setRows] = useState([]);
   
-  
+  console.log("renderizado")
   
   useEffect(() => {
    settoken(localStorage.getItem("token"))
+   setlogeado(true)
   }, [logged])
 
    useEffect(() => {
@@ -33,7 +35,7 @@ const Domicilio = () => {
       //  console.log(rows)
      });
     //  return () => socket.off("current-domicilios");
-   }, [socket]);
+   }, [socket,token]);
   // useEffect(() => {
   //   socket.emit("current-domicilios-cliente", );
   
