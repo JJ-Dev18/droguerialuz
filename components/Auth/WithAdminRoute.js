@@ -26,6 +26,8 @@ const WithAdminRoute = ({ children }) => {
           console.log(resp);
           if (resp.expirado) {
             dispatch(logout());
+           localStorage.clear();
+
           } else {
            
             if (resp[0].rol === 1) {

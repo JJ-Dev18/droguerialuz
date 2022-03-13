@@ -7,20 +7,16 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import {
-  Autocomplete,
   Button,
   ButtonGroup,
-  Stack,
-  TextField,
   Chip
 } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { useRouter } from "next/router";
-import { useAlert } from "react-alert";
 
-const TableDomicilios = ({rows,cambiarestado,estado}) => {
- 
+
+const TableDomicilios = ({rows,cambiarestado}) => {
+  
+
+  
   
   return (
     <Paper>

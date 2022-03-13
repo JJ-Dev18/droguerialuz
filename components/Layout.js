@@ -42,6 +42,8 @@ const Layout = ({ children,grupos }) => {
       console.log(resp)
       if(resp.expirado){
         dispatch(logout());
+        localStorage.clear();
+
       }else{
         localStorage.setItem(
           "user",
