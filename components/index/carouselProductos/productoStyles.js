@@ -62,6 +62,7 @@ img{
 export const InfoProducto = styled.div`
   display: flex;
   flex-direction: column;
+  padding:10px ;
   h1 {
     color: var(--color--primary);
     font-size: 15px;
@@ -98,7 +99,7 @@ export const ButtonComprar = styled.button`
   border-radius: 20px;
   color: white;
   font-size: 10px;
-  padding: 5px 8px;
+  padding: 5px 15px;
   margin-right: 5px;
   cursor: pointer;
   &:hover {

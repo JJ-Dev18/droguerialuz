@@ -16,7 +16,10 @@ import {
 const TableDomicilios = ({rows,cambiarestado}) => {
   
 
-  
+  const agregarCompraDom = ()=> {
+    
+    cambiarestado("3", row.id, row.idUsuario);
+  }
   
   return (
     <Paper>

@@ -35,9 +35,9 @@ const Producto = (props) => {
         </ContentImage>
         <InfoProducto>
           <h1>{props.nombre}</h1>
-          <span>Antes $35.000</span>
+          {/* <span>Antes $35.000</span> */}
           <ContentButtonsProductos>
-            <ButtonComprar>Ahora $ {props.price}</ButtonComprar>
+            <ButtonComprar> $ {props.price}</ButtonComprar>
             <ButtonCarrito onClick={addCarrito}>
               <Image
                 src="/index/header/carrito.svg"

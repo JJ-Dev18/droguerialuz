@@ -4,11 +4,13 @@ export const ContainerDrops = styled.section`
   width: 80% !important;
   /* border: 1px dashed gray; */
 `;
-export const DropZones = styled.div `
+export const DropZones = styled.div`
   border: 1px dashed gray;
-  p{
+  height: 100px !important ;
+
+  p {
     text-align: center;
-    font-size : 14px;
+    font-size: 14px;
   }
 `;
 export const ThumbsContainer = styled.aside`

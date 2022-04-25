@@ -6,25 +6,32 @@ import Publicidad from "../components/index/publicidad/Publicidad";
 import SectionFamilia from "../components/index/familia/SectionFamilia";
 import useAppContext from "../context/Store";
 import {  cartDelete, decrementProduct, incrementProduct } from "../context/actions";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ButtonComprar } from "../components/index/carouselProductos/productoStyles";
 import Layout from "../components/Layout";
 import md5 from 'md5'
 import { ContentQuienes } from "../components/quienesSomos/quienesSomosStyles";
+import Cookies from "js-cookie";
 
 export default function MisProductos() {
   const alert = useAlert()
   const { value } = useAppContext()
   const { state , dispatch } = value;
   const { cart,logged,user } = state
-  const referencia = cart.cartItems[0].nombre + '1';
-  const descripcion = cart.cartItems[0].descripcion ;
-  const response = window.location.hostname.includes("localhost")
-    ? "http://localhost:3000/response"
-    : "https://www.luzmardroguerias.com/response";
-   const url = window.location.hostname.includes("localhost")
-     ? "http://localhost:3000"
-     : "https://luzmardroguerias.com";
+  const [referencia, setreferencia] = useState(cart.cartItems[0]?.nombre + "1");
+  const [descripcion, setdescripcion] = useState(cart.cartItems[0]?.descripcion);
+  const [response, setresponse] = useState('')
+  const [url, seturl] = useState('')
+  //  Cookies.get("cartItems")
+  // const [response, setresponse] = useState('')
+  // const referencia = cart.cartItems[0]?.nombre + '1' || 'reas';
+  // const descripcion = cart.cartItems[0]?.descripcion || '121';
+  // const response = window.location.hostname.includes("localhost")
+  //    ? "http://localhost:3000/response"
+  //    : "https://www.luzmardroguerias.com/response";
+  //  const url = window.location.hostname.includes("localhost")
+  //    ? "http://localhost:3000"
+  //    : "https://luzmardroguerias.com";
       
   const apikey = "xdweeL4F4Trn2v04kPZ0u7LDv7";
   const merchanId = "962458";
@@ -51,9 +58,20 @@ export default function MisProductos() {
   const decrementProd = useCallback((idProducto) => {
     dispatch(decrementProduct(idProducto));
   }, [dispatch]);
+   
+  useEffect(() => {
+    setresponse(window.location.hostname.includes("localhost")
+     ? "http://localhost:3000/response"
+     : "https://www.luzmardroguerias.com/response")
 
+
+  }, [])
   
-  
+  const generarCompra = (e)=> {
+    e.preventDefault()
+    localStorage.setItem("compra",cart.cartItems)
+    console.log('asdfads')
+  }
   return (
     <>
       <Head>
@@ -63,7 +81,7 @@ export default function MisProductos() {
       </Head>
       <ContentTitulo>
         <TituloProducto>Tus Productos </TituloProducto>
-        <h2>Total : {cart.total}</h2>
+        <h2>Total : $ {cart.total}</h2>
 
         <form method="post" action={urlProd}>
           <input name="merchantId" type="hidden" value={merchanId} />
@@ -76,8 +94,7 @@ export default function MisProductos() {
           <input name="currency" type="hidden" value="COP" />
           <input name="sourceUrl" type="hidden" value={url} />
           <input name="signature" type="hidden" value={signature} />
-          <input name="test" type="hidden" value="0" />
-
+          <input name="test"     type="hidden"  value="0" />
           <input
             name="buyerEmail"
             type="hidden"
@@ -91,7 +108,7 @@ export default function MisProductos() {
          
           {/* <input name="Submit" type="submit" value="Enviar" /> */}
           {
-            logged ? <ButtonComprar name="Submit" type="submit" value="Enviar">Comprar</ButtonComprar>
+            logged ? <ButtonComprar name="Submit" type="submit" value="Enviar" onChange={generarCompra}>Comprar</ButtonComprar>
             : <h3>Debe Iniciar Sesion para comprar</h3>
           }
       

@@ -170,8 +170,8 @@ const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
         }
         label="Formula"
       />
-      
-      <DropZone files={files} setFiles={setFiles} />
+      {!edit && <DropZone files={files} setFiles={setFiles} />}
+
       <Button
         variant="contained"
         color="primary"

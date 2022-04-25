@@ -34,12 +34,12 @@ const ProductoScreen = (props) => {
       <ContentInfoProducto>
         <h1>{props.nombre}</h1>
         <p>{props.descripcion}</p>
-        <span>Antes $35.000</span>
+        {/* <span>Antes $35.000</span> */}
         {(props.factura != '1') &&
           <h4>Este medicamento necesita formula medica</h4>
         }
         <ContentButtonsProductos space={true}>
-          <ButtonComprar>Ahorra ${props.price}</ButtonComprar>
+          <ButtonComprar> ${props.price}</ButtonComprar>
           <ButtonCarrito onClick={addCarrito}>
             <img
               src="/index/header/carrito.svg"
