@@ -40,7 +40,7 @@ function MyApp({ Component, pageProps, grupos }) {
         <Theme>
           <Auth>
             <AlertProvider template={AlertTemplate} {...options}>
-              <Layout grupos={grupos}>
+              <Layout >
                 <Component {...pageProps} />
               </Layout>
             </AlertProvider>
@@ -50,14 +50,5 @@ function MyApp({ Component, pageProps, grupos }) {
     </>
   );
 }
-MyApp.getInitialProps = async (appContext) => {
-  // calls page's `getInitialProps` and fills `appProps.pageProps`
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API}/api/grupos/categorias`
-  );
-  const dataGrupos = await res.json();
-
-  return { grupos: dataGrupos };
-};
 export default MyApp;

@@ -72,8 +72,7 @@ const Footer = () => {
           </Info>
         </GridInfo>
         <Copyrigth>
-          Todos los derechos reservados <br /> Copyright © 2021 – Space
-          Marketing SAS
+          Todos los derechos reservados <br /> Copyright © 2021 – Luz Mar Droguerias 
         </Copyrigth>
       </ContentInfoFooter>
     </ContentFooter>

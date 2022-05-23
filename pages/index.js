@@ -18,10 +18,10 @@ const BuscadorDynamic = dynamic(
 );
 const PublicidadDynamic = dynamic(
   () => import("../components/index/publicidad/Publicidad"),
-  { loading: () => <p style={{fontSize:'100px'}}>CARGANDO .... </p> }
+  { loading: () => <p style={{fontSize:'100px',zIndex:'99999'}}>CARGANDO .... </p> }
 );
 export default function Home ({data}) {
-
+   
  
   return (
     <div

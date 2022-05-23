@@ -7,14 +7,16 @@ import useAppContext, { StoreProvider } from "../context/Store";
 import Register from "./index/register/Register";
 import { loggin, logginAdmin, loggoutAdmin, logout } from "../context/actions";
 import { useRouter } from "next/router";
-const Layout = ({ children,grupos }) => {
+const Layout = ({ children }) => {
 
   const [loginOpen, setLogin] = useState(false)
+  const [ grupos , setGrupos ] = useState([])
   const [registerOpen, setRegisterOpen] = useState(false)
   const router = useRouter()
   const { value } = useAppContext()
   const { state , dispatch } = value 
   const { user } = state 
+  
   
   const closeLogin = useCallback(() => {
      setLogin(false)},
@@ -88,6 +90,20 @@ const Layout = ({ children,grupos }) => {
     // TODO MANTENER LA SESION DE EL ADMINISTRADOR 
     }
   }, [dispatch,router])
+  
+  const getGrupos = async () => {
+     const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API}/api/grupos/categorias`
+  );
+  const dataGrupos = await res.json();
+
+  setGrupos(dataGrupos)
+  }
+
+  useEffect(() => {
+     getGrupos()
+  }, [])
+  
 
   return (
     <div className="contentPrincipal">
