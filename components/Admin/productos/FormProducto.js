@@ -26,7 +26,9 @@ const FormProducto = ({ grupos, data, disabledG, edit, setdataProducto }) => {
   const [files, setFiles] = useState([]);
   let factura = checked ? "2" : "1";
 
-  const dataProducto = { nombre, descripcion, price, stock, descuento ,factura};
+  const dataProducto = { nombre, descripcion, price, stock, descuento ,grupo,factura};
+
+ 
   const handleChange = (event) => {
     setchecked(event.target.checked);
 

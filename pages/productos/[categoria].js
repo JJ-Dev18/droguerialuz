@@ -40,12 +40,15 @@ const ProductosCategoria = (props) => {
 
   return (
     <ContainerCategoria>
-      <Busqueda data={props.data} setData={setData}/>
-    <ContentProductosCategoria>
-      {data.map((producto) => (
-        <Producto {...producto} key={producto.idProducto}/>
-      ))}
-    </ContentProductosCategoria>
+      <Busqueda data={props.data} setData={setData} />
+      <ContentProductosCategoria>
+        {data.map((producto) => (
+          <Producto {...producto} key={producto.idProducto} />
+        ))}
+      </ContentProductosCategoria>
+      {data.length == 0 && (
+        <h2> No hay productos relacionados </h2>
+      )}
     </ContainerCategoria>
   );
 }

@@ -11,7 +11,7 @@ const ProductoDetail = ({data,grupos}) => {
       <MiniDrawer>
         <h2>Detalle del Producto</h2>
         <ProductoScreen {...dataProducto} />
-        <FormProducto data={data} grupos={grupos} edit={true} disabledG={true} setdataProducto={setdataProducto} />
+        <FormProducto data={data} grupos={grupos} edit={true}  setdataProducto={setdataProducto} />
       </MiniDrawer>
     </>
   );
