@@ -13,7 +13,7 @@ import {
 import { NavLink } from "./NavLink";
 
 const DropDownCategories = ({ grupos }) => {
-  console.log('generado')
+  
   const sacarCategorias = () => {
     let hash = {};
     let initialstate = {}

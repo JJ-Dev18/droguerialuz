@@ -29,7 +29,7 @@ const Header = (props) => {
   const cantProductos = cartItems.length
   const router = useRouter();
 
- 
+  console.log(props,"props")
   const openLogin = ()=> {
     props.openLogin()
     setopen(false)

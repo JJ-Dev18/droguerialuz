@@ -17,7 +17,7 @@ const Buscador = ({data}) => {
   const handleChange = ({target})=> {
       setBusqueda(target.value)
   }
-  
+  console.log("renderizandose")
   return (
     <ContentBuscador fondo="/index/buscador/fondo.webp">
       <InfoBuscador>
